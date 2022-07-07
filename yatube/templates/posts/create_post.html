@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+{% if is_edit %} <title> Редактировать запись </title>
+{% else %} <title> Новый пост </title> {% endif%}
+{% endblock %}
+{% block content %}
+    <main>
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8 p-5">
+            <div class="card">
+              <div class="card-header">
+                {% if is_edit %} Редактировать пост
+                {% else %} Новый пост {% endif %}                  
+              </div>
+              <div class="card-body">        
+                <form method="post" enctype="multipart/form-data"
+                  {% if action_url %}
+                   action="{% url action_url %}"
+                  {% endif %}>
+                  {% csrf_token %}
+                  {{form.as_p}}
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">
+                      {% if is_edit %} Добавить
+                      {% else %} Сохранить {% endif %}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+{% endblock %}
