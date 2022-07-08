@@ -10,6 +10,7 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from ..models import Comment, Group, Post
+from .utils import check_group, check_post_2
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
@@ -108,17 +109,8 @@ class PostPagesTests(TestCase):
                     first_object = (
                         response.context['page_obj'][COUNT_POST_NULL]
                     )
-                    self.assertEqual(first_object.text, self.post.text)
-                    self.assertEqual(
-                        first_object.author.username, self.post.author.username
-                    )
-                    self.assertEqual(
-                        first_object.group.title, self.group.title
-                    )
-                    self.assertEqual(
-                        first_object.group.description,
-                        self.group.description
-                    )
+                    check_post_2(first_object, self.post)
+                    check_group(first_object.group, self.group)
                     self.assertNotEqual(
                         first_object.group.title, self.group_not.title
                     )
@@ -133,10 +125,7 @@ class PostPagesTests(TestCase):
         )
         post = response.context['post']
         comments = response.context['comments']
-        self.assertEqual(post.text, self.post.text)
-        self.assertEqual(
-            post.author.username, self.post.author.username
-        )
+        check_post_2(post, self.post)
         self.assertEqual(post.image, f'posts/{self.uploaded.name}')
         self.assertEqual(response.context['count_author'], 1)
         comment_fields = (

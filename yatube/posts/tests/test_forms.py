@@ -77,7 +77,7 @@ class PostCreateFormTests(TestCase):
             response, self.POST_DETAIL
         )
         self.assertEqual(Post.objects.count(), post_count)
-        post = Post.objects.filter(text=form_data['text']).latest('text')
+        post = Post.objects.filter(id=self.post.id).first()
         check_post(post, self.post, **form_data)
 
     def test_post_create(self):
