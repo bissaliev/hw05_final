@@ -109,10 +109,7 @@ def add_comment(request, post_id):
 @login_required
 def follow_index(request):
     """Функция представления постов избранных авторов."""
-    user = request.user
-    follows = user.follower
-    author_ids = follows.values_list('author_id', flat=True)
-    posts_list = Post.objects.filter(author_id__in=author_ids)
+    posts_list = Post.objects.filter(author__following__user=request.user)
     context = get_page_context(posts_list, request)
     return render(request, 'posts/follow.html', context)
 

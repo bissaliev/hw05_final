@@ -6,8 +6,10 @@ from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
-from posts.forms import PostForm
-from posts.models import Comment, Group, Post
+
+from ..forms import PostForm
+from ..models import Comment, Group, Post
+from .utils import check_post
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
@@ -76,9 +78,7 @@ class PostCreateFormTests(TestCase):
         )
         self.assertEqual(Post.objects.count(), post_count)
         post = Post.objects.filter(text=form_data['text']).latest('text')
-        self.assertEqual(post.text, form_data['text'])
-        self.assertEqual(post.group_id, form_data['group'])
-        self.assertEqual(post.author, self.post.author)
+        check_post(post, self.post, **form_data)
 
     def test_post_create(self):
         """Проверка создания формой новой записи в БД."""
@@ -97,13 +97,11 @@ class PostCreateFormTests(TestCase):
             response, self.PROFILE
         )
         self.assertEqual(Post.objects.count(), post_count + 1)
-        post = Post.objects.filter(text=form_data['text'])
-        self.assertEqual(post.get().text, form_data['text'])
-        self.assertEqual(post.get().group_id, form_data['group'])
+        post = Post.objects.filter(text=form_data['text']).latest('text')
+        check_post(post, self.post, **form_data)
         self.assertEqual(
-            post.get().image, f"posts/{form_data['image'].name}"
+            post.image, f"posts/{form_data['image'].name}"
         )
-        self.assertEqual(post.get().author, self.post.author)
 
     def test_post_detail(self):
         """ Создание комментария на странице post_detail."""

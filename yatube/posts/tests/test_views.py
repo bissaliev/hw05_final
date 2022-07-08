@@ -8,7 +8,8 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
-from posts.models import Comment, Group, Post
+
+from ..models import Comment, Group, Post
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
@@ -64,7 +65,12 @@ class PostPagesTests(TestCase):
             ('posts:post_edit', 'posts/create_post.html', [cls.post.id]),
             ('posts:post_create', 'posts/create_post.html', None),
         )
-        cls.PROFILE_FOLLOW = 'posts:follow_index'
+        cls.index = '/'
+        cls.follow_index = '/follow/'
+        cls.profile_follow = f'/profile/{cls.post.author}/follow/'
+        cls.profile_unfollow = f'/profile/{cls.post.author}/unfollow/'
+        cls.post_edit = f'/posts/{cls.post.id}/edit/'
+        cls.post_detail = f'/posts/{cls.post.id}/'
 
     @classmethod
     def tearDownClass(cls):
@@ -123,7 +129,7 @@ class PostPagesTests(TestCase):
     def test_post_detail_page_show_correct_context(self):
         """Шаблон post_detail сформирован с правильным контекстом."""
         response = self.authorized_author.get(
-            reverse('posts:post_detail', args=[self.post.id])
+            self.post_detail
         )
         post = response.context['post']
         comments = response.context['comments']
@@ -150,7 +156,7 @@ class PostPagesTests(TestCase):
     def test_create_post_page_show_correct_context(self):
         """Шаблон create_post сформирован с правильным контекстом."""
         response = self.authorized_author.get(
-            reverse('posts:post_edit', args=[self.post.id])
+            self.post_edit
         )
         form_fields = {
             'text': forms.fields.CharField,
@@ -168,18 +174,19 @@ class PostPagesTests(TestCase):
             author=self.author,
             text='Тестируем кеш'
         )
+
         cache.clear()
         content_index = self.authorized_author.get(
-            reverse('posts:index')
+            self.index
         ).content
         Post.objects.filter(author=post.author, text=post.text).delete()
         self.assertEqual(
-            self.authorized_author.get(reverse('posts:index')).content,
+            self.authorized_author.get(self.index).content,
             content_index
         )
         cache.clear()
         self.assertNotEqual(
-            self.authorized_author.get(reverse('posts:index')).content,
+            self.authorized_author.get(self.index).content,
             content_index
         )
 
@@ -191,11 +198,11 @@ class PostPagesTests(TestCase):
         """
         count_follow = self.user.follower.count()
         self.authorized_user.post(
-            reverse('posts:profile_follow', args=[self.post.author.username])
+            self.profile_follow
         )
         count_follow_2 = self.user.follower.count()
         self.authorized_user.post(
-            reverse('posts:profile_follow', args=[self.post.author.username])
+            self.profile_follow
         )
         self.assertEqual(count_follow_2, count_follow + 1)
         self.assertEqual(self.user.follower.count(), count_follow + 1)
@@ -203,11 +210,11 @@ class PostPagesTests(TestCase):
     def test_unfollow(self):
         """Проверка отписки от автора."""
         self.authorized_user.post(
-            reverse('posts:profile_follow', args=[self.post.author.username])
+            self.profile_follow
         )
         count_follow = self.user.follower.count()
         self.authorized_user.post(
-            reverse('posts:profile_unfollow', args=[self.post.author.username])
+            self.profile_unfollow
         )
         self.assertEqual(self.user.follower.count(), count_follow - 1)
 
@@ -216,27 +223,27 @@ class PostPagesTests(TestCase):
         Проверка ленты постов подписанных
         и неподписанных ползователей.
         """
+        author = self.post.author
+        text = 'Пост для проверки подписок'
         authorized_user_2 = Client()
         authorized_user_2.force_login(
             User.objects.create_user(username='User_2')
         )
         self.authorized_user.post(
-            reverse('posts:profile_follow', args=[self.post.author])
+            self.profile_follow
         )
         count_user = len(self.authorized_user.get(
-            reverse('posts:follow_index')
+            self.follow_index
         ).context['page_obj'])
         count_user_2 = len(authorized_user_2.get(
-            reverse('posts:follow_index')
+            self.follow_index
         ).context['page_obj'])
-        Post.objects.create(
-            author=self.post.author, text='Пост для проверки подписок'
-        )
+        Post.objects.create(author=author, text=text)
         self.assertEqual(len(self.authorized_user.get(
-            reverse('posts:follow_index')
+            self.follow_index
         ).context['page_obj']), count_user + 1)
         self.assertEqual(len(authorized_user_2.get(
-            reverse('posts:follow_index')
+            self.follow_index
         ).context['page_obj']), count_user_2)
 
 
@@ -258,7 +265,7 @@ class PaginatorViewsTest(TestCase):
                 text=f'Тестовый пост {str(i)}',
                 group=cls.group
             )
-        cls.INDEX = reverse('posts:index')
+        cls.index = '/'
 
     def setUp(self):
         self.authorized_client = Client()
@@ -272,9 +279,9 @@ class PaginatorViewsTest(TestCase):
         """
         POST_LIMIT = 10
         POST_LIMIT_2 = 3
-        response = self.authorized_client.get(self.INDEX)
+        response = self.authorized_client.get(self.index)
         self.assertEqual(len(response.context['page_obj']), POST_LIMIT)
         response = self.authorized_client.get(
-            reverse('posts:index') + '?page=2'
+            self.index + '?page=2'
         )
         self.assertEqual(len(response.context['page_obj']), POST_LIMIT_2)
