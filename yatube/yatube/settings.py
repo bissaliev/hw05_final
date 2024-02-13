@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,17 +19,20 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'posts.apps.PostsConfig',
-    'users.apps.UsersConfig',
-    'core.apps.CoreConfig',
-    'about.apps.AboutConfig',
-    'sorl.thumbnail',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "posts.apps.PostsConfig",
+    "users.apps.UsersConfig",
+    "core.apps.CoreConfig",
+    "about.apps.AboutConfig",
+    "sorl.thumbnail",
+    "rest_framework",
+    "djoser",
+    "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
@@ -134,4 +138,18 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
