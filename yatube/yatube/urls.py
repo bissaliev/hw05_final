@@ -14,8 +14,12 @@ urlpatterns = [
     path("auth/", include("users.urls", namespace="users")),
     path("auth/", include("django.contrib.auth.urls")),
     path("about/", include("about.urls", namespace="about")),
-    path("api/", include("api.urls")),
-    path("redoc/", TemplateView.as_view(template_name="redoc.html"), name="redoc"),
+    path("api/v1/", include("api.urls")),
+    path(
+        "redoc/",
+        TemplateView.as_view(template_name="redoc.html"),
+        name="redoc"
+    ),
 ]
 
 if settings.DEBUG:
