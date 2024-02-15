@@ -14,6 +14,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
       {% block title %}
         Базовый заголовок
       {% endblock%}
@@ -21,7 +22,7 @@
   <body>
     {% include "includes/header.html" %}    
     <main>
-      <div class="container py-5">
+      <div class="content">
       {% block content %}
         Нет контента
       {% endblock %}

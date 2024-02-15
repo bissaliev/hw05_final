@@ -1,23 +1,18 @@
-{% load thumbnail %} 
-<ul>
-    <li>
-      Автор: {{ post.author.get_full_name }}
-      <a href="{% url 'posts:profile' post.author.username %}"> все посты пользователя </a>
-    </li>
-    <li>
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
-    </li>
-  </ul>
-  {% thumbnail post.image "400x500" crop="center" upscale=True as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-  {% endthumbnail %}     
-  <p>
-    {{ post.text }}
-  </p>
-  <a href= "{% url 'posts:post_detail' post.id %}">подробная информация</a>
-</article>
-<br>
-{% if post.group %}
-<a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-{% endif %}
-{% if not forloop.last %}<hr>{% endif %}
+{% load thumbnail %}
+<div class="post">
+  <div class="post_header">
+    {% thumbnail post.image "600x400" crop="center" upscale=True as im %}
+          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+  </div> 
+  <div class="post_body">
+    {% if post.group %}
+    <span class="color_for_group"><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.slug }}</a></span>
+    {% endif %}
+    <h4>What's new in 2022 Tech</h4>
+    <p class="post_text">{{ post.text|truncatewords:15 }}<p>
+    <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
+    <p>Автор: {{ post.author.get_full_name }}</p>
+    <p>Дата публикации: {{ post.pub_date|date:"d E Y" }}</p>
+  </div>
+</div>

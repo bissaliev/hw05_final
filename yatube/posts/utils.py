@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 
-LIMIT_POSTS = 10
+LIMIT_POSTS = 8
 
 
 def get_page_context(queryset, request):
