@@ -1,7 +1,7 @@
 {% load thumbnail %}
 <div class="post">
   <div class="post_header">
-    {% thumbnail post.image "600x400" crop="center" upscale=True as im %}
+    {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
           <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
   </div> 
