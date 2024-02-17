@@ -16,7 +16,7 @@
         Базовый заголовок
       {% endblock%}
   </head>
-  <body>
+  {% comment %} <body>
     {% include "includes/header.html" %}    
     <main>
       <div class="content">
@@ -26,5 +26,18 @@
       </div>
     </main>
     {% include "includes/footer.html" %}
+  </body> {% endcomment %}
+  <body>
+    <header>
+      {% include "includes/header.html" %}
+    </header>
+    <main>
+      {% block content %}
+        Нет контента
+      {% endblock %}
+    </main>
+    <footer class="border-top text-center py-3">
+      {% include "includes/footer.html" %}
+    </footer>
   </body>
 </html>

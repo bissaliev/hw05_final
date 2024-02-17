@@ -28,7 +28,7 @@ def group_posts(request, slug) -> HttpResponse:
         "group": group,
     }
     context |= get_page_context(posts_list, request)
-    return render(request, "posts/group_list.html", context)
+    return render(request, "posts/index.html", context)
 
 
 def profile(request, username):
@@ -37,7 +37,11 @@ def profile(request, username):
     posts = author.posts.all()
     posts_count = posts.count()
     following = Follow.objects.filter(author=author).exists()
-    context = {"author": author, "posts_count": posts_count, "following": following}
+    context = {
+        "author": author,
+        "posts_count": posts_count,
+        "following": following
+    }
     context |= get_page_context(posts, request)
     return render(request, "posts/profile.html", context)
 
