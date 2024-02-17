@@ -1,8 +1,8 @@
 {% load thumbnail %}
-<div class="post">
+{% comment %} <div class="post">
   <div class="post_header">
     {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
-          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
     {% endthumbnail %}
   </div> 
   <div class="post_body">
@@ -12,7 +12,33 @@
     <h4>What's new in 2022 Tech</h4>
     <p class="post_text">{{ post.text|truncatewords:15 }}<p>
     <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
-    <p>Автор: {{ post.author.get_full_name }}</p>
-    <p>Дата публикации: {{ post.pub_date|date:"d E Y" }}</p>
+    <p style="display: flex;">
+      {% thumbnail post.image "50x50" crop="center" upscale=True as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+      {% endthumbnail %}
+      {{ post.author.get_full_name }}</p>
+    <p>{{ post.pub_date|date:"d E Y" }}</p>
+  </div>
+</div> {% endcomment %}
+
+<div class="post">
+  <div class="post_header">
+    {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+    {% endthumbnail %}
+  </div> 
+  <div class="post_body">
+    {% if post.group %}
+    <span class="color_for_group"><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.slug }}</a></span>
+    {% endif %}
+    <h4>What's new in 2022 Tech</h4>
+    <p class="post_text">{{ post.text|truncatewords:15 }}<p>
+    <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
+    <p style="display: flex;">
+      {% thumbnail post.image "50x50" crop="center" upscale=True as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+      {% endthumbnail %}
+      {{ post.author.get_full_name }}</p>
+    <p>{{ post.pub_date|date:"d E Y" }}</p>
   </div>
 </div>

@@ -16,10 +16,10 @@ a {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
 }
 
-/* post */
+/* список постов */
 
 .post_list {
     display: flex;
@@ -59,6 +59,9 @@ a {
     font-size: 1.5rem;
     text-transform: capitalize;
 }
+.post_body img {
+    border-radius: 5em;
+}
 
 
 .color_for_group {
@@ -72,3 +75,98 @@ a {
 .color_for_group a {
     color: #ffffff;
 }
+
+/* список постов */
+
+/* страница одного поста */
+
+.post_single_content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.post_single {
+    border-radius: 2rem;
+    width: 80%;
+    overflow: hidden;
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.post_single_top {
+    display: flex;
+    width: 80%;
+    margin-top: 5em;
+}
+.post_single_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.post_single_text p {
+    /* width: 80%; */
+    /* background: rgba(134, 132, 132, 0.068); */
+    padding: 3em;
+    border-radius: 1em;
+}
+
+.post_single_comment {
+    width: 90%;
+}
+.post_single_img {
+    /* width: 40%; */
+    /* margin: 2rem; */
+    border-radius: 2rem;
+    overflow: hidden;
+    object-fit: cover;
+    box-shadow: 0 0 .90em rgba(0, 0, 0, 0.7);
+            /* inset 0 0 2em rgba(255, 255, 255, 0.7); */
+}
+.post_single_des {
+    margin-left: 2em;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+.post_single_des img {
+    border-radius: 5em;
+    /* align-items: center; */
+}
+.post_single_des_content {
+    /* width: 90%; */
+    font-size: 2em;
+}
+.post_single_des_content h1 {
+    /* width: 90%; */
+    font-size: 1.5em;
+}
+
+.button_follow {
+    display: inline-block;
+    padding: .20em .60em .20em .60em;
+    border-radius: 1em;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, rgba(167, 9, 133, 0.719), rgba(0, 0, 255, 0.788));
+    box-shadow: 0 0 .90em rgba(0, 0, 0, 0.7),
+            inset 0 0 .90em rgba(255, 255, 255, 0.7);
+    transition: transform 600ms;
+    /* will-change: transform; */
+}
+.button_follow:hover {
+    color: #FFFFFF;
+    /* background: linear-gradient(270deg, rgba(167, 9, 133, 0.719), rgba(0, 0, 255, 0.788)); */
+    transform: scale(1.05);
+    /* transform: rotate(180deg) */
+}
+
+/* страница одного поста */
