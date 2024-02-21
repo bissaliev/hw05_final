@@ -4,104 +4,46 @@
   <title> {{ post.text|truncatechars:30 }} </title>
 {% endblock%}
 {% block content %}
-<div class="container mt-lg-5 ">
-    <div class="row post_single p-lg-4">
-        <div class="container-fluid pt-3 ">
-            <div class="row">
-                <div class="col-12 col-lg-5">
-                    {% thumbnail post.image "500x650" crop="center" as im %}
-                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_img">
-                    {% endthumbnail %}
-                </div>
-                <div class="col-12 col-lg-7 post_single_des">
-                  <div class="">
-                    <h1 class="h1">{{ post.text|truncatechars:50 }}</h1>
-                    <p>{{ post.pub_date|date:"d E Y"}}</p>
-                    <p>
-                        {% if post.group %}
-                        <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a>
-                        {% endif%}
-                    </p>
-                    <p>
-                        Всего постов автора:  <span > {{ count_author }}</span>
-                    </p>
-                    <p><a href="{% url 'posts:profile' post.author.username %}">все посты пользователя</a></p>
-                    <p>
-                        {% thumbnail post.image "80x80" crop="center" upscale=True as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %}
-                        {{ post.author.get_full_name }}
-                    </p>
-                    <a class="button_follow" href="#" role="button">Подписаться</a>
-                  </div>
+<div class="container"> <!--top-->
+    <div class="row post_single_des justify-content-around ">
+        <div class="col-12 col-md-4 col-lg-5 p-3 p-lg-5"> <!--img-->
+            {% thumbnail post.image "500x600" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_img">
+            {% endthumbnail %}
+        </div>
+        <div class="col-12 col-md-8 col-lg-7 pt-lg-5"> <!--description-->
+            <h3 class="h3">{{ post.text|truncatechars:100 }}</h3>
+            <p>{{ post.pub_date|date:"d E Y"}}</p>
+            <div class="post_single_group_name">
+                {% if post.group %}
+                <span><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a></span>
+                {% endif%}
+            </div>
+            <div class="post_single_author">
+                {% thumbnail post.image "80x80" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_avatar" href="{% url 'posts:profile' post.author.username %}">
+                {% endthumbnail %}
+                <div>
+                    <h5 class="post_single_author_name"><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
+                    <small>Всего постов автора:  <span > {{ count_author }}</span></small>
                 </div>
             </div>
+            <a class="button_follow" href="#" role="button">Подписаться</a>
         </div>
-        <div class="py-lg-5 ">
-            <div class=""> {{ post.text|linebreaksbr }} </div>
-            <div class="container pt-lg-5">
-              <div class="row justify-content-around">
-                      {% if request.user.is_authenticated %}
-                      <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
-                      {% endif%}
-                      {% if request.user.is_authenticated %}
-                      <a class="btn btn-danger" href="{% url 'posts:post_edit' post.id %}">удалить</a>
-                      {% endif%}
-              </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12">
-      {% include 'includes/comments.html' %}
     </div>
 </div>
+<div class="container post_single_text p-3 p-lg-5">  <!--text-->
+    {{ post.text|linebreaksbr }}
+</div>
+<div class="button_group_text container"> <!--button-->
+    {% if request.user.is_authenticated %}
+    <a class="button_text button_edit" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
+    {% endif%}
+    {% if request.user.is_authenticated %}
+    <a class="button_text button_delete" href="{% url 'posts:post_edit' post.id %}">удалить</a>
+    {% endif%}
+</div>
+<div class=""> <!--comments-->
+  {% comment %} {% include 'includes/comments.html' %} {% endcomment %}
+</div>
 {% endblock %}
-
-{% comment %} {% block content %} {% endcomment %}
-{% comment %} <div class="post_single_content"> {% endcomment %}
-  {% comment %} <div class="post_single"> {% endcomment %}
-    {% comment %} <div class="post_single_top"> {% endcomment %}
-      {% comment %} <div class="post_single_img"> {% endcomment %}
-        {% comment %} {% thumbnail post.image "500x700" crop="center" as im %} {% endcomment %}
-          {% comment %} <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_img"> {% endcomment %}
-        {% comment %} {% endthumbnail %} {% endcomment %}
-      {% comment %} </div> {% endcomment %}
-      {% comment %} <div class="post_single_des"> {% endcomment %}
-        {% comment %} <div class="post_single_des_content"> {% endcomment %}
-          {% comment %} <h1>{{ post.text|truncatechars:50 }}</h1> {% endcomment %}
-          {% comment %} <p>{{ post.pub_date|date:"d E Y"}}</p> {% endcomment %}
-          {% comment %} <p> {% endcomment %}
-            {% comment %} {% if post.group %} {% endcomment %}
-              {% comment %} <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a> {% endcomment %}
-            {% comment %} {% endif%} {% endcomment %}
-          {% comment %} </p> {% endcomment %}
-          {% comment %} <p> {% endcomment %}
-            {% comment %} Всего постов автора:  <span > {{ count_author }}</span> {% endcomment %}
-          {% comment %} </p> {% endcomment %}
-          {% comment %} <p><a href="{% url 'posts:profile' post.author.username %}">все посты пользователя</a></p> {% endcomment %}
-          {% comment %} <p> {% endcomment %}
-            {% comment %} {% thumbnail post.image "80x80" crop="center" upscale=True as im %} {% endcomment %}
-              {% comment %} <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"> {% endcomment %}
-            {% comment %} {% endthumbnail %} {% endcomment %}
-            {% comment %} {{ post.author.get_full_name }} {% endcomment %}
-          {% comment %} </p> {% endcomment %}
-          {% comment %} <a class="button_follow" href="#" role="button"> {% endcomment %}
-            {% comment %} Подписаться {% endcomment %}
-          {% comment %} </a> {% endcomment %}
-        {% comment %} </div> {% endcomment %}
-      {% comment %} </div> {% endcomment %}
-    {% comment %} </div> {% endcomment %}
-    {% comment %} <div class="post_single_text"> {% endcomment %}
-      {% comment %} <p> {{ post.text|linebreaksbr }} </p> {% endcomment %}
-      {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
-        {% comment %} <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}"> {% endcomment %}
-          {% comment %} редактировать запись {% endcomment %}
-        {% comment %} </a> {% endcomment %}
-      {% comment %} {% endif%} {% endcomment %}
-    {% comment %} </div> {% endcomment %}
-  {% comment %} </div> {% endcomment %}
-  {% comment %} <div class="post_single_comment"> {% endcomment %}
-      {% comment %} {% include 'includes/comments.html' %} {% endcomment %}
-  {% comment %} </div> {% endcomment %}
-{% comment %} </div> {% endcomment %}
-{% comment %} {% endblock %} {% endcomment %}
