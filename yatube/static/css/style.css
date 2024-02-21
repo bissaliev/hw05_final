@@ -276,3 +276,22 @@ a {
 }
 
 /* страница одного поста */
+
+
+/* profile */
+
+.profile_top {
+    background: rgba(0, 0, 0, 0.329);
+    color:#ffffff;
+    border-radius: 20px;
+}
+
+.profile_avatar {
+    border-radius: 20px;
+    border: 1px solid black;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+/* profile */

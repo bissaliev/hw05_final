@@ -20,9 +20,13 @@
                 {% endif%}
             </div>
             <div class="post_single_author">
-                {% thumbnail post.image "80x80" crop="center" upscale=True as im %}
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_avatar" href="{% url 'posts:profile' post.author.username %}">
-                {% endthumbnail %}
+                {% if post.author.avatar %}
+                    {% thumbnail post.author.avatar "80x80" crop="center" upscale=True as im %}
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_avatar" href="{% url 'posts:profile' post.author.username %}">
+                    {% endthumbnail %}
+                {% else %}
+                    <img src="/media/users/default.png" width="80" height="80" class="post_single_avatar">
+                {% endif %}
                 <div>
                     <h5 class="post_single_author_name"><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
                     <small>Всего постов автора:  <span > {{ count_author }}</span></small>

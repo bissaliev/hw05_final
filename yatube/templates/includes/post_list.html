@@ -16,9 +16,13 @@
             <p class="post_text">{{ post.text|truncatewords:15 }}<p>
             <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
             <p style="display: flex;">
-              {% thumbnail post.image "50x50" crop="center" upscale=True as im %}
-                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-              {% endthumbnail %}
+              {% if post.author.avatar %}
+                  {% thumbnail post.author.avatar "50x50" crop="center" upscale=True as im %}
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                  {% endthumbnail %}
+              {% else %}
+                  <img src="/media/users/default.png" width="50" height="50">
+              {% endif %}
               {{ post.author.get_full_name }}</p>
             <p>{{ post.pub_date|date:"d E Y" }}</p>
           </div>

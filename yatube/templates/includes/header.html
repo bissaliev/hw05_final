@@ -1,5 +1,50 @@
 {% load static %}
-<header class="my_header">
+<nav class="navbar navbar-light" style="background-color: lightskyblue">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'posts:index' %}">
+      <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+      <span style="color:red">Ya</span>tube
+    </a>
+    {% comment %} {# Добавлено в спринте #} {% endcomment %}
+    {% comment %} Меню - список пунктов со стандартными классами Bootsrap. {% endcomment %}
+    {% comment %} Класс nav-pills нужен для выделения активных пунктов  {% endcomment %}
+    {% with request.resolver_match.view_name as view_name %}
+    <ul class="nav nav-pills">
+      <li class="nav-item"> 
+        <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" href="{% url 'about:author' %}">Об авторе</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}" href="{% url 'about:tech' %}">Технологии</a>
+      </li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'posts:post_create' %} active {% endif %}"
+        href="{% url 'posts:post_create' %}">Новая запись</a>
+      </li>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link link-light {% if view_name  == 'users:password_reset_form' %}active{% endif %}" href="{% url 'users:password_reset_form' %}">Изменить пароль</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}" href=" {% url 'users:logout' %} ">Выйти</a>
+      </li>
+      <li>
+        Пользователь: {{ user.username }}
+      </li>
+      {% else %}
+      <li class="nav-item"> 
+        <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href=" {% url 'users:login' %} ">Войти</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a>
+      </li>
+      {% endif %}
+    {% endwith %}
+    </ul>
+    {# Конец добавленого в спринте #}
+  </div>
+</nav>      
+{% comment %} <header class="my_header">
     <div class="logo">
         <span>Frontend</span>
         <span>Кейс</span>
@@ -19,57 +64,4 @@
     <div class="burger">
         <span></span>
     </div>
-</header>
-
-
-
-
-
-
-{% comment %} <nav class="navbar navbar-light" style="background-color: lightskyblue">
-  <div class="container">
-    <a class="navbar-brand" href="{% url 'posts:index' %}">
-      <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-      <span style="color:red">Ya</span>tube
-    </a> {% endcomment %}
-    {# Добавлено в спринте #}
-    {% comment %}
-    Меню - список пунктов со стандартными классами Bootsrap.
-    Класс nav-pills нужен для выделения активных пунктов 
-    {% endcomment %}
-    {% comment %} {% with request.resolver_match.view_name as view_name %} {% endcomment %}
-    {% comment %} <ul class="nav nav-pills"> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" href="{% url 'about:author' %}">Об авторе</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item"> {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}" href="{% url 'about:tech' %}">Технологии</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
-      {% comment %} <li class="nav-item"> {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'posts:post_create' %} active {% endif %}" {% endcomment %}
-        {% comment %} href="{% url 'posts:post_create' %}">Новая запись</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:password_reset_form' %}active{% endif %}" href="{% url 'users:password_reset_form' %}">Изменить пароль</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}" href=" {% url 'users:logout' %} ">Выйти</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li> {% endcomment %}
-        {% comment %} Пользователь: {{ user.username }} {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% else %} {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href=" {% url 'users:login' %} ">Войти</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% endif %} {% endcomment %}
-    {% comment %} {% endwith %} {% endcomment %}
-    {% comment %} </ul> {% endcomment %}
-    {% comment %} {# Конец добавленого в спринте #} {% endcomment %}
-  {% comment %} </div> {% endcomment %}
-{% comment %} </nav>       {% endcomment %}
+</header> {% endcomment %}
