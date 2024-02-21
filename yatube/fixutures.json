@@ -1,0 +1,1667 @@
+[
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "auth",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "posts",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "posts",
+            "model": "post"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "posts",
+            "model": "comment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "posts",
+            "model": "follow"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "thumbnail",
+            "model": "kvstore"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "0am4dkzyiarmrdfu3r41pbuioqtcyzay",
+        "fields": {
+            "session_data": "Y2EwMWQwOTIzM2IwZDBkZmY0MWVlYmNmZTA1MTZhNGY4NDBiYzBiMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3ZGE5ZTUwOThmMGI5NTc0NzQzZGEwY2VlY2FiNzQ5YTFkODNhMDAyIn0=",
+            "expire_date": "2024-02-29T17:51:50.490Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "mf9jmdhbtelgtsyo7n68do50u76kdfrj",
+        "fields": {
+            "session_data": "Y2EwMWQwOTIzM2IwZDBkZmY0MWVlYmNmZTA1MTZhNGY4NDBiYzBiMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3ZGE5ZTUwOThmMGI5NTc0NzQzZGEwY2VlY2FiNzQ5YTFkODNhMDAyIn0=",
+            "expire_date": "2024-02-27T17:40:53.771Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "wkbr8l1olnqkwe6vc7org27xtkkbjhai",
+        "fields": {
+            "session_data": "NDdjYTdlMjgyYzY4OWIzNjUzMTE2MGFjMzM0ODllMjM2ZDRkMGQ2ZDp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIwZmZlZjUzNDkzYTM4NDkzNzJjYjNiZjZiYTA1YjdjMmI1YzU2MTRiIn0=",
+            "expire_date": "2024-03-02T22:34:04.580Z"
+        }
+    },
+    {
+        "model": "posts.group",
+        "pk": 1,
+        "fields": {
+            "title": "\u0421\u043f\u043e\u0440\u0442",
+            "description": "\u0421\u043f\u043e\u0440\u0442\u0438\u0432\u043d\u0430\u044f \u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0430",
+            "slug": "sport"
+        }
+    },
+    {
+        "model": "posts.group",
+        "pk": 2,
+        "fields": {
+            "title": "\u041a\u0438\u043d\u043e",
+            "description": "\u0413\u0440\u0443\u043f\u043f\u0430 \u043e \u043a\u0438\u043d\u043e",
+            "slug": "kino"
+        }
+    },
+    {
+        "model": "posts.group",
+        "pk": 3,
+        "fields": {
+            "title": "\u041a\u043d\u0438\u0433\u0438",
+            "description": "\u0413\u0440\u0443\u043f\u043f\u0430 \u043e \u043a\u043d\u0438\u0433\u0430\u0445",
+            "slug": "books"
+        }
+    },
+    {
+        "model": "posts.group",
+        "pk": 4,
+        "fields": {
+            "title": "\u0411\u0435\u0437 \u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0438",
+            "description": "\u0411\u0435\u0437 \u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0438",
+            "slug": "prosto"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||003e11b2abab18493c376f777fa0daa3",
+        "fields": {
+            "value": "{\"name\": \"posts/temp_ei1exba.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||024defcd1dbd790d42de67c27c9e7e12",
+        "fields": {
+            "value": "{\"name\": \"cache/83/2a/832a3ab565370b555c3cac323f130300.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||0499c3f45194303bccfe9b856aa59d0d",
+        "fields": {
+            "value": "{\"name\": \"cache/fb/20/fb205716011e54a348c083881f670673.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||0b01f59ae5672ca6cdac53577e9d71df",
+        "fields": {
+            "value": "{\"name\": \"posts/piqsels.com-id-frrst.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [7075, 4210]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||0ccd57ce9dfee90b99d504323a35a24b",
+        "fields": {
+            "value": "{\"name\": \"cache/ab/b8/abb83ef65bc5251a895cd419d313daa1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||0ce16eb59349b646ab21590484f33656",
+        "fields": {
+            "value": "{\"name\": \"cache/e2/a6/e2a63bc6f92bb636f47a00808da8117e.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||0e42fc31f85dcd947628bc43c938be8a",
+        "fields": {
+            "value": "{\"name\": \"cache/f6/dc/f6dc7409c3a98ed36a9576f7120cb224.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||104509b6cbc4122dacabe97d70924582",
+        "fields": {
+            "value": "{\"name\": \"cache/8c/12/8c12f5a55c7bfcaa5850be6db6f6b5d2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||13a10bc19a89974940fb8f08e640ae19",
+        "fields": {
+            "value": "{\"name\": \"cache/11/dd/11ddcf63465d55b7b37cd8c12aba8155.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||141a10c818f05d5049142bcc68a80403",
+        "fields": {
+            "value": "{\"name\": \"cache/f6/f3/f6f318349a240b123e29d05b2a843c87.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 900]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||1612b2ebf6c287c962f429681185b7fc",
+        "fields": {
+            "value": "{\"name\": \"cache/5d/a1/5da1bd1fdd9a6fd3e6d2963df7e1c5b6.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||16dc9e6d8557bd9befdd4afa26da44f6",
+        "fields": {
+            "value": "{\"name\": \"posts/kartinki-terminator-23.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1203, 963]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||17ccb3878076a6bbce1eec5da64c5fcf",
+        "fields": {
+            "value": "{\"name\": \"cache/cc/83/cc83f707ff240872dd15530781b57444.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||1c3241aacfb46aa4bd9b5cc86b24d4a5",
+        "fields": {
+            "value": "{\"name\": \"cache/35/44/35445ec255cfbe20c834b43c7bf82711.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||1c6209223bd8e978319b61d16535e880",
+        "fields": {
+            "value": "{\"name\": \"cache/e9/1d/e91d0f80a55c4e4d12d03b2586afffe2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||210e9c44b66da2f81bf8098e9bb3067d",
+        "fields": {
+            "value": "{\"name\": \"cache/f1/6e/f16eb3804f64c3c61d87943846e3e4ba.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 800]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||21bc4a5dce32f7cce34fbeafbf1f3c4d",
+        "fields": {
+            "value": "{\"name\": \"cache/50/64/5064358681d43e54c7f45e2bf4764ed5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||24f9ee157be63ae9382364ab9fa5214a",
+        "fields": {
+            "value": "{\"name\": \"cache/bc/e0/bce0a0cedb842bfc02487efb11c709b3.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||250e00b89d3faa8736d6468778d71244",
+        "fields": {
+            "value": "{\"name\": \"cache/ca/1d/ca1d4b81e5e32034b5debdea330a4bdf.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||265609b5bc2805e58b53460988f4d099",
+        "fields": {
+            "value": "{\"name\": \"cache/af/88/af886d89d0780683e54a30302002b77f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3090f4a6df6d043366f997e7986e03a9",
+        "fields": {
+            "value": "{\"name\": \"cache/a1/f9/a1f96431f0fadf3b9977f95afbe86024.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||322979cc70518285ea1063a01a5ba1b6",
+        "fields": {
+            "value": "{\"name\": \"cache/33/3a/333aaaf9b26535d9f92853d667c7eded.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||33f351cdb2f4fca328a6177ca082ba1c",
+        "fields": {
+            "value": "{\"name\": \"cache/aa/47/aa470c2b8376922d0a374c5d2085c95b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3574d12b603506e98d918de4e29f6dce",
+        "fields": {
+            "value": "{\"name\": \"cache/5c/aa/5caa7182199f853baea691e31d6578e2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3634847e17087686ba5eff1ccea27eee",
+        "fields": {
+            "value": "{\"name\": \"cache/e2/a1/e2a1d90caccf1b44f791ed11219d862f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||37754ab85068016642d9e0bace3735c8",
+        "fields": {
+            "value": "{\"name\": \"cache/a1/a1/a1a13c6d368f5254f29372f480292b72.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 650]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3cea9d60013fb04e6c3a241c792851a0",
+        "fields": {
+            "value": "{\"name\": \"cache/34/52/34524a7c72641bd9315d5af0f3f3c079.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3d21d7de9e480e7cc952f757e71aff19",
+        "fields": {
+            "value": "{\"name\": \"cache/6a/c6/6ac6d1b237575d47ae7e34831f3d6093.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||3dd710a52b7fc18462cf5d43243c67c1",
+        "fields": {
+            "value": "{\"name\": \"cache/21/3c/213c5ae3a406e0c26836ecfd4b0dc318.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||4010f67b9642bf922016907466292e01",
+        "fields": {
+            "value": "{\"name\": \"cache/47/f6/47f6978b0a1fb152a3a7cb848a3d423d.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||409c04a8d84a3bfe5d9fa55085ee1efe",
+        "fields": {
+            "value": "{\"name\": \"cache/94/11/94114f86ffeda3baed41a2e1d8020da1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||46b95511d118503050eefcb63b0c8da1",
+        "fields": {
+            "value": "{\"name\": \"cache/64/27/64278de4bab5b9e2bbdb69033f7e37f7.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||48d19b015c910c56b8513d7718ce5d52",
+        "fields": {
+            "value": "{\"name\": \"cache/bf/e3/bfe3a403305aebb96bd139e8a71e4d72.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||4ab0c20c71cec7ecf2f92b6d921f54e9",
+        "fields": {
+            "value": "{\"name\": \"cache/d6/2a/d62a074e82992f50786fb81c16faaba3.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||4e55c5866e4bb30af8161e0fa81101b3",
+        "fields": {
+            "value": "{\"name\": \"cache/95/9d/959df89dc003061f729d96ebedca08bb.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||4ea8fc5323152abb3bcb35bf7d6001a5",
+        "fields": {
+            "value": "{\"name\": \"cache/89/dd/89dd98930215f1f6bbae2304ae71c3ca.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||53d7db58d6da9728546dbaac58ee97c3",
+        "fields": {
+            "value": "{\"name\": \"cache/7c/bc/7cbc7ea1deaed0daa800633ab99d160c.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||53e56ecb4baf5d0a196325dd83540233",
+        "fields": {
+            "value": "{\"name\": \"cache/2e/a3/2ea3222dbbfea52bf6cc8ce7f54cff69.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||557ea782dc23d4eb21f9d8c69b6627fd",
+        "fields": {
+            "value": "{\"name\": \"posts/piqsels.com-id-frrol_3PTf7qi.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [5335, 3557]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||57a7650d71b4e5fe255992774d00d907",
+        "fields": {
+            "value": "{\"name\": \"cache/0b/f7/0bf764b1fa85e786e261aed556ba8875.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||58c7f40af6ac417aec4c2f7a87e2994c",
+        "fields": {
+            "value": "{\"name\": \"cache/44/01/4401db6f6563056c09e537284502929a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||59f1d2fba56b97a77991261357fce845",
+        "fields": {
+            "value": "{\"name\": \"cache/15/9c/159c048513ac6850d378a3caf55417b8.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5a836fdcc730730bdaf1280a2e0dcf60",
+        "fields": {
+            "value": "{\"name\": \"cache/d0/3f/d03f76ba5b83d004fa132fd76d627fcc.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5b2aaa3822cfa882a8b43447a9cb300e",
+        "fields": {
+            "value": "{\"name\": \"cache/ca/1e/ca1ede2b29ae253dd823cf2ca887fdea.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5db5d0feb2158bc1d4145aaf0cd1af4c",
+        "fields": {
+            "value": "{\"name\": \"cache/d5/7f/d57ff4945478c12a94c76778452b0280.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5f593c05297715e40627632508fd8fa4",
+        "fields": {
+            "value": "{\"name\": \"cache/5e/d2/5ed2dd93d5a8019d740a17a8388ff519.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5fb378d8158d8ac176ccf79e954cde0f",
+        "fields": {
+            "value": "{\"name\": \"cache/4d/a1/4da111dbd748aba14b67226f671e153a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||5fbc38a10f489610f9da18087b0b46c2",
+        "fields": {
+            "value": "{\"name\": \"cache/b1/e3/b1e31cde2d9c61d641c1fba6e0c9a24d.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||60557f95cb44b63786f83157bbebc77a",
+        "fields": {
+            "value": "{\"name\": \"cache/3e/09/3e09cbd19c25d2df6a97b3c4d3d312f2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||618b185a079ba6eb6a5f979ab9d818b7",
+        "fields": {
+            "value": "{\"name\": \"posts/piqsels.com-id-jrrct_1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [4690, 2631]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||62664464be1b02aea310c77083b812ba",
+        "fields": {
+            "value": "{\"name\": \"cache/92/aa/92aa9d1e61e3616407a3e060f679bb56.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||667e680ebd36399073a5109760f0c10e",
+        "fields": {
+            "value": "{\"name\": \"cache/3e/54/3e545c15bac8f4496097a1d68eaae897.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||68d01412bd64a856678247b96944a7ac",
+        "fields": {
+            "value": "{\"name\": \"cache/5d/a8/5da8f8dc583a587c303a600e6c2ed354.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||6a6e21a68a5b5f6fcb87da534e042bed",
+        "fields": {
+            "value": "{\"name\": \"cache/b4/7e/b47e03f0791f9d2bba56d680901bc716.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||6ad950f2835aca4534411ac926f2183b",
+        "fields": {
+            "value": "{\"name\": \"cache/a3/1f/a31fe827fc89ac7648efaf161fef550a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||6af78df637d9389050da225f2063bf45",
+        "fields": {
+            "value": "{\"name\": \"cache/a3/31/a331e1046d02fdf16ed604868a5366cf.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||6bb27d6d3cbebca1197a2a96171a5233",
+        "fields": {
+            "value": "{\"name\": \"cache/db/a3/dba313f83e4532a965ea0c6efd4d1fb5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||7096a3e977b00026f5088705011e558c",
+        "fields": {
+            "value": "{\"name\": \"posts/temp.png\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||74ddcbc161e293047fdce17781dfd769",
+        "fields": {
+            "value": "{\"name\": \"cache/8d/76/8d765e645dfb9171fabf8117974ba778.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||76a5c4e7264ddf3d1f34e6f50a941faa",
+        "fields": {
+            "value": "{\"name\": \"cache/28/cf/28cf55d2521e92e9bf1d08895322c18f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||77f8ec981c82b4866811039b70bac512",
+        "fields": {
+            "value": "{\"name\": \"posts/temp_E3gkMr1.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||79289a476cb57ea4227c62008b06b1b0",
+        "fields": {
+            "value": "{\"name\": \"cache/7d/7a/7d7a19f105d2fe03ba1f4bf21c8d5c8f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||7964b2af927ff796fb251955c8a109d2",
+        "fields": {
+            "value": "{\"name\": \"cache/96/7e/967eb81894f42cf5e4e34090d954e334.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||7e338224229d31f4bea40d1baf89e756",
+        "fields": {
+            "value": "{\"name\": \"posts/Girls___Beautyful_Girls___Angelina_jolie_singer_050843_.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||7ec76f7c6af3a1e40e30cf06d3e42bf8",
+        "fields": {
+            "value": "{\"name\": \"cache/ff/d4/ffd443db5512c54bf3ada1536e808f62.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||86ec24a3d5d11232c3cb12d11f7b2629",
+        "fields": {
+            "value": "{\"name\": \"cache/7f/92/7f92a2094c97d67cd9bb66dcacfb90a2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||88f0938915fd46d5cc8752e76ec465b5",
+        "fields": {
+            "value": "{\"name\": \"posts/temp.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||8f8e42de9741310c11b6c51ef43dea8f",
+        "fields": {
+            "value": "{\"name\": \"cache/3c/ff/3cff828278cfa92a9725947f19f95459.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||913a4cc589b3c5f5952a2af480ea8aa8",
+        "fields": {
+            "value": "{\"name\": \"cache/79/9f/799f769a6ba7385e97e76dfe8bd5e1eb.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||9211c2f7d4b3c34ca3510a04ebd66f03",
+        "fields": {
+            "value": "{\"name\": \"cache/5a/e3/5ae37276bcb088c82f470b0b59616e49.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||928748c097b0ae40e6ca0d4b5ad3b990",
+        "fields": {
+            "value": "{\"name\": \"cache/a9/2e/a92e2b8c6ecd0f96d7ff571caa251cbb.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||9425c04a6c5a74cfa0dec30b4a15d2f5",
+        "fields": {
+            "value": "{\"name\": \"cache/bf/de/bfde7927508e71c88b02278ced3a457a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||9481d1e4933489241d840dd5c8d7cd3a",
+        "fields": {
+            "value": "{\"name\": \"cache/fd/36/fd3661d2ae3979e830042c3039b3c03e.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||988f51efb530ad6b233cac26eb6202e9",
+        "fields": {
+            "value": "{\"name\": \"posts/temp_x9SmVEa.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||9f4446476f6709695db89c790e7a42eb",
+        "fields": {
+            "value": "{\"name\": \"cache/83/ba/83bad2a1b96c63b393ff5ffe3ceb1fce.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||9f8bcfb25b7becf2be769a1a2e03afa0",
+        "fields": {
+            "value": "{\"name\": \"cache/7b/98/7b98524fc70fba6ab2d04731d7d5e8e0.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||a43e7d484f10d12c956c4991d62fd5cf",
+        "fields": {
+            "value": "{\"name\": \"cache/48/83/48837f13c43fb41105c3a033a32765f2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||a443da1f510a116f6ec42046e4b11bf8",
+        "fields": {
+            "value": "{\"name\": \"cache/32/0f/320f361459c028c4f394f8a0f57e95f4.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||a622b5a4c162f4f3701bbd66166c0f05",
+        "fields": {
+            "value": "{\"name\": \"cache/d1/40/d140b949dd455440907313e51296f198.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||a70ff83f96302ec3cd9c83b6b0421769",
+        "fields": {
+            "value": "{\"name\": \"posts/piqsels.com-id-frrjr.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [6000, 4000]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||a83af75127bfaa2f14e6521c6ae1ff6f",
+        "fields": {
+            "value": "{\"name\": \"cache/50/37/503778e6d9e1923efdd23056beedede5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||ad53e54803f43b97dfe93d37a42d6233",
+        "fields": {
+            "value": "{\"name\": \"cache/0e/4d/0e4de2b505d8d2138a61653f36ef7881.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||aeaa9ffd46a844efb85c8616e0773224",
+        "fields": {
+            "value": "{\"name\": \"cache/5f/eb/5febd3aa7b40d08ae5c5b4d4f9084784.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||af6713c5c27cc7bfd53adccb947638b2",
+        "fields": {
+            "value": "{\"name\": \"cache/ac/aa/acaa537468bde5c2aabc8bb36b23e54c.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||b24b8d626e311e02ec8cfd952bb54f6a",
+        "fields": {
+            "value": "{\"name\": \"cache/0b/96/0b967c3aef3f13aea97204702481cdaf.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||b36dc1cc9803bef54c05dd96688ec45f",
+        "fields": {
+            "value": "{\"name\": \"cache/ad/94/ad945734a67da482bb5f19207ede2506.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 900]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||b5dd1794b85e089a05088ccfd4bcc154",
+        "fields": {
+            "value": "{\"name\": \"cache/bf/5b/bf5b524b61ebfba2de75aa219740d3df.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||b693f473763cf9fd8fae6a22af72d8ae",
+        "fields": {
+            "value": "{\"name\": \"cache/de/90/de904c2665b979d3df1555d792d1f253.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||bca4008af52d1d569a6f797f4a145eb0",
+        "fields": {
+            "value": "{\"name\": \"cache/24/ea/24ea9810ac5ffaf89bedd0253e8a544a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 650]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||bccbdd0f63435fecfdf372369c9db1e1",
+        "fields": {
+            "value": "{\"name\": \"posts/piqsels.com-id-frrol.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [5335, 3557]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||bd3401f1013104154f2ac2a3c1502069",
+        "fields": {
+            "value": "{\"name\": \"cache/c3/4a/c34a77d295e20743ea6f47c563572a06.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||bf687bba138107318b634e5b634dd24a",
+        "fields": {
+            "value": "{\"name\": \"cache/5c/48/5c489d43f982fe2ac78ca9a592f6477c.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c099bf4588f53aff22533cc43aa88ced",
+        "fields": {
+            "value": "{\"name\": \"cache/9f/cd/9fcd70ba2bfa7ccdfc363d706b6366a1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [150, 150]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c3857747352d3ed7172f8159beba2ad5",
+        "fields": {
+            "value": "{\"name\": \"cache/a4/83/a483595c159629f3ddc6fb896da9feae.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [100, 100]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c43a380736c8f06bf6f2359911f69be6",
+        "fields": {
+            "value": "{\"name\": \"cache/ee/cc/eecc52c576d30c1864b346a40c0a671d.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c4a68c22efbae96569ace058c7dbb4ed",
+        "fields": {
+            "value": "{\"name\": \"cache/d4/a4/d4a44e64ae4a2fbee5ae819569b7ed9e.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c550844a7abd25c46f3e94daaed2b890",
+        "fields": {
+            "value": "{\"name\": \"cache/49/83/498317777962e58289c927420345a0a7.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c6973dc850169ac51970293c41f7c971",
+        "fields": {
+            "value": "{\"name\": \"cache/db/3a/db3a894feddef7c2f7052b1c971e3277.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c887f378902a3fe09c5d1cc085862679",
+        "fields": {
+            "value": "{\"name\": \"cache/6b/b4/6bb4024c3a093617fa4127a15b3093cf.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c8d89971ec0ef82040cfc7958e3d3813",
+        "fields": {
+            "value": "{\"name\": \"cache/94/2d/942d3cb8cb1804a045643e66a92b0973.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c92cfba0dbfd96968f612904029bb5df",
+        "fields": {
+            "value": "{\"name\": \"cache/36/e8/36e8be60f7626d3090701be061a6e841.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||c93a2b3d723368862e262c005e1f53b9",
+        "fields": {
+            "value": "{\"name\": \"cache/87/07/8707374309d31fcf8ed9f9bf748cc24a.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||cdd4d85d7454730528074620ed9f4e0e",
+        "fields": {
+            "value": "{\"name\": \"cache/c5/8b/c58b81ac78e2c26f82b489182d75358f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||cfa65d12ae87bd6b2fc90cdc9dd88415",
+        "fields": {
+            "value": "{\"name\": \"cache/49/38/49388808624e8a365715bf2808872771.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||d4852693881062c588576e72766fa67f",
+        "fields": {
+            "value": "{\"name\": \"cache/ef/5c/ef5cd5151c2515b36cf43fe307c749a1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||d4bc82b4608d416233edaa71a87c74a1",
+        "fields": {
+            "value": "{\"name\": \"cache/7e/f7/7ef799c89ad6c0a5d6f23edb6f6fe3d3.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||d66ab53b442bacd3305fe7556ed07af8",
+        "fields": {
+            "value": "{\"name\": \"cache/e6/54/e654ab366aa6b4d29d3e6e75daa50ba8.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||da4559fb79122e5adfe4205c0446e762",
+        "fields": {
+            "value": "{\"name\": \"cache/c2/24/c224f855475bedf63d904488b104ddd3.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||dc5f5ac5f21fcedee44f915b61788673",
+        "fields": {
+            "value": "{\"name\": \"posts/nastol.com.ua-212486.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1920, 1080]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e04640238bb01f4ee890044e8059cd94",
+        "fields": {
+            "value": "{\"name\": \"cache/1d/aa/1daaba487c96c03b9f774058a8d254dc.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e1ea388163cc5437944567aa0b74de28",
+        "fields": {
+            "value": "{\"name\": \"cache/ca/50/ca50f4211dc4bbf39c251f36f19d6a7c.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 600]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e23b328c079a1bc0b34faa14e22a99f1",
+        "fields": {
+            "value": "{\"name\": \"cache/40/fd/40fd35dfa90d19b0c394f65426f57502.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 339]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e39fb941020756184acd191b589f3163",
+        "fields": {
+            "value": "{\"name\": \"cache/fd/9d/fd9d75da62a7d4a37df46ad37dc18d1f.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 800]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e4cadf605771ad764a898aad21181844",
+        "fields": {
+            "value": "{\"name\": \"img/posts/this.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [960, 1280]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e5524f23a844a82ace248c36ac0e8290",
+        "fields": {
+            "value": "{\"name\": \"cache/36/66/3666fdb0869b6d5b3935fd72f33b23ef.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 500]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e7158222938a3649d376707716c74ede",
+        "fields": {
+            "value": "{\"name\": \"cache/b5/d7/b5d7cebe40461a00eff1229841e6f81e.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e76a0100708f2e7d0c69a7d76668695e",
+        "fields": {
+            "value": "{\"name\": \"cache/32/d9/32d9568433a4310f4d430626111d490b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 550]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||e7b3496e6511144ec66aaae421ed5b89",
+        "fields": {
+            "value": "{\"name\": \"cache/d7/8a/d78a26dfbebcc6c9ab797467ace88537.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||ee89497ef0050445df9d97f6ce39cf9e",
+        "fields": {
+            "value": "{\"name\": \"cache/f5/c5/f5c50c6c1cf301f704317ddb6678295b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||f2e43293475301edf8875db9ae74bad3",
+        "fields": {
+            "value": "{\"name\": \"cache/29/c7/29c7fd7a942b6ed6f8ca7998088480ce.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||f580a3b2fd1537c9b02b83ade24c8c04",
+        "fields": {
+            "value": "{\"name\": \"cache/8d/1e/8d1e901e9ab008de639e687efe71c773.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [400, 300]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||f8d5e1e62b66b0abbe5943a1ec1d2bed",
+        "fields": {
+            "value": "{\"name\": \"cache/d4/b3/d4b3076b7dea0df79149c449d00e0c53.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [50, 50]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||f90c34b4772aa6e705eb96bac85dddd4",
+        "fields": {
+            "value": "{\"name\": \"cache/13/53/13530697c186240d01f31e3eaa3a6b51.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||f9187a184070bac09f1b3341261962ed",
+        "fields": {
+            "value": "{\"name\": \"cache/70/7a/707a62d6f11570a67c4385a39177d8e2.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 700]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||fada43a2a938f678f8f277a09302d33d",
+        "fields": {
+            "value": "{\"name\": \"cache/cd/6d/cd6d8c277b6e13d76bd754922b7921e9.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [80, 80]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||image||ff86897ce7d99eec5f79a60097dd0d54",
+        "fields": {
+            "value": "{\"name\": \"cache/e8/ba/e8ba34edadbda05db4a9dc56bab204c3.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [600, 400]}"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||003e11b2abab18493c376f777fa0daa3",
+        "fields": {
+            "value": "[\"46b95511d118503050eefcb63b0c8da1\", \"24f9ee157be63ae9382364ab9fa5214a\", \"e7158222938a3649d376707716c74ede\", \"79289a476cb57ea4227c62008b06b1b0\", \"53d7db58d6da9728546dbaac58ee97c3\", \"024defcd1dbd790d42de67c27c9e7e12\", \"74ddcbc161e293047fdce17781dfd769\", \"59f1d2fba56b97a77991261357fce845\", \"33f351cdb2f4fca328a6177ca082ba1c\", \"913a4cc589b3c5f5952a2af480ea8aa8\", \"b24b8d626e311e02ec8cfd952bb54f6a\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||0b01f59ae5672ca6cdac53577e9d71df",
+        "fields": {
+            "value": "[\"c099bf4588f53aff22533cc43aa88ced\", \"c43a380736c8f06bf6f2359911f69be6\", \"60557f95cb44b63786f83157bbebc77a\", \"8f8e42de9741310c11b6c51ef43dea8f\", \"928748c097b0ae40e6ca0d4b5ad3b990\", \"48d19b015c910c56b8513d7718ce5d52\", \"4ea8fc5323152abb3bcb35bf7d6001a5\", \"bca4008af52d1d569a6f797f4a145eb0\", \"a83af75127bfaa2f14e6521c6ae1ff6f\", \"c3857747352d3ed7172f8159beba2ad5\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||16dc9e6d8557bd9befdd4afa26da44f6",
+        "fields": {
+            "value": "[\"0ccd57ce9dfee90b99d504323a35a24b\", \"fada43a2a938f678f8f277a09302d33d\", \"3cea9d60013fb04e6c3a241c792851a0\", \"9425c04a6c5a74cfa0dec30b4a15d2f5\", \"3d21d7de9e480e7cc952f757e71aff19\", \"0499c3f45194303bccfe9b856aa59d0d\", \"1c3241aacfb46aa4bd9b5cc86b24d4a5\", \"17ccb3878076a6bbce1eec5da64c5fcf\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||557ea782dc23d4eb21f9d8c69b6627fd",
+        "fields": {
+            "value": "[\"f8d5e1e62b66b0abbe5943a1ec1d2bed\", \"e23b328c079a1bc0b34faa14e22a99f1\", \"f580a3b2fd1537c9b02b83ade24c8c04\", \"e7b3496e6511144ec66aaae421ed5b89\", \"e04640238bb01f4ee890044e8059cd94\", \"e1ea388163cc5437944567aa0b74de28\", \"a443da1f510a116f6ec42046e4b11bf8\", \"6a6e21a68a5b5f6fcb87da534e042bed\", \"c4a68c22efbae96569ace058c7dbb4ed\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||618b185a079ba6eb6a5f979ab9d818b7",
+        "fields": {
+            "value": "[\"aeaa9ffd46a844efb85c8616e0773224\", \"b5dd1794b85e089a05088ccfd4bcc154\", \"e39fb941020756184acd191b589f3163\", \"141a10c818f05d5049142bcc68a80403\", \"667e680ebd36399073a5109760f0c10e\", \"a43e7d484f10d12c956c4991d62fd5cf\", \"d4852693881062c588576e72766fa67f\", \"0e42fc31f85dcd947628bc43c938be8a\", \"c6973dc850169ac51970293c41f7c971\", \"5a836fdcc730730bdaf1280a2e0dcf60\", \"1c6209223bd8e978319b61d16535e880\", \"5f593c05297715e40627632508fd8fa4\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||7096a3e977b00026f5088705011e558c",
+        "fields": {
+            "value": "[\"5db5d0feb2158bc1d4145aaf0cd1af4c\", \"da4559fb79122e5adfe4205c0446e762\", \"409c04a8d84a3bfe5d9fa55085ee1efe\", \"e76a0100708f2e7d0c69a7d76668695e\", \"265609b5bc2805e58b53460988f4d099\", \"3634847e17087686ba5eff1ccea27eee\", \"f90c34b4772aa6e705eb96bac85dddd4\", \"6ad950f2835aca4534411ac926f2183b\", \"6bb27d6d3cbebca1197a2a96171a5233\", \"c887f378902a3fe09c5d1cc085862679\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||77f8ec981c82b4866811039b70bac512",
+        "fields": {
+            "value": "[\"e5524f23a844a82ace248c36ac0e8290\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||7e338224229d31f4bea40d1baf89e756",
+        "fields": {
+            "value": "[\"9f4446476f6709695db89c790e7a42eb\", \"250e00b89d3faa8736d6468778d71244\", \"d4bc82b4608d416233edaa71a87c74a1\", \"b693f473763cf9fd8fae6a22af72d8ae\", \"bf687bba138107318b634e5b634dd24a\", \"3dd710a52b7fc18462cf5d43243c67c1\", \"5fbc38a10f489610f9da18087b0b46c2\", \"9211c2f7d4b3c34ca3510a04ebd66f03\", \"7964b2af927ff796fb251955c8a109d2\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||88f0938915fd46d5cc8752e76ec465b5",
+        "fields": {
+            "value": "[\"cdd4d85d7454730528074620ed9f4e0e\", \"5b2aaa3822cfa882a8b43447a9cb300e\", \"58c7f40af6ac417aec4c2f7a87e2994c\", \"4e55c5866e4bb30af8161e0fa81101b3\", \"86ec24a3d5d11232c3cb12d11f7b2629\", \"76a5c4e7264ddf3d1f34e6f50a941faa\", \"c93a2b3d723368862e262c005e1f53b9\", \"53e56ecb4baf5d0a196325dd83540233\", \"c92cfba0dbfd96968f612904029bb5df\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||988f51efb530ad6b233cac26eb6202e9",
+        "fields": {
+            "value": "[\"68d01412bd64a856678247b96944a7ac\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||a70ff83f96302ec3cd9c83b6b0421769",
+        "fields": {
+            "value": "[\"f2e43293475301edf8875db9ae74bad3\", \"3090f4a6df6d043366f997e7986e03a9\", \"5fb378d8158d8ac176ccf79e954cde0f\", \"6af78df637d9389050da225f2063bf45\", \"21bc4a5dce32f7cce34fbeafbf1f3c4d\", \"d66ab53b442bacd3305fe7556ed07af8\", \"37754ab85068016642d9e0bace3735c8\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||bccbdd0f63435fecfdf372369c9db1e1",
+        "fields": {
+            "value": "[\"c8d89971ec0ef82040cfc7958e3d3813\", \"9f8bcfb25b7becf2be769a1a2e03afa0\", \"f9187a184070bac09f1b3341261962ed\", \"ad53e54803f43b97dfe93d37a42d6233\", \"4ab0c20c71cec7ecf2f92b6d921f54e9\", \"af6713c5c27cc7bfd53adccb947638b2\", \"210e9c44b66da2f81bf8098e9bb3067d\", \"b36dc1cc9803bef54c05dd96688ec45f\", \"ee89497ef0050445df9d97f6ce39cf9e\", \"7ec76f7c6af3a1e40e30cf06d3e42bf8\", \"3574d12b603506e98d918de4e29f6dce\", \"104509b6cbc4122dacabe97d70924582\", \"62664464be1b02aea310c77083b812ba\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||dc5f5ac5f21fcedee44f915b61788673",
+        "fields": {
+            "value": "[\"1612b2ebf6c287c962f429681185b7fc\", \"322979cc70518285ea1063a01a5ba1b6\", \"57a7650d71b4e5fe255992774d00d907\", \"9481d1e4933489241d840dd5c8d7cd3a\", \"4010f67b9642bf922016907466292e01\", \"13a10bc19a89974940fb8f08e640ae19\", \"0ce16eb59349b646ab21590484f33656\", \"ff86897ce7d99eec5f79a60097dd0d54\", \"a622b5a4c162f4f3701bbd66166c0f05\"]"
+        }
+    },
+    {
+        "model": "thumbnail.kvstore",
+        "pk": "sorl-thumbnail||thumbnails||e4cadf605771ad764a898aad21181844",
+        "fields": {
+            "value": "[\"c550844a7abd25c46f3e94daaed2b890\", \"bd3401f1013104154f2ac2a3c1502069\", \"cfa65d12ae87bd6b2fc90cdc9dd88415\"]"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 4,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 4,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 4,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 4,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 5,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 5,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 5,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 5,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 6,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 6,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 6,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 6,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add \u0413\u0440\u0443\u043f\u043f\u0430",
+            "content_type": 7,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change \u0413\u0440\u0443\u043f\u043f\u0430",
+            "content_type": 7,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete \u0413\u0440\u0443\u043f\u043f\u0430",
+            "content_type": 7,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view \u0413\u0440\u0443\u043f\u043f\u0430",
+            "content_type": 7,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add \u041f\u043e\u0441\u0442",
+            "content_type": 8,
+            "codename": "add_post"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change \u041f\u043e\u0441\u0442",
+            "content_type": 8,
+            "codename": "change_post"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete \u041f\u043e\u0441\u0442",
+            "content_type": 8,
+            "codename": "delete_post"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view \u041f\u043e\u0441\u0442",
+            "content_type": 8,
+            "codename": "view_post"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add \u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439",
+            "content_type": 9,
+            "codename": "add_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change \u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439",
+            "content_type": 9,
+            "codename": "change_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete \u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439",
+            "content_type": 9,
+            "codename": "delete_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view \u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439",
+            "content_type": 9,
+            "codename": "view_comment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add \u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430",
+            "content_type": 10,
+            "codename": "add_follow"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change \u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430",
+            "content_type": 10,
+            "codename": "change_follow"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete \u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430",
+            "content_type": 10,
+            "codename": "delete_follow"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view \u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430",
+            "content_type": 10,
+            "codename": "view_follow"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add kv store",
+            "content_type": 11,
+            "codename": "add_kvstore"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change kv store",
+            "content_type": 11,
+            "codename": "change_kvstore"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete kv store",
+            "content_type": 11,
+            "codename": "delete_kvstore"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view kv store",
+            "content_type": 11,
+            "codename": "view_kvstore"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 1,
+        "fields": {
+            "text": "\u041a\u043b\u044e\u0447\u0435\u0432\u043e\u0435 \u0441\u043b\u043e\u0432\u043e yield \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \u0434\u043b\u044f \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u043e\u0432.\r\n\r\n\u0413\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440 - \u044d\u0442\u043e \u0444\u0443\u043d\u043a\u0446\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043c\u043e\u0436\u0435\u0442 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0442\u044c \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 yield \u0432\u043c\u0435\u0441\u0442\u043e return. \u041f\u0440\u0438 \u043a\u0430\u0436\u0434\u043e\u043c \u0432\u044b\u0437\u043e\u0432\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 yield \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440 \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435, \u043f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u0435\u0442 \u0441\u0432\u043e\u0435 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u0438 \u043f\u0440\u0438\u043e\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u0441\u0432\u043e\u0435 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u0434\u043e \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430.\r\n\r\n\u042d\u0442\u043e \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u0431\u0435\u0437 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u0438 \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0432\u0441\u0435\u0445 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u0432 \u043f\u0430\u043c\u044f\u0442\u0438, \u0447\u0442\u043e \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u043e\u0441\u043e\u0431\u0435\u043d\u043d\u043e \u043f\u043e\u043b\u0435\u0437\u043d\u043e \u043f\u0440\u0438 \u0440\u0430\u0431\u043e\u0442\u0435 \u0441 \u0431\u043e\u043b\u044c\u0448\u0438\u043c\u0438 \u043e\u0431\u044a\u0435\u043c\u0430\u043c\u0438 \u0434\u0430\u043d\u043d\u044b\u0445. \u041a\u0440\u043e\u043c\u0435 \u0442\u043e\u0433\u043e, \u0433\u0435\u043d\u0435\u0440\u0430\u0442\u043e\u0440\u044b \u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u0438\u0442\u0435\u0440\u0438\u0440\u0443\u0435\u043c\u044b\u043c\u0438 \u0438 \u043c\u043e\u0433\u0443\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0432 \u0446\u0438\u043a\u043b\u0430\u0445 for.",
+            "pub_date": "2024-02-13T17:42:06.678Z",
+            "author": 1,
+            "group": 2,
+            "image": "posts/piqsels.com-id-frrol.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 2,
+        "fields": {
+            "text": "1. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c)\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435.\r\n\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442.",
+            "pub_date": "2024-02-13T17:55:08.149Z",
+            "author": 1,
+            "group": 3,
+            "image": "posts/piqsels.com-id-jrrct_1.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 4,
+        "fields": {
+            "text": "2. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c)\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432",
+            "pub_date": "2024-02-14T04:04:45.594Z",
+            "author": 1,
+            "group": 1,
+            "image": "posts/kartinki-terminator-23.jpeg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 5,
+        "fields": {
+            "text": "2image",
+            "pub_date": "2024-02-14T04:28:43.846Z",
+            "author": 1,
+            "group": 1,
+            "image": "posts/temp.jpeg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 6,
+        "fields": {
+            "text": "imagee temp2",
+            "pub_date": "2024-02-14T04:46:43.541Z",
+            "author": 1,
+            "group": 2,
+            "image": "posts/temp_ei1exba.jpeg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 7,
+        "fields": {
+            "text": "update img 2",
+            "pub_date": "2024-02-14T04:47:03.385Z",
+            "author": 1,
+            "group": 4,
+            "image": "posts/temp.png"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 8,
+        "fields": {
+            "text": "fhhfffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "pub_date": "2024-02-15T18:13:45.983Z",
+            "author": 1,
+            "group": 2,
+            "image": "posts/piqsels.com-id-frrol_3PTf7qi.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 9,
+        "fields": {
+            "text": "fffffffffffffffffffffffffffffffffff",
+            "pub_date": "2024-02-15T18:14:44.910Z",
+            "author": 1,
+            "group": 3,
+            "image": "posts/nastol.com.ua-212486.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 10,
+        "fields": {
+            "text": "\u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \r\n\u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435.\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442.\r\n\u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol).\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol).\r\n\u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438.\r\n\u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e.\r\n\u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438.\r\n\u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442.",
+            "pub_date": "2024-02-15T18:43:31.137Z",
+            "author": 1,
+            "group": 1,
+            "image": "posts/Girls___Beautyful_Girls___Angelina_jolie_singer_050843_.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 11,
+        "fields": {
+            "text": "\u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442. \u0421\u0435\u0442\u0435\u0432\u044b\u0435 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b (\u0438\u0445 \u043c\u043d\u043e\u0433\u043e, \u0442\u0430\u043a \u0447\u0442\u043e \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c) \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u044b \u043f\u0440\u0438\u043a\u043b\u0430\u0434\u043d\u043e\u0433\u043e \u0443\u0440\u043e\u0432\u043d\u044f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u044e\u0442 \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c \u0438 \u0441\u0435\u0442\u044c\u044e. \u042d\u0442\u0438\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u043e\u0433\u0440\u043e\u043c\u043d\u043e\u0435 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e, \u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u044f\u044e\u0442 \u043e\u043d\u0438 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u043d\u043e \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0435 \u0440\u043e\u043b\u0438. \u042f \u043f\u0440\u0438\u0432\u0435\u0434\u0443 \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u0447\u0430\u0441\u0442\u043e \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u043f\u0440\u043e\u0442\u043e\u043a\u043e\u043b\u043e\u0432 \u0432 \u0441\u0435\u0442\u0438 \u0438 \u043f\u043e\u043a\u0430\u0436\u0443, \u043a\u0430\u043a \u043e\u043d\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0442 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435: HTTP, DNS, SSH, FTP \u0438 \u0434\u0440\u0443\u0433\u0438\u0435. \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b HTTP (\u0430\u043d\u0433\u043b. HyperText Transport Protocol). \u041f\u0440\u043e\u0442\u043e\u043a\u043e\u043b \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0430\u043d\u043d\u044b\u0445, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u043e \u0434\u043b\u044f \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438 \u0441 \u0432\u0435\u0431-\u0441\u0430\u0439\u0442\u043e\u0432. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043e\u043d \u00ab\u043a\u043b\u0438\u0435\u043d\u0442-\u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0443\u044e\u00bb \u043c\u043e\u0434\u0435\u043b\u044c. \u0422\u043e \u0435\u0441\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u043e\u0440\u043c\u0438\u0440\u0443\u044e\u0442 \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441. \u0418 \u0441\u0435\u0440\u0432\u0435\u0440\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0441\u043b\u0443\u0448\u0430\u044e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0438, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e, \u043d\u0430 \u043d\u0438\u0445 \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0442.",
+            "pub_date": "2024-02-17T09:00:45.310Z",
+            "author": 1,
+            "group": 2,
+            "image": "posts/piqsels.com-id-frrst.jpg"
+        }
+    },
+    {
+        "model": "posts.post",
+        "pk": 12,
+        "fields": {
+            "text": "\u041f\u0440\u0438\u043d\u0446\u0438\u043f\u044b SOLID \u043d\u0430 \u043f\u0440\u0438\u043c\u0435\u0440\u0430\u0445 Python-\u043a\u043e\u0434\u0430, \u0441 \u043f\u043e\u0434\u0440\u043e\u0431\u043d\u044b\u043c \u043e\u0431\u044a\u044f\u0441\u043d\u0435\u043d\u0438\u0435\u043c \u043f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432 \u0438 \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u044b\u0445 \u043d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043a\u043e\u0432 \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u0430.\r\n\r\n\u0412\u0435\u0440\u043e\u044f\u0442\u043d\u043e, \u0432\u044b \u043d\u0435 \u0440\u0430\u0437 \u0441\u043b\u044b\u0448\u0430\u043b\u0438 \u043e \u0442\u0430\u043a \u043d\u0430\u0437\u044b\u0432\u0430\u0435\u043c\u044b\u0445 SOLID \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u0430\u0445. \u041d\u043e \u0447\u0442\u043e \u043d\u0430 \u0441\u0430\u043c\u043e\u043c \u0434\u0435\u043b\u0435 \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u043a\u0430\u0436\u0434\u044b\u0439 \u0438\u0437 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 SOLID \u0438 \u043a\u0430\u043a \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u043f\u0440\u0438\u043c\u0435\u043d\u044f\u0442\u044c \u0438\u0445 \u043d\u0430 \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0435? \u0412\u044b \u043d\u0430\u0439\u0434\u0451\u0442\u0435 \u043e\u0442\u0432\u0435\u0442\u044b \u0432 \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0442\u0430\u0442\u044c\u0435.\r\n\r\n\u0427\u0442\u043e \u0442\u0430\u043a\u043e\u0435 SOLID \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u044b?\r\n\u0421\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u0430\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430 \u0442\u0440\u0435\u0431\u0443\u0435\u0442 \u043f\u0435\u0440\u0435\u0434\u043e\u0432\u044b\u0445 \u043d\u0430\u0432\u044b\u043a\u043e\u0432 \u0438 \u0433\u043b\u0443\u0431\u043e\u043a\u0438\u0445 \u0437\u043d\u0430\u043d\u0438\u0439 \u0441\u043b\u043e\u0436\u043d\u044b\u0445 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f. \u041e\u0434\u043d\u043e\u0439 \u0438\u0437 \u043d\u0430\u0438\u0431\u043e\u043b\u0435\u0435 \u0432\u0430\u0436\u043d\u044b\u0445 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u044b\u0445 \u0441\u0435\u0433\u043e\u0434\u043d\u044f \u0432 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u043d\u043e\u0433\u043e \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f, \u044f\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u044b SOLID \u2014 \u043e\u043d\u0438 \u0436\u0435 \u043f\u044f\u0442\u044c \u043e\u0441\u043d\u043e\u0432\u043d\u044b\u0445 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 \u043e\u0431\u044a\u0435\u043a\u0442\u043d\u043e-\u043e\u0440\u0438\u0435\u043d\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f.\r\n\r\n\u041f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u0435 SOLID \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u043c \u0434\u043b\u044f \u0432\u0441\u0435\u0445 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432, \u0438 \u0432 \u044d\u0442\u043e\u0439 \u0441\u0442\u0430\u0442\u044c\u0435 \u043c\u044b \u043e\u0431\u044a\u044f\u0441\u043d\u0438\u043c \u0438\u0445 \u043f\u0440\u043e\u0441\u0442\u044b\u043c \u044f\u0437\u044b\u043a\u043e\u043c.\r\n\r\n\u0420\u0430\u0441\u0448\u0438\u0444\u0440\u043e\u0432\u043a\u0430 SOLID\r\n\u0410\u0431\u0431\u0440\u0435\u0432\u0438\u0430\u0442\u0443\u0440\u0430 SOLID \u0432\u043a\u043b\u044e\u0447\u0430\u0435\u0442 \u0432 \u0441\u0435\u0431\u044f \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u044f\u0442\u0438 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 \u00ab\u0445\u043e\u0440\u043e\u0448\u0435\u0433\u043e \u0434\u0438\u0437\u0430\u0439\u043d\u0430\u00bb, \u043a\u043e\u0433\u0434\u0430 \u0440\u0435\u0447\u044c \u0438\u0434\u0435\u0442 \u043e \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u043d\u043e\u0433\u043e \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f. \u0410\u043a\u0440\u043e\u043d\u0438\u043c SOLID \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0435 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u044b:\r\n\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438 (Single Responsibility Principle \u2013 SRP): \u041a\u0430\u0436\u0434\u044b\u0439 \u043a\u043b\u0430\u0441\u0441 \u0434\u043e\u043b\u0436\u0435\u043d \u0438\u043c\u0435\u0442\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u043d\u0443 \u043f\u0440\u0438\u0447\u0438\u043d\u0443 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f. \u042d\u0442\u043e \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442, \u0447\u0442\u043e \u043a\u043b\u0430\u0441\u0441 \u0434\u043e\u043b\u0436\u0435\u043d \u0431\u044b\u0442\u044c \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c \u0442\u043e\u043b\u044c\u043a\u043e \u0437\u0430 \u043e\u0434\u043d\u0443 \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u0443\u044e \u0444\u0443\u043d\u043a\u0446\u0438\u044e \u0438\u043b\u0438 \u0437\u0430\u0434\u0430\u0447\u0443. \u042d\u0442\u043e\u0442 \u043f\u0440\u0438\u043d\u0446\u0438\u043f \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u0442 \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u043a\u043b\u0430\u0441\u0441\u044b \u0431\u043e\u043b\u0435\u0435 \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u043c\u0438, \u043b\u0435\u0433\u043a\u043e \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u043c\u0438 \u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u043c\u0438.\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u043e\u0442\u043a\u0440\u044b\u0442\u043e\u0441\u0442\u0438/\u0437\u0430\u043a\u0440\u044b\u0442\u043e\u0441\u0442\u0438 (Open/Closed Principle \u2013 OCP): \u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u043d\u044b\u0435 \u0441\u0443\u0449\u043d\u043e\u0441\u0442\u0438, \u0442\u0430\u043a\u0438\u0435 \u043a\u0430\u043a \u043a\u043b\u0430\u0441\u0441\u044b, \u043c\u043e\u0434\u0443\u043b\u0438 \u0438 \u0444\u0443\u043d\u043a\u0446\u0438\u0438, \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u043e\u0442\u043a\u0440\u044b\u0442\u044b \u0434\u043b\u044f \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u0438\u044f, \u043d\u043e \u0437\u0430\u043a\u0440\u044b\u0442\u044b \u0434\u043b\u044f \u043c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438. \u0412\u043c\u0435\u0441\u0442\u043e \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u043a\u043e\u0434\u0430, \u0441\u043b\u0435\u0434\u0443\u0435\u0442 \u0434\u043e\u0431\u0430\u0432\u043b\u044f\u0442\u044c \u043d\u043e\u0432\u044b\u0439 \u043a\u043e\u0434 \u0434\u043b\u044f \u0432\u043d\u0435\u0441\u0435\u043d\u0438\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0439. \u042d\u0442\u043e \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u0431\u043e\u043b\u0435\u0435 \u0441\u0442\u0430\u0431\u0438\u043b\u044c\u043d\u044b\u0435 \u0438 \u0433\u0438\u0431\u043a\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b.\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u043f\u043e\u0434\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u041b\u0438\u0441\u043a\u043e\u0432 (Liskov Substitution Principle \u2013 LSP): \u041e\u0431\u044a\u0435\u043a\u0442\u044b \u0432 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435 \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u044b\u0442\u044c \u0437\u0430\u043c\u0435\u043d\u044f\u0435\u043c\u044b\u043c\u0438 \u044d\u043a\u0437\u0435\u043c\u043f\u043b\u044f\u0440\u0430\u043c\u0438 \u0438\u0445 \u0431\u0430\u0437\u043e\u0432\u044b\u0445 \u0442\u0438\u043f\u043e\u0432, \u043d\u0435 \u043d\u0430\u0440\u0443\u0448\u0430\u044f \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u044c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b. \u042d\u0442\u043e \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442, \u0447\u0442\u043e \u043a\u043e\u0434, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0441 \u0431\u0430\u0437\u043e\u0432\u044b\u043c \u0442\u0438\u043f\u043e\u043c, \u0434\u043e\u043b\u0436\u0435\u043d \u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0438 \u0441 \u043b\u044e\u0431\u044b\u043c \u0435\u0433\u043e \u043f\u043e\u0434\u0442\u0438\u043f\u043e\u043c, \u043d\u0435 \u0432\u044b\u0437\u044b\u0432\u0430\u044f \u043e\u0448\u0438\u0431\u043e\u043a \u0438\u043b\u0438 \u043d\u0435\u043e\u0436\u0438\u0434\u0430\u043d\u043d\u043e\u0433\u043e \u043f\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f. \u042d\u0442\u043e\u0442 \u043f\u0440\u0438\u043d\u0446\u0438\u043f \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d\u043d\u043e\u0441\u0442\u044c \u0432 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043d\u0430\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u044f \u0438 \u043f\u043e\u043b\u0438\u043c\u043e\u0440\u0444\u0438\u0437\u043c\u0430.\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0438\u044f \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430 (Interface Segregation Principle \u2013 ISP): \u041a\u043b\u0438\u0435\u043d\u0442\u044b \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u044b \u0437\u0430\u0432\u0438\u0441\u0435\u0442\u044c \u043e\u0442 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u043e\u0432, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043e\u043d\u0438 \u043d\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0442. \u0412\u043c\u0435\u0441\u0442\u043e \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f \u043e\u0431\u0449\u0438\u0445 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u043e\u0432 \u0441\u043b\u0435\u0434\u0443\u0435\u0442 \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u0441\u043f\u0435\u0446\u0438\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u044b, \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044b\u0435 \u0434\u043b\u044f \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u044b\u0445 \u043a\u043b\u0438\u0435\u043d\u0442\u043e\u0432. \u042d\u0442\u043e \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u0438\u0437\u0431\u0435\u0436\u0430\u0442\u044c \u0438\u0437\u043b\u0438\u0448\u043d\u0435\u0439 \u0441\u0432\u044f\u0437\u043d\u043e\u0441\u0442\u0438 \u043c\u0435\u0436\u0434\u0443 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u0430\u043c\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u0438 \u0443\u043b\u0443\u0447\u0448\u0438\u0442\u044c \u043c\u043e\u0434\u0443\u043b\u044c\u043d\u043e\u0441\u0442\u044c.\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u0438\u043d\u0432\u0435\u0440\u0441\u0438\u0438 \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u0435\u0439 (Dependency Inversion Principle \u2013 DIP): \u041a\u043b\u0430\u0441\u0441\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0437\u0430\u0432\u0438\u0441\u0435\u0442\u044c \u043e\u0442 \u0430\u0431\u0441\u0442\u0440\u0430\u043a\u0446\u0438\u0439, \u0430 \u043d\u0435 \u043e\u0442 \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u044b\u0445 \u0440\u0435\u0430\u043b\u0438\u0437\u0430\u0446\u0438\u0439. \u0412\u044b\u0441\u043e\u043a\u043e\u0443\u0440\u043e\u0432\u043d\u0435\u0432\u044b\u0435 \u043c\u043e\u0434\u0443\u043b\u0438 \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u044b \u0437\u0430\u0432\u0438\u0441\u0435\u0442\u044c \u043e\u0442 \u043d\u0438\u0437\u043a\u043e\u0443\u0440\u043e\u0432\u043d\u0435\u0432\u044b\u0445 \u043c\u043e\u0434\u0443\u043b\u0435\u0439. \u041e\u0431\u0430 \u0442\u0438\u043f\u0430 \u043c\u043e\u0434\u0443\u043b\u0435\u0439 \u0434\u043e\u043b\u0436\u043d\u044b \u0437\u0430\u0432\u0438\u0441\u0435\u0442\u044c \u043e\u0442 \u0430\u0431\u0441\u0442\u0440\u0430\u043a\u0446\u0438\u0439. \u042d\u0442\u043e\u0442 \u043f\u0440\u0438\u043d\u0446\u0438\u043f \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u0442 \u0443\u043c\u0435\u043d\u044c\u0448\u0438\u0442\u044c \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u043e\u0441\u0442\u044c \u043c\u0435\u0436\u0434\u0443 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442\u0430\u043c\u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u0438 \u043f\u043e\u0432\u044b\u0441\u0438\u0442\u044c \u0438\u0445 \u043f\u0435\u0440\u0435\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0441\u0442\u044c.\r\n\u0412\u0441\u0435 \u044d\u0442\u0438 \u043f\u044f\u0442\u044c \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 SOLID \u0441\u043f\u043e\u0441\u043e\u0431\u0441\u0442\u0432\u0443\u044e\u0442 \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044e \u0433\u0438\u0431\u043a\u043e\u0433\u043e \u0438 \u043b\u0435\u0433\u043a\u043e \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u043e\u0433\u043e \u043a\u043e\u0434\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u0443\u043b\u0443\u0447\u0448\u0430\u044e\u0442 \u043c\u043e\u0434\u0443\u043b\u044c\u043d\u043e\u0441\u0442\u044c, \u043f\u0435\u0440\u0435\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c\u043e\u0441\u0442\u044c \u0438 \u0440\u0430\u0441\u0448\u0438\u0440\u044f\u0435\u043c\u043e\u0441\u0442\u044c \u0441\u0438\u0441\u0442\u0435\u043c\u044b.\r\n\r\n\u0410\u043a\u0440\u043e\u043d\u0438\u043c SOLID \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u0432 \u0431\u044b\u043b \u0441\u0444\u043e\u0440\u043c\u0443\u043b\u0438\u0440\u043e\u0432\u0430\u043d \u0420\u043e\u0431\u0435\u0440\u0442\u043e\u043c \u0421. \u041c\u0430\u0440\u0442\u0438\u043d\u043e\u043c, \u0442\u0430\u043a\u0436\u0435 \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u044b\u043c \u043a\u0430\u043a \u00ab\u0414\u044f\u0434\u044f \u0411\u043e\u0431\u00bb, \u043e\u0434\u043d\u0438\u043c \u0438\u0437 \u0441\u0430\u043c\u044b\u0445 \u0432\u043b\u0438\u044f\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u043d\u043e\u0433\u043e \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f \u0432 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u043d\u043e\u0433\u043e \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u0438\u044f.\r\n\r\n\u0425\u043e\u0442\u044f \u043c\u043d\u043e\u0433\u0438\u043c \u044d\u0442\u0438 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u044b \u043c\u043e\u0433\u0443\u0442 \u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\u0441\u044f \u0441\u043b\u043e\u0436\u043d\u044b\u043c\u0438, \u043c\u044b \u043f\u043e\u0441\u0442\u0430\u0440\u0430\u0435\u043c\u0441\u044f \u043e\u0431\u044a\u044f\u0441\u043d\u0438\u0442\u044c \u0438\u0445 \u043f\u0440\u043e\u0441\u0442\u044b\u043c \u0438 \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u043c \u0441\u043f\u043e\u0441\u043e\u0431\u043e\u043c.\r\n\r\n\u041f\u0440\u0438\u043d\u0446\u0438\u043f \u0435\u0434\u0438\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438\r\n\u041c\u044b \u043d\u0430\u0447\u043d\u0435\u043c \u0441 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u0430 \u0435\u0434\u0438\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0433\u043b\u0430\u0441\u0438\u0442, \u0447\u0442\u043e \u043a\u0430\u0436\u0434\u044b\u0439 \u043a\u043b\u0430\u0441\u0441 \u0438\u043b\u0438 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u043a\u043e\u0434\u0430 \u0434\u043e\u043b\u0436\u0435\u043d \u0438\u043c\u0435\u0442\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u043d\u0443 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u044c. \u042d\u0442\u043e \u0442\u0430\u043a\u0436\u0435 \u043e\u0437\u043d\u0430\u0447\u0430\u0435\u0442, \u0447\u0442\u043e \u0443 \u043d\u0435\u0433\u043e \u0434\u043e\u043b\u0436\u043d\u0430 \u0431\u044b\u0442\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u043d\u0430 \u043f\u0440\u0438\u0447\u0438\u043d\u0430 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f. \u0427\u0442\u043e\u0431\u044b \u043f\u0440\u043e\u0438\u043b\u043b\u044e\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u0440\u0438\u043d\u0446\u0438\u043f, \u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c \u043f\u0440\u0438\u043c\u0435\u0440.\r\n\r\n\u041f\u0440\u0435\u0434\u043f\u043e\u043b\u043e\u0436\u0438\u043c, \u0443 \u043d\u0430\u0441 \u0435\u0441\u0442\u044c \u0444\u0430\u0439\u043b \u0441 \u0438\u043c\u0435\u043d\u0435\u043c \u00ab\u0430\u0432\u0442\u043e\u043c\u043e\u0431\u0438\u043b\u044c\u00bb \u0441 \u043a\u043e\u0434\u043e\u043c, \u043e\u0442\u0432\u0435\u0447\u0430\u044e\u0449\u0438\u043c \u0437\u0430 \u044d\u043a\u0441\u043f\u043b\u0443\u0430\u0442\u0430\u0446\u0438\u044e, \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435, \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u0438 \u043c\u043e\u043d\u0438\u0442\u043e\u0440\u0438\u043d\u0433 \u0430\u0432\u0442\u043e\u043c\u043e\u0431\u0438\u043b\u044f. \u0412 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u043e\u043c \u0435\u0434\u0438\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438 \u043a\u0430\u0436\u0434\u0430\u044f \u0438\u0437 \u044d\u0442\u0438\u0445 \u0437\u0430\u0434\u0430\u0447 \u0434\u043e\u043b\u0436\u043d\u0430 \u0431\u044b\u0442\u044c \u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0430 \u043d\u0430 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0438\u043b\u0438 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442. \u0422\u0430\u043a\u0436\u0435 \u0441\u0442\u043e\u0438\u0442 \u043e\u0442\u043c\u0435\u0442\u0438\u0442\u044c, \u0447\u0442\u043e SRP \u043f\u0440\u0438\u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f \u043d\u0435 \u0442\u043e\u043b\u044c\u043a\u043e \u043a \u043a\u043b\u0430\u0441\u0441\u0430\u043c, \u043d\u043e \u0438 \u043a \u0444\u0443\u043d\u043a\u0446\u0438\u044f\u043c \u0438 \u043c\u0435\u0442\u043e\u0434\u0430\u043c.\r\n\r\nSOLID \u043f\u0440\u0438\u043c\u0435\u0440\u044b \u043d\u0430 Python \u2014 \u043f\u0440\u0438\u043d\u0446\u0438\u043f \u0435\u0434\u0438\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438\r\n\u041a\u043e\u043d\u0446\u0435\u043f\u0446\u0438\u044f \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u0430 \u0435\u0434\u0438\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0441\u0442\u0438 (SRP) \u0437\u0430\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f \u0432 \u0442\u043e\u043c, \u0447\u0442\u043e \u043a\u043b\u0430\u0441\u0441 \u0434\u043e\u043b\u0436\u0435\u043d \u0438\u043c\u0435\u0442\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u0434\u043d\u0443 \u043f\u0440\u0438\u0447\u0438\u043d\u0443 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f. \u0414\u0430\u0432\u0430\u0439\u0442\u0435 \u0440\u0430\u0441\u0441\u043c\u043e\u0442\u0440\u0438\u043c \u043f\u0440\u0438\u043c\u0435\u0440 \u0441 \u043a\u043b\u0430\u0441\u0441\u043e\u043c User, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043d\u0430\u0440\u0443\u0448\u0430\u0435\u0442 \u044d\u0442\u043e\u0442 \u043f\u0440\u0438\u043d\u0446\u0438\u043f.",
+            "pub_date": "2024-02-17T16:57:58.394Z",
+            "author": 1,
+            "group": 3,
+            "image": "posts/piqsels.com-id-frrjr.jpg"
+        }
+    },
+    {
+        "model": "posts.comment",
+        "pk": 1,
+        "fields": {
+            "post": 10,
+            "author": 1,
+            "text": "thank's",
+            "created": "2024-02-17T05:58:42.580Z"
+        }
+    },
+    {
+        "model": "posts.comment",
+        "pk": 1,
+        "fields": {
+            "post": 12,
+            "author": 1,
+            "text": "\u0425\u043e\u0440\u043e\u0448\u0438\u0435 \u043f\u0440\u0438\u043d\u0446\u0438\u043f\u044b",
+            "created": "2024-02-17T22:35:30.587Z"
+        }
+    }
+]
