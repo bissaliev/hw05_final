@@ -11,27 +11,26 @@ a {
     text-decoration: none;
 }
 
-/* header */
+/* ======================header=========================== */
+
+.open {
+    display: flex !important;
+}
 
 .my_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 100px;
-    background-color: #7f7fd5;
+    background-color: #00000042;
     color: #FFFFFF;
     padding: 0 40px;
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
     border-radius: 50%;
-    border: 1px solid red;
-    width: 90px;
-    height: 90px;
+    overflow: hidden;
+    border: 3px solid white;
 }
 
 .navig {
@@ -48,7 +47,7 @@ a {
 }
 
 .burger {
-    display: flex;
+    display: none;
     position: relative;
     z-index: 50;
     align-items: center;
@@ -64,9 +63,65 @@ a {
     background-color: #FFFFFF;
 }
 
-/* header */
+.burger::before, .burger::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #FAF6F2;
+    transition: all 0.3s ease 0s;
+}
 
-/* список постов */
+.burger::before { top: 0} /* Добавление верхней черточки */
+
+.burger::after { bottom: 0;} /* Добавление нижней черточки */
+
+/* Добавляем класс active для анимации иконки бургера */
+.burger.active span { transform: scale(0);} /* Убираем средную полоску */
+
+/* Сдвигаем полоски к середине и поворачиваем */
+.burger.active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0, -50%);
+}
+
+.burger.active::after {
+    top: 50%;
+    transform: rotate(45deg) translate(0, 50%);
+}
+
+@media (max-width: 900px) {
+    .burger { display: flex;}
+
+    .navig {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0; bottom: 0; left: 0; right: 0;
+        z-index: 50;
+        overflow-y: auto;
+        padding: 50px 40px;
+        background-color: black;
+        animation: burgerAnimation 0.4s;
+    }
+
+    .navig ul {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+}
+
+/* анимация для плавного появления меню */
+@keyframes burgerAnimation {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+/* ======================header=========================== */
+
+/* ======================список постов============================= */
 
 .post {
     display: flex;
@@ -114,7 +169,7 @@ a {
     color: #ffffff;
 }
 
-/* список постов */
+/* ======================список постов============================= */
 
 /* страница одного поста */
 
@@ -295,3 +350,19 @@ a {
 }
 
 /* profile */
+
+/* post_create */
+
+.post_create_text textarea {
+    height: 500px;
+}
+
+/* изменение цвета кнопки */
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+    background: linear-gradient(90deg, blue, transparent) !important;
+}
+
+/* post_create */
