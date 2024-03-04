@@ -8,10 +8,6 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('text', 'group', 'image')
-        # help_texts = {
-            # 'text': 'Новая публикация',
-            # 'group': 'Группа данной публикации'
-        # }
 
 
 class CommentForm(forms.ModelForm):
