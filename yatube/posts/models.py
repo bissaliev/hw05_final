@@ -1,6 +1,7 @@
 from django.db import models
 
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 User = get_user_model()
@@ -45,13 +46,16 @@ class Post(models.Model):
     )
     image = models.ImageField("Картинка", upload_to="posts/", blank=True)
 
-    def __str__(self):
-        return self.text[:15]
-
     class Meta:
         ordering = ["-pub_date"]
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
+
+    def __str__(self):
+        return self.text[:15]
+
+    def get_absolute_url(self):
+        return reverse("posts:post_detail", kwargs={"post_id": self.pk})
 
 
 class Comment(models.Model):

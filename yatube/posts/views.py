@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -8,12 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CommentForm, PostForm
 from .models import Comment, Follow, Post
-from .utils import get_page_context
+
 
 User = get_user_model()
 
 
-class PostListView(ListView):  # кэширование
+class PostListView(ListView):
     """Класс представления списка постов."""
 
     template_name = "posts/index.html"
@@ -45,7 +45,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
     form_class = PostForm
     template_name = "posts/create_post.html"
-    success_url = reverse_lazy("posts:index")  # перенаправить на новый пост
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -83,20 +82,26 @@ class GroupPostListView(ListView):
         return Post.objects.filter(group__slug=self.kwargs.get("slug"))
 
 
-class ProfileView(View):
+class PostProfileListView(ListView):
     """
     Класс представления личной страницы пользователя
     с отображением ленты его опубликованных постов.
     """
 
-    def get(self, request, username):
-        author = get_object_or_404(User, username=username)
-        context = {
-            "author": author,
-            "following": Follow.objects.filter(author=author).exists(),
-        }
-        context |= get_page_context(author.posts.all(), request)
-        return render(request, "posts/profile.html", context)
+    model = Post
+    template_name = "posts/profile.html"
+    paginate_by = 8
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        author = get_object_or_404(User, username=self.kwargs.get("username"))
+        context["author"] = author
+        context["following"] = Follow.objects.filter(author=author).exists()
+        return context
+
+    def get_queryset(self):
+        author = get_object_or_404(User, username=self.kwargs.get("username"))
+        return author.posts.all()
 
 
 class AddCommentView(LoginRequiredMixin, View):
