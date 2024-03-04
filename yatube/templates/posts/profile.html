@@ -17,13 +17,11 @@
     </div>
     <div class="col-12 col-md-6 col-lg-8 pb-3 pt-md-3 "> <!--description-->
         <h1>{{ author.get_full_name }}</h1>
-        <h3>Всего постов: {{ posts_count }}</h3>
+        <h3>Всего постов: {{ author.posts.count }}</h3>
         <div class="py-3">{{ author.birth_date|date:"d E Y" }}</div>
-        {% if following %}
-          <a class="btn btn-lg btn-light" href="{% url 'posts:profile_unfollow' author.username %}" role="button">Отписаться</a>
-        {% else %}
-            <a class="btn btn-lg btn-primary" href="{% url 'posts:profile_follow' author.username %}" role="button">Подписаться</a>
-        {% endif %}
+          <a class="btn btn-lg {% if following %}btn-light{% else %}btn-primary{% endif %}" href="{% url 'posts:profile_follow' author.username %}" role="button">
+            {% if following %}Отписаться{% else %}Подписаться{% endif %}
+          </a>
     </div>
   </div>
 </div>

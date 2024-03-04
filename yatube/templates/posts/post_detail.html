@@ -29,7 +29,7 @@
                 {% endif %}
                 <div>
                     <h5 class="post_single_author_name"><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
-                    <small>Всего постов автора:  <span > {{ count_author }}</span></small>
+                    <small>Всего постов автора:  <span > {{ post.author.posts.count }}</span></small>
                 </div>
             </div>
             <a class="button_follow" href="#" role="button">Подписаться</a>
@@ -44,10 +44,10 @@
     <a class="button_text button_edit" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
     {% endif%}
     {% if request.user.is_authenticated %}
-    <a class="button_text button_delete" href="{% url 'posts:post_edit' post.id %}">удалить</a>
+    <a class="button_text button_delete" href="{% url 'posts:post_delete' post.id %}">удалить</a>
     {% endif%}
 </div>
 <div class=""> <!--comments-->
-  {% comment %} {% include 'includes/comments.html' %} {% endcomment %}
+    {% include 'includes/comments.html' %}
 </div>
 {% endblock %}

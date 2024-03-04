@@ -1,134 +1,140 @@
-from django.contrib.auth.decorators import login_required
-from django.http import (
-    HttpResponse,
-    HttpResponsePermanentRedirect,
-    HttpResponseRedirect,
-)
+from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.cache import cache_page
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import (
+    ListView, DetailView, CreateView, UpdateView, DeleteView)
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CommentForm, PostForm
-from .models import Comment, Follow, Group, Post, User
+from .models import Comment, Follow, Post
 from .utils import get_page_context
 
-
-@cache_page(20, key_prefix="index_page")
-def index(request):
-    """Функция представления главной страницы."""
-    posts_list = Post.objects.select_related("author", "group").all()
-    context = get_page_context(posts_list, request)
-    return render(request, "posts/index.html", context)
+User = get_user_model()
 
 
-def group_posts(request, slug) -> HttpResponse:
-    """Функция представления страницы группы."""
-    group = get_object_or_404(Group, slug=slug)
-    posts_list = group.posts.select_related("author", "group").all()
-    context = {
-        "group": group,
-    }
-    context |= get_page_context(posts_list, request)
-    return render(request, "posts/index.html", context)
+class PostListView(ListView):  # кэширование
+    """Класс представления списка постов."""
+
+    template_name = "posts/index.html"
+    model = Post
+    context_object_name = "posts"
+    paginate_by = 8
+
+    def get_queryset(self):
+        return Post.objects.select_related("author", "group").all()
 
 
-def profile(request, username):
-    """Функция представления страницы профиля автора."""
-    author = get_object_or_404(User, username=username)
-    posts = author.posts.all()
-    posts_count = posts.count()
-    following = Follow.objects.filter(author=author).exists()
-    context = {
-        "author": author,
-        "posts_count": posts_count,
-        "following": following
-    }
-    context |= get_page_context(posts, request)
-    return render(request, "posts/profile.html", context)
+class PostDetailView(DetailView):
+    """Класс представления определенного поста."""
+
+    model = Post
+    template_name = "posts/post_detail.html"
+    pk_url_kwarg = "post_id"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comments"] = Comment.objects.filter(
+            post_id=self.kwargs.get("post_id"))
+        context["form"] = CommentForm(self.request.POST or None)
+        return context
 
 
-def post_detail(request, post_id):
-    """Функция представления страницы информации поста."""
-    post = get_object_or_404(Post, pk=post_id)
-    count_author = post.author.posts.count()
-    comments = Comment.objects.select_related(
-        "post",
-    )
-    form = CommentForm(request.POST or None)
-    context = {
-        "post": post,
-        "count_author": count_author,
-        "form": form,
-        "comments": comments,
-    }
-    return render(request, "posts/post_detail.html", context)
+class PostCreateView(LoginRequiredMixin, CreateView):
+    """Класс представление для создания поста."""
 
+    form_class = PostForm
+    template_name = "posts/create_post.html"
+    success_url = reverse_lazy("posts:index")  # перенаправить на новый пост
 
-@login_required
-def post_create(request):
-    """Функция представления страницы создания поста."""
-    form = PostForm(request.POST or None, files=request.FILES or None)
-    if request.method == "POST" and form.is_valid():
+    def form_valid(self, form):
         post = form.save(commit=False)
-        post.author = request.user
-        form.save()
-        return redirect("posts:profile", request.user.username)
-    form = PostForm()
-    return render(request, "posts/create_post.html", {"form": form})
+        post.author = self.request.user
+        return super().form_valid(form)
 
 
-@login_required
-def post_edit(request, post_id):
-    """Функция представления страницы редактирования поста."""
-    is_edit = True
-    post = get_object_or_404(Post, pk=post_id)
-    form = PostForm(request.POST or None, files=request.FILES or None, instance=post)
-    if request.method == "POST" and form.is_valid():
-        post = form.save(commit=False)
-        post.author = request.user
-        form.save()
-        return redirect("posts:post_detail", post_id)
-    form = PostForm(instance=post)
-    return render(request, "posts/create_post.html", {"form": form, "is_edit": is_edit})
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    """Класс представление для редактирования поста."""
+
+    form_class = PostForm
+    model = Post
+    template_name = "posts/create_post.html"
+    pk_url_kwarg = "post_id"
+    success_url = reverse_lazy("posts:index") # перенаправить на пост
 
 
-@login_required
-def add_comment(request, post_id):
-    """Функция добавления комментария."""
-    post = get_object_or_404(Post, pk=post_id)
-    form = CommentForm(request.POST or None)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.author = request.user
-        comment.post = post
-        comment.save()
-    return redirect("posts:post_detail", post_id=post_id)
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    """Класс для удаления автором своего поста."""
+
+    model = Post
+    pk_url_kwarg = "post_id"
+    success_url = reverse_lazy("posts:index")
 
 
-@login_required
-def follow_index(request) -> HttpResponse:
-    """Функция представления постов избранных авторов."""
-    posts_list = Post.objects.filter(author__following__user=request.user)
-    context = get_page_context(posts_list, request)
-    return render(request, "posts/follow.html", context)
+class GroupPostListView(ListView):
+    """Класс представления списка постов по определенной группе."""
+
+    template_name = "posts/index.html"
+    model = Post
+    context_object_name = "posts"
+    paginate_by = 8
+
+    def get_queryset(self):
+        return Post.objects.filter(group__slug=self.kwargs.get("slug"))
 
 
-@login_required
-def profile_follow(
-    request, username
-) -> HttpResponseRedirect | HttpResponsePermanentRedirect:
-    """Функция подписки на автора."""
-    user = request.user
-    author = get_object_or_404(User, username=username)
-    if user.follower.filter(author=author).exists() or user == author:
+class ProfileView(View):
+    """
+    Класс представления личной страницы пользователя
+    с отображением ленты его опубликованных постов.
+    """
+
+    def get(self, request, username):
+        author = get_object_or_404(User, username=username)
+        context = {
+            "author": author,
+            "following": Follow.objects.filter(author=author).exists(),
+        }
+        context |= get_page_context(author.posts.all(), request)
+        return render(request, "posts/profile.html", context)
+
+
+class AddCommentView(LoginRequiredMixin, View):
+    """Класс добавления нового комментария к определенному посту."""
+
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, pk=post_id)
+        form = CommentForm(request.POST or None)
+        if form.is_valid() and request.user.is_authenticated:
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            form.save()
+        return redirect("posts:post_detail", post_id=post_id)
+
+
+class PostFollowListView(LoginRequiredMixin, ListView):
+    """Класс представления постов избранных авторов."""
+
+    model = Post
+    template_name = "posts/index.html"
+    paginate_by = 8
+
+    def get_queryset(self):
+        return Post.objects.filter(author__following__user=self.request.user)
+
+
+class AddDeleteFollowing(LoginRequiredMixin, View):
+    """
+    Класс представление для добавления автора в избранные
+    или удаления автора из избранных.
+    """
+
+    def get(self, request, username):
+        author = get_object_or_404(User, username=username)
+        if request.user != author:
+            if not request.user.follower.filter(author=author):
+                Follow.objects.create(user=request.user, author=author)
+            else:
+                Follow.objects.filter(user=request.user, author=author).delete()
         return redirect("posts:profile", username=username)
-    Follow.objects.create(user=user, author=author)
-    return redirect("posts:profile", username=username)
-
-
-@login_required
-def profile_unfollow(request, username):
-    """Функция отписки от автора."""
-    user = request.user
-    author = get_object_or_404(User, username=username)
-    Follow.objects.filter(user=user, author=author).delete()
-    return redirect("posts:profile", username=username)

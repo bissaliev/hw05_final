@@ -1,12 +1,13 @@
 {% load static %}      
 <header class="my_header">
     <div class="logo">
-        <a href="{% url 'posts:index' %}"><img src="{% static 'img/logo.png' %}" width="60" height="60" class="d-inline-block align-top" alt=""></a>
+        <a href="{% url 'posts:index' %}"><img src="{% static 'img/logo.png' %}" width="60" height="60" class="d-inline-block align-top" alt="Логотип"></a>
     </div>
     <!-- Меню сайта -->
     <nav class="navig">
         <ul>
             <li><a class="nav-link" href="{% url 'posts:index' %}">Главная</a></li>
+            <li><a class="nav-link" href="{% url 'posts:follow_index' %}">Избранное</a></li>
             <li><a class="nav-link" href="{% url 'about:author' %}">Об авторе</a></li>
             <li><a class="nav-link" href="{% url 'about:tech' %}">Технологии</a></li>
             <li><a class="nav-link" href="{% url 'posts:post_create' %}">Новая запись</a></1i>
