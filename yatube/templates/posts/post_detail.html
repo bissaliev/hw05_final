@@ -8,45 +8,46 @@
     <div class="row post_single_des justify-content-around ">
         <div class="col-12 col-md-4 col-lg-5 p-3 p-lg-5"> <!--img-->
             {% thumbnail post.image "500x600" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_img">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid post_single_img">
             {% endthumbnail %}
         </div>
         <div class="col-12 col-md-8 col-lg-7 pt-lg-5"> <!--description-->
             <h3 class="h3">{{ post.text|truncatechars:100 }}</h3>
             <p>{{ post.pub_date|date:"d E Y"}}</p>
-            <div class="post_single_group_name">
-                {% if post.group %}
-                <span><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a></span>
-                {% endif%}
-            </div>
-            <div class="post_single_author">
+            {% if post.group %}
+            <a class="btn post_single_group_name my-3" href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a>
+            {% endif%}
+            <div>
+            <div class="d-flex align-items-end ">
                 {% if post.author.avatar %}
                     {% thumbnail post.author.avatar "80x80" crop="center" upscale=True as im %}
                     <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_avatar" href="{% url 'posts:profile' post.author.username %}">
                     {% endthumbnail %}
                 {% else %}
-                    <img src="/media/users/default.png" width="80" height="80" class="post_single_avatar">
+                    <img src="/media/users/default.png" width="70" height="70" class="img-fluid post_single_avatar">
                 {% endif %}
-                <div>
+                <div class="ms-2">
                     <h5 class="post_single_author_name"><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
                     <small>Всего постов автора:  <span > {{ post.author.posts.count }}</span></small>
                 </div>
             </div>
-            <a class="button_follow" href="#" role="button">Подписаться</a>
+            <a class="btn btn-dark btn-lg mt-3" href="#" role="button">Подписаться</a>
         </div>
     </div>
 </div>
 <div class="container post_single_text p-3 p-lg-5">  <!--text-->
     {{ post.text|linebreaksbr }}
 </div>
-<div class="button_group_text container"> <!--button-->
-    {% if request.user.is_authenticated %}
-    <a class="button_text button_edit" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
-    {% endif%}
-    {% if request.user.is_authenticated %}
-    <a class="button_text button_delete" href="{% url 'posts:post_delete' post.id %}">удалить</a>
-    {% endif%}
-</div>
+<div class="container mt-5"> <!--button-->
+    <div class="d-flex justify-content-around">
+        {% if request.user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
+        {% endif%}
+        {% if request.user.is_authenticated %}
+        <a class="btn btn-danger btn-lg" href="{% url 'posts:post_delete' post.id %}">удалить</a>
+        {% endif%}
+    </div>
+</div> <!--button-->
 <div class=""> <!--comments-->
     {% include 'includes/comments.html' %}
 </div>
