@@ -1,11 +1,19 @@
 version: '3'
 services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+    env_file:
+      - ./.env
   web:
     build: .
     # image: post-site
     restart: always
     ports:
       - "8000:8000"
+    depends_on:
+      - db
     env_file:
       - ./.env
     volumes:

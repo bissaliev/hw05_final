@@ -24,6 +24,7 @@ oauthlib==3.2.2
 packaging==23.2
 pillow==10.2.0
 pluggy==0.13.1
+psycopg2-binary==2.8.6
 py==1.11.0
 pybadges==3.0.1
 pycparser==2.21
