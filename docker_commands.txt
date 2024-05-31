@@ -1,0 +1,6 @@
+СБОРКА ОБРАЗА
+docker build -t post-site .
+
+
+КОМАНДА ЗАПУСКА НОВОГО КОНТЕЙНЕРА
+docker run --name post-today -e SECRET_KEY=SECRET_KEY -it -p 8000:8000 post-site
