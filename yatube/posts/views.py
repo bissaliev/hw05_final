@@ -3,33 +3,25 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 
 from .forms import CommentForm, PostForm
+from .mixins import PostMixinListView, SearchMixin
 from .models import Comment, Follow, Post
-from .utils import q_search
 
 User = get_user_model()
 
 
-class PostListView(ListView):
+class PostListView(PostMixinListView):
     """Класс представления списка постов."""
 
-    template_name = "posts/index.html"
-    model = Post
-    context_object_name = "posts"
-    paginate_by = 8
+    pass
 
-    def get_queryset(self):
-        if search := self.request.GET.get("search", None):
-            return q_search(search)
-        return Post.objects.select_related("author", "group").all()
+
+class SearchPost(SearchMixin, PostMixinListView):
+    """Класс представления для поиска постов."""
+
+    pass
 
 
 class PostDetailView(DetailView):
@@ -76,27 +68,20 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("posts:index")
 
 
-class GroupPostListView(ListView):
+class GroupPostListView(PostMixinListView):
     """Класс представления списка постов по определенной группе."""
 
-    template_name = "posts/index.html"
-    model = Post
-    context_object_name = "posts"
-    paginate_by = 8
-
     def get_queryset(self):
-        return Post.objects.filter(group__slug=self.kwargs.get("slug"))
+        return super().get_queryset().filter(group__slug=self.kwargs.get("slug"))
 
 
-class PostProfileListView(ListView):
+class PostProfileListView(PostMixinListView):
     """
     Класс представления личной страницы пользователя
     с отображением ленты его опубликованных постов.
     """
 
-    model = Post
     template_name = "posts/profile.html"
-    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -124,15 +109,11 @@ class AddCommentView(LoginRequiredMixin, View):
         return redirect("posts:post_detail", post_id=post_id)
 
 
-class PostFollowListView(LoginRequiredMixin, ListView):
+class PostFollowListView(LoginRequiredMixin, PostMixinListView):
     """Класс представления постов избранных авторов."""
 
-    model = Post
-    template_name = "posts/index.html"
-    paginate_by = 8
-
     def get_queryset(self):
-        return Post.objects.filter(author__following__user=self.request.user)
+        return super().get_queryset().filter(author__following__user=self.request.user)
 
 
 class AddDeleteFollowing(LoginRequiredMixin, View):
