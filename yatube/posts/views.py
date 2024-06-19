@@ -1,14 +1,19 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
-    ListView, DetailView, CreateView, UpdateView, DeleteView)
-from django.contrib.auth.mixins import LoginRequiredMixin
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from .forms import CommentForm, PostForm
 from .models import Comment, Follow, Post
-
+from .utils import q_search
 
 User = get_user_model()
 
@@ -22,6 +27,8 @@ class PostListView(ListView):
     paginate_by = 8
 
     def get_queryset(self):
+        if search := self.request.GET.get("search", None):
+            return q_search(search)
         return Post.objects.select_related("author", "group").all()
 
 
@@ -34,8 +41,7 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comment.objects.filter(
-            post_id=self.kwargs.get("post_id"))
+        context["comments"] = Comment.objects.filter(post_id=self.kwargs.get("post_id"))
         context["form"] = CommentForm(self.request.POST or None)
         return context
 
@@ -59,7 +65,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = "posts/create_post.html"
     pk_url_kwarg = "post_id"
-    success_url = reverse_lazy("posts:index") # перенаправить на пост
+    success_url = reverse_lazy("posts:index")  # перенаправить на пост
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):

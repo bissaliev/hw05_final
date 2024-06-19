@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load thumbnail %}
+{% load static %}
 {% block title %}
   <title> {{ post.text|truncatechars:30 }} </title>
 {% endblock%}
@@ -7,9 +8,13 @@
 <div class="container"> <!--top-->
     <div class="row post_single_des justify-content-around ">
         <div class="col-12 col-md-4 col-lg-5 p-3 p-lg-5"> <!--img-->
-            {% thumbnail post.image "500x600" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid post_single_img">
-            {% endthumbnail %}
+            {% if post.image %}
+              {% thumbnail post.image "500x600" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid post_single_img">
+              {% endthumbnail %}
+            {% else %}
+              <img src="{% static 'img/default_img.png' %}" width="500" height="600" class="img-fluid post_single_img">
+            {% endif %}
         </div>
         <div class="col-12 col-md-8 col-lg-7 pt-lg-5"> <!--description-->
             <h3 class="h3">{{ post.text|truncatechars:100 }}</h3>

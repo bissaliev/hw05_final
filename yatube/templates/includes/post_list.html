@@ -1,19 +1,41 @@
 {% load thumbnail %}
+{% load static %}
 <div class="container-fluid">
     <div class="row justify-content-center">
         {% for post in page_obj %}
         <div class="post col-12 col-lg-3">
           <div>
-            {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
-              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_header">
-            {% endthumbnail %}
+            
+            {% if post.image %}
+              {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_header">
+              {% endthumbnail %}
+            {% else %}
+              <img src="{% static 'img/default_img.png' %}" width="300" height="200" class="post_header">
+            {% endif %}
           </div> 
           <div class="post_body">
             {% if post.group %}
             <span class="color_for_group"><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a></span>
             {% endif %}
-            <h4>What's new in 2022 Tech</h4>
-            <p class="post_text">{{ post.text|truncatewords:15 }}<p>
+            <h4>
+              {% autoescape off %}
+                  {% if post.headline %}
+                    {{post.headline}}
+                  {% else %}
+                    {{ post.title }}
+                  {% endif %}
+              {% endautoescape %}
+            </h4>
+            <p class="post_text">
+              {% autoescape off %}
+                  {% if post.bodyline %}
+                    {{post.bodyline|truncatewords:90}}
+                  {% else %}
+                    {{ post.text|truncatewords:15 }}
+                  {% endif %}
+              {% endautoescape %}
+            <p>
             <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
             <p style="display: flex;">
               {% if post.author.avatar %}

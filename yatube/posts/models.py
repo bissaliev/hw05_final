@@ -27,14 +27,11 @@ class Group(models.Model):
 class Post(models.Model):
     """Модель постов."""
 
+    title = models.CharField("Заголовок", max_length=150, blank=True, null=True)
     text = models.TextField(verbose_name="текст поста")
-    pub_date = models.DateTimeField(
-        auto_now_add=True, verbose_name="дата публикации")
+    pub_date = models.DateTimeField(auto_now_add=True, verbose_name="дата публикации")
     author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="posts",
-        verbose_name="имя автора"
+        User, on_delete=models.CASCADE, related_name="posts", verbose_name="имя автора"
     )
     group = models.ForeignKey(
         "Group",
@@ -62,9 +59,7 @@ class Comment(models.Model):
     """Модель комментариев."""
 
     post = models.ForeignKey(
-        Post, on_delete=models.CASCADE,
-        related_name="comments",
-        verbose_name="пост"
+        Post, on_delete=models.CASCADE, related_name="comments", verbose_name="пост"
     )
     author = models.ForeignKey(
         User,
@@ -104,7 +99,5 @@ class Follow(models.Model):
         verbose_name = "Подписка"
         verbose_name_plural = "Подписки"
         constraints = [
-            models.UniqueConstraint(
-                fields=["user", "author"], name="unique_follow"
-            )
+            models.UniqueConstraint(fields=["user", "author"], name="unique_follow")
         ]
