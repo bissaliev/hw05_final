@@ -17,6 +17,7 @@
                 <form method="post" enctype="multipart/form-data" {% if action_url %} action="{% url action_url %}" {% endif %}>
                   {% csrf_token %}
                   {% comment %} {{form.as_p}} {% endcomment %}
+                  <div class="mb-3 post_create_text"><label for="" class="form-label">{{form.title.label}}</label>{{form.title|addclass:'form-control text-bg-dark'}}</div>
                   <div class="mb-3 post_create_text"><label for="" class="form-label">{{form.text.label}}</label>{{form.text|addclass:'form-control text-bg-dark'}}</div>
 
                   <div class="row g-2 ">

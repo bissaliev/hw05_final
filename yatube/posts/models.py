@@ -1,8 +1,10 @@
-from django.db import models
+import uuid
 
 from django.contrib.auth import get_user_model
+from django.db import models
 from django.urls import reverse
 
+from .fields import WEBPField
 
 User = get_user_model()
 
@@ -41,7 +43,7 @@ class Post(models.Model):
         related_name="posts",
         verbose_name="название группы",
     )
-    image = models.ImageField("Картинка", upload_to="posts/", blank=True)
+    image = WEBPField("Картинка", upload_to="posts/", blank=True)
 
     class Meta:
         ordering = ["-pub_date"]
