@@ -2,7 +2,7 @@ import io
 import os
 import sys
 
-from django.core.files.base import File
+from django.core.files.base import ContentFile, File
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile
@@ -15,23 +15,13 @@ class WEBPFieldFile(ImageFieldFile):
     сохранение файла с автоматической конвертацией в WEBP формат.
     """
 
-    def save(self, name: str, content: File, save: bool = True) -> None:
+    def save(self, name, content, save=True):
         content.file.seek(0)
         image = Image.open(content.file)
-        image = image.convert("RGB")
         image_bytes = io.BytesIO()
         image.save(fp=image_bytes, format="WEBP")
-        image_bytes.seek(0)
         name = f"{os.path.splitext(name)[0]}.webp"
-        # image_content_file = ContentFile(content=image_bytes.getvalue())
-        image_content_file = InMemoryUploadedFile(
-            image_bytes,
-            "ImageField",
-            name,
-            "image/webp",
-            sys.getsizeof(image_bytes),
-            None,
-        )
+        image_content_file = ContentFile(content=image_bytes.getvalue())
         super().save(name, image_content_file, save)
 
 
