@@ -1,6 +1,8 @@
-import uuid
+from re import search
 
 from django.contrib.auth import get_user_model
+from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
 from django.urls import reverse
 
@@ -44,8 +46,12 @@ class Post(models.Model):
         verbose_name="название группы",
     )
     image = WEBPField("Картинка", upload_to="posts/", blank=True)
+    search_vector = SearchVectorField(null=True)
 
     class Meta:
+        indexes = [
+            GinIndex(fields=["search_vector"]),
+        ]
         ordering = ["-pub_date"]
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
@@ -55,6 +61,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("posts:post_detail", kwargs={"post_id": self.pk})
+
+    def update_search_vector(self) -> None:
+        qs = Post.objects.filter(pk=self.pk)
+        qs.update(search_vector=SearchVector("title", "text", config="russian"))
 
 
 class Comment(models.Model):

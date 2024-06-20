@@ -25,11 +25,10 @@ class SearchMixin:
     def get_queryset(self):
         queryset = super().get_queryset()
         if query := self.request.GET.get("search", None):
-            vector = SearchVector("title", "text")
-            query = SearchQuery(query)
+            query = SearchQuery(query, config="russian")
             queryset = (
-                queryset.annotate(rank=SearchRank(vector, query))
-                .filter(rank__gt=0)
+                queryset.annotate(rank=SearchRank("search_vector", query))
+                .filter(search_vector=query, rank__gt=0)
                 .order_by("-rank")
             )
             queryset = queryset.annotate(
@@ -38,6 +37,7 @@ class SearchMixin:
                     query,
                     start_sel='<span style="background-color: red;">',
                     stop_sel="</span>",
+                    config="russian",
                 )
             )
             queryset = queryset.annotate(
@@ -46,6 +46,7 @@ class SearchMixin:
                     query,
                     start_sel='<span style="background-color: red;">',
                     stop_sel="</span>",
+                    config="russian",
                 )
             )
             return queryset
