@@ -1,0 +1,18 @@
+[
+{
+    "model": "posts.follow",
+    "pk": 15,
+    "fields": {
+        "user": 3,
+        "author": 1
+    }
+},
+{
+    "model": "posts.follow",
+    "pk": 17,
+    "fields": {
+        "user": 1,
+        "author": 3
+    }
+}
+]

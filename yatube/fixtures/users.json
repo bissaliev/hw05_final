@@ -1,0 +1,42 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$MVdKDdtRJqkN$RogdcrM89Q6wUPyTG2Y/e0O8kybdAnhsXC9IMYzdIn0=",
+        "last_login": "2024-06-19T04:48:39.467Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "Admin",
+        "last_name": "Adminov",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-02-20T13:39:48Z",
+        "avatar": "",
+        "birth_date": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$CXDLKywM7F9L$BXR9gdWKalnnNOlEY2+lt0vtCRSSuL2A+74XzrSWi+k=",
+        "last_login": "2024-03-04T08:50:08.705Z",
+        "is_superuser": false,
+        "username": "oleg",
+        "first_name": "Олег",
+        "last_name": "Биссалиев",
+        "email": "bissaliev21@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-02-21T05:19:16.969Z",
+        "avatar": "users/2024/02/21/IMG_20240212_165454.jpg",
+        "birth_date": "1988-12-21",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

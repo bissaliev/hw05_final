@@ -1,0 +1,65 @@
+[
+{
+    "model": "posts.group",
+    "pk": 1,
+    "fields": {
+        "title": "Спорт",
+        "description": "Спортивная тематика",
+        "slug": "sport"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 2,
+    "fields": {
+        "title": "Кино",
+        "description": "Группа о кино",
+        "slug": "kino"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 4,
+    "fields": {
+        "title": "Без тематики",
+        "description": "Без тематики",
+        "slug": "prosto"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 5,
+    "fields": {
+        "title": "Юмор",
+        "description": "Jumor",
+        "slug": "Jumor"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 6,
+    "fields": {
+        "title": "Кулинария",
+        "description": "Кулинария",
+        "slug": "kyxnu"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 7,
+    "fields": {
+        "title": "Технологии",
+        "description": "Технологии",
+        "slug": "texno"
+    }
+},
+{
+    "model": "posts.group",
+    "pk": 8,
+    "fields": {
+        "title": "Здоровье",
+        "description": "Главное темой данной группы является обсуждение здорового образа жизни",
+        "slug": "zdorove"
+    }
+}
+]
