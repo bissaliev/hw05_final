@@ -1,15 +1,29 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from .forms import CommentForm, PostForm
 from .mixins import PostMixinListView, SearchMixin
 from .models import Comment, Follow, Post
 
 User = get_user_model()
+
+
+class PostListView2(ListView):  # not
+    template_name = "posts/post_list.html"
+    queryset = Post.objects.select_related("author", "group").all()
+    context_object_name = "posts"
+    paginate_by = settings.PAGE_SIZE
 
 
 class PostListView(PostMixinListView):
