@@ -1,5 +1,5 @@
 from django import template
-
+from django.utils import timezone
 
 register = template.Library()
 
@@ -23,3 +23,25 @@ def param_replace(context, **kwargs):
     for k in [k for k, v in d.items() if not v]:
         del d[k]
     return d.urlencode()
+
+
+@register.filter
+def time_since_post(created_at):
+    now = timezone.now()
+    diff = now - created_at
+
+    if diff.days == 0 and diff.seconds < 60:
+        return "Только что"
+    if diff.days == 0 and diff.seconds < 3600:
+        minutes = diff.seconds // 60
+        return f"{minutes} минут назад"
+    if diff.days == 0:
+        hours = diff.seconds // 3600
+        return f"{hours} часов назад"
+    if diff.days < 30:
+        return f"{diff.days} дней назад"
+    if diff.days < 365:
+        months = diff.days // 30
+        return f"{months} месяцев назад"
+    years = diff.days // 365
+    return f"{years} лет назад"
