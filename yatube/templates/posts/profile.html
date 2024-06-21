@@ -1,30 +1,42 @@
-{%extends "base.html" %}
+{% extends 'base.html' %}
 {% load thumbnail %}
 {% block title %}
-  <title> Профайл пользователя {{ author.username }} </title>
+  <title>Профайл пользователя {{ author.username }}</title>
 {% endblock %}
 {% block content %}
-<div class="container profile_top">
-  <div class="row justify-content-center py-lg-3">
-    <div class="col-12 col-md-6 col-lg-3"> <!--avatar-->
-      {% if author.avatar %}
-          {% thumbnail author.avatar "800x1000" crop="center" as im %}
-          <img src="{{ im.url }}" alt="{{author.get_full_name}}" class="profile_avatar my-3 ">
+  <div class="container profile_top">
+    <div class="row justify-content-center py-lg-3">
+      <div class="col-12 col-md-6 col-lg-3">
+        <!-- avatar -->
+        {% if author.avatar %}
+          {% thumbnail author.avatar '800x1000' crop='center' as im %}
+          <img src="{{ im.url }}" alt="{{ author.get_full_name }}" class="profile_avatar my-3" />
           {% endthumbnail %}
-      {% else %}
-          <img src="/media/users/default.png" alt="{{author.get_full_name}}" class="profile_avatar my-3">
-      {% endif %}
-    </div>
-    <div class="col-12 col-md-6 col-lg-8 pb-3 pt-md-3 "> <!--description-->
+        {% else %}
+          <img src="/media/users/default.png" alt="{{ author.get_full_name }}" class="profile_avatar my-3" />
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-6 col-lg-8 pb-3 pt-md-3">
+        <!-- description -->
         <h1>{{ author.get_full_name }}</h1>
         <h3>Всего постов: {{ author.posts.count }}</h3>
-        <div class="py-3">{{ author.birth_date|date:"d E Y" }}</div>
-          <a class="btn btn-lg {% if following %}btn-light{% else %}btn-primary{% endif %}" href="{% url 'posts:profile_follow' author.username %}" role="button">
-            {% if following %}Отписаться{% else %}Подписаться{% endif %}
-          </a>
+        <div class="py-3">{{ author.birth_date|date:'d E Y' }}</div>
+        <a class="btn btn-lg {% if following %}
+            btn-light
+          {% else %}
+            btn-primary
+          {% endif %}"
+          href="{% url 'posts:profile_follow' author.username %}"
+          role="button">
+          {% if following %}
+            Отписаться
+          {% else %}
+            Подписаться
+          {% endif %}
+        </a>
+      </div>
     </div>
   </div>
-</div>
-{% include 'includes/post_list.html' %}
-{% include 'posts/includes/paginator.html' %}
+  {% include 'includes/post_list.html' %}
+  {% include 'posts/includes/paginator.html' %}
 {% endblock %}
