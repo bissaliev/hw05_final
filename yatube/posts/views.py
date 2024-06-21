@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.core.files.temp import NamedTemporaryFile
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -10,11 +11,13 @@ from django.views.generic import (
     DetailView,
     ListView,
     UpdateView,
+    View,
 )
 
 from .forms import CommentForm, PostForm
 from .mixins import PostMixinListView, SearchMixin
 from .models import Comment, Follow, Post
+from .tasks import process_image
 
 User = get_user_model()
 
@@ -52,16 +55,27 @@ class PostDetailView(DetailView):
         return context
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, View):
     """Класс представление для создания поста."""
 
-    form_class = PostForm
-    template_name = "posts/create_post.html"
+    def get(self, request):
+        form = PostForm()
+        return render(request, "posts/create_post.html", {"form": form})
 
-    def form_valid(self, form):
-        post = form.save(commit=False)
-        post.author = self.request.user
-        return super().form_valid(form)
+    def post(self, request):
+        img = request.FILES.get("image", None)
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            if img:
+                temp_image = NamedTemporaryFile(delete=False)
+                temp_image.write(img.read())
+                temp_image.flush()
+                process_image.delay(post.id, temp_image.name, img.name)
+                return redirect("posts:post_detail", post.id)
+        return render(request, "posts/create_post.html", {"form": form})
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
