@@ -1,9 +1,7 @@
 import io
 import os
-import sys
 
-from django.core.files.base import ContentFile, File
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
