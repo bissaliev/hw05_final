@@ -22,13 +22,6 @@ from .tasks import process_image
 User = get_user_model()
 
 
-class PostListView2(ListView):  # not
-    template_name = "posts/post_list.html"
-    queryset = Post.objects.select_related("author", "group").all()
-    context_object_name = "posts"
-    paginate_by = settings.PAGE_SIZE
-
-
 class PostListView(PostMixinListView):
     """Класс представления списка постов."""
 
