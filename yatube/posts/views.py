@@ -1,18 +1,10 @@
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.temp import NamedTemporaryFile
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-    View,
-)
+from django.views.generic import DeleteView, DetailView, UpdateView
 
 from .forms import CommentForm, PostForm
 from .mixins import PostMixinListView, SearchMixin
