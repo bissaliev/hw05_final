@@ -1,29 +1,34 @@
-{% if user.is_authenticated %}
+<!-- Комментарии к посту -->
+<div class="col-lg">
   <div class="card my-4">
-    <h5 class="card-header">Добавить комментарий:</h5>
-    <div class="card-body">
-      <form method="post" action="{% url 'posts:add_comment' post.id %}">
-        {% csrf_token %}      
-        <div class="form-group mb-2">
-          {{ form.text }}
+    <!-- Форма для комментария -->
+    <div>
+      {% if user.is_authenticated %}
+        <h5 class="card-header">Добавить комментарий:</h5>
+        <div class="card-body">
+          <form method="post" action="{% url 'posts:add_comment' post.id %}">
+            {% csrf_token %}      
+            <div class="form-group mb-2">
+              {{ form.text }}
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
         </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-      </form>
-    </div>
+      {% endif %}
+    </div>  <!-- Форма для комментария -->
+    
+    <!-- Списсок оставленных комментариев к посту -->
+    <div>
+      {% for comment in comments %}
+          <div class="card border-dark text-bg-dark w-75 m-3">
+            <h5 class="card-header">{{ comment.author.username }}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{{ comment.author.username }}</h5>
+              <p class="card-text">{{ comment.text }}</p>
+              <a href="#" class="btn btn-primary">Ответить</a>
+            </div>
+          </div>
+      {% endfor %}
+    </div>  <!-- Списсок оставленных комментариев к посту -->
   </div>
-{% endif %}
-
-{% for comment in comments %}
-  <div class="media mb-4">
-    <div class="media-body">
-      <h5 class="mt-0">
-        <a href="{% url 'posts:profile' comment.author.username %}">
-          {{ comment.author.username }}
-        </a>
-      </h5>
-        <p>
-         {{ comment.text }}
-        </p>
-      </div>
-    </div>
-{% endfor %}
+</div>  <!-- Комментарии к посту -->
