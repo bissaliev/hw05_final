@@ -18,3 +18,11 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ("text",)
         help_text = {"text": "Добавьте свой комменттарий"}
+        widgets = {
+            "text": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Напишите свой комментарий",
+                }
+            )
+        }
