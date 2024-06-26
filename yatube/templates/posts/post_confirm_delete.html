@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}{% endblock %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <p>Вы уверены, что хотите удалить пост "{{ object }}"?</p>
-    {{ form }}
-    <input class="btn btn-primary" type="submit" value="Confirm">
-</form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card w-75 mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Подтверждение на удаление поста "{{ object }}"</h5>
+        <form method="post">
+            <p class="card-text">
+                Вы уверены, что хотите удалить пост "{{ object }}"?
+                {% csrf_token %}
+                {{ form }}
+            </p>
+            <input class="btn btn-danger" type="submit" value="Удалить">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
