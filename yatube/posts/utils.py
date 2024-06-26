@@ -49,3 +49,15 @@ def q_search(query):
         )
     )
     return result
+
+
+def get_client_ip(request):
+    """
+    Функция для определения IP-адреса пользователя.
+    """
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    return (
+        x_forwarded_for.split(",")[-1].strip()
+        if x_forwarded_for
+        else request.META.get("REMOTE_ADDR")
+    )
