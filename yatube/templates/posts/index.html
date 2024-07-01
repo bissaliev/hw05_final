@@ -1,61 +1,24 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% load cache %}
 {% block title %}
-  <title> Последнее обновление на сайте.</title>
+  <title>Последнее обновление на сайте.</title>
 {% endblock %}
 
 {% block content %}
-
-  <!--Виджет-->
-  <div class="row mx-5 position-fixed z-3">
-    <!-- Каталог -->
-    <div class="dropdown mb-2">
-      <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Каталог
-        <img class="mx-1" src="{% static 'img/grid-fill.svg' %}" alt="Catalog Icon" width="16" height="16" />
-      </button>
-      <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Все товары</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Кухня</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Спальня</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Гостинная</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Офис</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Фурнитура</a>
-        </li>
-        <li>
-          <a class="dropdown-item text-white" href="../goods/catalog.html">Декор</a>
-        </li>
-      </ul>
-    </div>
-  </div> <!--Виджет-->
-
-  <!--Список постов-->
+  <!-- Список постов -->
   <div class="container-fluid">
     <div class="row justify-content-center pt-5">
-      {% cache 900 cache_post_list page_obj.number %}
+      {% comment %} {% cache 900 cache_post_list request.path page_obj.number %} {% endcomment %}
       {% for post in page_obj %}
-        {% include "includes/post_list.html" %}
+        {% include 'includes/post_list.html' %}
       {% endfor %}
-      {% endcache %}
+      {% comment %} {% endcache %} {% endcomment %}
     </div>
-  </div>  <!--Список постов-->
-  
-  <!--Паджинатор-->
-  <div class="d-flex justify-content-center">
-      {% include 'posts/includes/paginator.html' %}
-  </div>  <!--Паджинатор-->
+  </div> <!-- Список постов -->
 
+  <!-- Паджинатор -->
+  <div class="d-flex justify-content-center">
+    {% include 'posts/includes/paginator.html' %}
+  </div> <!-- Паджинатор -->
 {% endblock %}
-</div>
