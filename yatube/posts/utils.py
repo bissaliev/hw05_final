@@ -4,6 +4,7 @@ from django.contrib.postgres.search import (
     SearchRank,
     SearchVector,
 )
+from django.core.cache import cache
 from django.core.paginator import Paginator
 
 from .models import Post
@@ -61,3 +62,11 @@ def get_client_ip(request):
         if x_forwarded_for
         else request.META.get("REMOTE_ADDR")
     )
+
+
+def set_get_cache(query, cache_name, cache_time):
+    data = cache.get(cache_name)
+    if not data:
+        data = query
+        cache.set(cache_name, data, cache_time)
+    return data
