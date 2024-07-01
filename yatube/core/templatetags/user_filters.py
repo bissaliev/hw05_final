@@ -1,5 +1,6 @@
 from django import template
 from django.utils import timezone
+from posts.models import Group
 
 register = template.Library()
 
@@ -45,3 +46,13 @@ def time_since_post(created_at):
         return f"{months} месяцев назад"
     years = diff.days // 365
     return f"{years} лет назад"
+
+
+@register.inclusion_tag("tags/group_list.html", takes_context=True)
+def get_group_list(context):
+    print(context.request.path.strip("/").split("/"))
+    path = context.request.path.strip("/").split("/")
+    current_group = None
+    if path[0] == "group":
+        current_group = path[-1]
+    return {"group_list": Group.objects.all(), "current_group": current_group}

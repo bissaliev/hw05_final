@@ -1,0 +1,22 @@
+{% load static %}
+<div class="row mx-5 position-fixed z-3">
+  <!-- Группы -->
+  <div class="dropdown mb-2">
+    <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Группы
+      <img class="mx-1" src="{% static 'img/grid-fill.svg' %}" alt="Group Icon" width="16" height="16" />
+    </button>
+    <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
+      {% for group in group_list %}
+        <li>
+          <a class="dropdown-item text-white 
+          {% if group.slug == current_group %}
+            active
+          {% endif %}
+             " href="{% url 'posts:group_list' group.slug %}">{{ group.title }}</a>
+          {{ request.user }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
