@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Comment, Post
+from .models import Comment, Follow, Post
 
 
 class PostForm(forms.ModelForm):
@@ -25,4 +25,17 @@ class CommentForm(forms.ModelForm):
                     "placeholder": "Напишите свой комментарий",
                 }
             )
+        }
+
+
+class FollowForm(forms.ModelForm):
+    """
+    Класс-форма для подписки и отписки на автора поста.
+    """
+
+    class Meta:
+        model = Follow
+        fields = ("author",)
+        widgets = {
+            "author": forms.HiddenInput(),
         }
