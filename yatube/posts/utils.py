@@ -65,6 +65,7 @@ def get_client_ip(request):
 
 
 def set_get_cache(query, cache_name, cache_time):
+    """Функция для управлением кешированием."""
     data = cache.get(cache_name)
     if not data:
         data = query
