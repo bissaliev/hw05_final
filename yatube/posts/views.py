@@ -7,17 +7,20 @@ from django.views import View
 from django.views.generic import DeleteView, DetailView, UpdateView
 
 from .forms import CommentForm, PostForm
-from .mixins import PostMixinListView, SearchMixin
+from .mixins import CacheMixin, PostMixinListView, SearchMixin
 from .models import Comment, Follow, Post
 from .tasks import process_image
 
 User = get_user_model()
 
 
-class PostListView(PostMixinListView):
+class PostListView(CacheMixin, PostMixinListView):
     """Класс представления списка постов."""
 
-    pass
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        cache_name = "index_cache"
+        return self.get_cache(queryset, cache_name, self.cache_timeout)
 
 
 class SearchPost(SearchMixin, PostMixinListView):
@@ -81,11 +84,14 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("posts:index")
 
 
-class GroupPostListView(PostMixinListView):
+class GroupPostListView(CacheMixin, PostMixinListView):
     """Класс представления списка постов по определенной группе."""
 
     def get_queryset(self):
-        return super().get_queryset().filter(group__slug=self.kwargs.get("slug"))
+        slug = self.kwargs.get("slug")
+        queryset = super().get_queryset().filter(group__slug=slug)
+        cache_name = f"posts_of_group_cache_{slug}"
+        return self.get_cache(queryset, cache_name, self.cache_timeout)
 
 
 class PostProfileListView(PostMixinListView):
@@ -122,11 +128,14 @@ class AddCommentView(LoginRequiredMixin, View):
         return redirect("posts:post_detail", post_id=post_id)
 
 
-class PostFollowListView(LoginRequiredMixin, PostMixinListView):
+class PostFollowListView(LoginRequiredMixin, CacheMixin, PostMixinListView):
     """Класс представления постов избранных авторов."""
 
     def get_queryset(self):
-        return super().get_queryset().filter(author__following__user=self.request.user)
+        user = self.request.user
+        queryset = super().get_queryset().filter(author__following__user=user)
+        cache_name = f"post_follow_cache_{user.id}"
+        return self.get_cache(queryset, cache_name, self.cache_timeout)
 
 
 class AddDeleteFollowing(LoginRequiredMixin, View):
