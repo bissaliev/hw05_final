@@ -1,5 +1,6 @@
 {% load static %}
 {% load user_filters %}
+{% load cache %}
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -22,9 +23,9 @@
       {% include 'includes/header.html' %}
     </header>
     <main class="mt-3">
-      <!-- Виджет -->
+      <!-- Виджет группы -->
       {% get_group_list %}
-      <!-- Виджет -->
+      <!-- Виджет группы -->
       {% block content %}
         Нет контента
       {% endblock %}

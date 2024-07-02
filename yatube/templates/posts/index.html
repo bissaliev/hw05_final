@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load cache %}
 {% block title %}
   <title>Последнее обновление на сайте.</title>
 {% endblock %}
@@ -9,11 +8,9 @@
   <!-- Список постов -->
   <div class="container-fluid">
     <div class="row justify-content-center pt-5">
-      {% comment %} {% cache 900 cache_post_list request.path page_obj.number %} {% endcomment %}
       {% for post in page_obj %}
         {% include 'includes/post_list.html' %}
       {% endfor %}
-      {% comment %} {% endcache %} {% endcomment %}
     </div>
   </div> <!-- Список постов -->
 
