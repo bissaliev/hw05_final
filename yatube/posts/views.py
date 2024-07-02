@@ -4,9 +4,9 @@ from django.core.files.temp import NamedTemporaryFile
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import DeleteView, DetailView, UpdateView
+from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, FollowForm, PostForm
 from .mixins import CacheMixin, PostMixinListView, SearchMixin
 from .models import Comment, Follow, Post
 from .tasks import process_image
@@ -40,6 +40,10 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["comments"] = Comment.objects.filter(post_id=self.kwargs.get("post_id"))
         context["form"] = CommentForm(self.request.POST or None)
+        context["form_follow"] = FollowForm(initial={"author": self.object.author})
+        context["is_subscribed"] = self.request.user.follower.filter(
+            author=self.object.author
+        ).exists()
         return context
 
 
@@ -94,24 +98,30 @@ class GroupPostListView(CacheMixin, PostMixinListView):
         return self.get_cache(queryset, cache_name, self.cache_timeout)
 
 
-class PostProfileListView(PostMixinListView):
+class PostProfileListView(ListView):
     """
     Класс представления личной страницы пользователя
     с отображением ленты его опубликованных постов.
     """
 
     template_name = "posts/profile.html"
+    paginate_by = 8
+    queryset = Post.objects.select_related("group")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         author = get_object_or_404(User, username=self.kwargs.get("username"))
         context["author"] = author
-        context["following"] = Follow.objects.filter(author=author).exists()
+        context["form"] = FollowForm(initial={"author": author})
+        context["is_subscribed"] = self.request.user.follower.filter(
+            author=author
+        ).exists()
         return context
 
     def get_queryset(self):
-        author = get_object_or_404(User, username=self.kwargs.get("username"))
-        return author.posts.all()
+        username = self.kwargs.get("username")
+        queryset = super().get_queryset()
+        return queryset.filter(author__username=username).prefetch_related("author")
 
 
 class AddCommentView(LoginRequiredMixin, View):
@@ -144,11 +154,11 @@ class AddDeleteFollowing(LoginRequiredMixin, View):
     или удаления автора из избранных.
     """
 
-    def get(self, request, username):
-        author = get_object_or_404(User, username=username)
-        if request.user != author:
-            if not request.user.follower.filter(author=author):
-                Follow.objects.create(user=request.user, author=author)
-            else:
-                Follow.objects.filter(user=request.user, author=author).delete()
-        return redirect("posts:profile", username=username)
+    def post(self, request):
+        author = get_object_or_404(User, pk=request.POST.get("author"))
+        instance, created = Follow.objects.get_or_create(
+            author=author, user=request.user
+        )
+        if not created:
+            instance.delete()
+        return redirect(request.META.get("HTTP_REFERER", "/"))
