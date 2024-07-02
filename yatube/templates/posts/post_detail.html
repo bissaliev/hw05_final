@@ -49,7 +49,21 @@
                         <small>Всего постов автора:  <span > {{ post.author.posts.count }}</span></small>
                     </div>
                   </div>  <!-- Автор поста -->
-                  <a class="btn btn-dark btn-lg mt-3" href="#" role="button">Подписаться</a>
+                  <!-- Форма подписки и отписки на автора -->
+                  <div class="mt-2">
+                    <form action="{% url 'posts:profile_follow' %}" method="post">
+                      {% csrf_token %}
+                      {% for hidden in form_follow.hidden_fields %}
+                        {{ hidden }}
+                      {% endfor %}
+            
+                      {% if is_subscribed %}
+                        <button class="btn btn-lg btn-light btn-outline-dark" type="submit">Отписаться</button>
+                      {% else %}
+                        <button class="btn btn-lg btn-primary" type="submit">Подписаться</button>
+                      {% endif %}
+                    </form> <!-- Форма подписки и отписки на автора -->
+                  </div>
                   <!-- Увеличить изображение в модальном окне -->
                   <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModal1Label" aria-hidden="true">
                     <div class="modal-dialog modal-lg">

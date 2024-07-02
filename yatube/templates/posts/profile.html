@@ -1,42 +1,64 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+{% load static %}
 {% block title %}
   <title>Профайл пользователя {{ author.username }}</title>
 {% endblock %}
 {% block content %}
-  <div class="container profile_top">
-    <div class="row justify-content-center py-lg-3">
-      <div class="col-12 col-md-6 col-lg-3">
-        <!-- avatar -->
-        {% if author.avatar %}
-          {% thumbnail author.avatar '800x1000' crop='center' as im %}
-          <img src="{{ im.url }}" alt="{{ author.get_full_name }}" class="profile_avatar my-3" />
-          {% endthumbnail %}
-        {% else %}
-          <img src="/media/users/default.png" alt="{{ author.get_full_name }}" class="profile_avatar my-3" />
-        {% endif %}
-      </div>
-      <div class="col-12 col-md-6 col-lg-8 pb-3 pt-md-3">
-        <!-- description -->
-        <h1>{{ author.get_full_name }}</h1>
-        <h3>Всего постов: {{ author.posts.count }}</h3>
-        <div class="py-3">{{ author.birth_date|date:'d E Y' }}</div>
-        <a class="btn btn-lg {% if following %}
-            btn-light
-          {% else %}
-            btn-primary
-          {% endif %}"
-          href="{% url 'posts:profile_follow' author.username %}"
-          role="button">
-          {% if following %}
-            Отписаться
-          {% else %}
-            Подписаться
-          {% endif %}
-        </a>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Описание профиля -->
+      <div class="col-lg-3 ms-auto mt-5">
+        <div class="container">
+          <div class="card border-dark">
+            <img src="{% if author.avatar %}
+                {{ author.avatar.url }}
+              {% else %}
+                {% static 'img/baseavatar.jpg' %}
+              {% endif %}"
+              class="card-img-top"
+              alt="..." />
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Всего постов: {{ object_list|length }}</li>
+                <li class="list-group-item">{{ object_list.0.author.get_full_name }}</li>
+                <li class="list-group-item">{{ author.first_name }}</li>
+                <li class="list-group-item">{{ author.last_name }}</li>
+                <li class="list-group-item">{{ author.username }}</li>
+                <li class="list-group-item">{{ author.email }}</li>
+                <li class="list-group-item">{{ author.birth_date|date:'d E Y' }}</li>
+              </ul>
+              <!-- Форма подписки и отписки на автора -->
+              <form action="{% url 'posts:profile_follow' %}" method="post">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+
+                {% if is_subscribed %}
+                  <button class="btn btn-lg btn-light" type="submit">Отписаться</button>
+                {% else %}
+                  <button class="btn btn-lg btn-primary" type="submit">Подписаться</button>
+                {% endif %}
+              </form> <!-- Форма подписки и отписки на автора -->
+            </div>
+          </div>
+        </div>
+      </div> <!-- Описание профиля -->
+
+      <div class="col-lg-8 mt-5 m-auto">
+        <!-- Список постов -->
+        <div class="container-fluid">
+          <div class="row justify-content-center overflow-y-scroll" style="height: 85vh;">
+            {% for post in page_obj %}
+              {% include 'includes/post_list.html' %}
+            {% endfor %}
+          </div>
+        </div> <!-- Список постов -->
+        <div class="d-flex justify-content-center">
+          {% include 'posts/includes/paginator.html' %}
+        </div> <!-- Паджинатор -->
       </div>
     </div>
   </div>
-  {% include 'includes/post_list.html' %}
-  {% include 'posts/includes/paginator.html' %}
 {% endblock %}

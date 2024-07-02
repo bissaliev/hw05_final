@@ -2,57 +2,62 @@
 {% load static %}
 <!-- Контент поста -->
 <div class="post col-12 col-lg-3">
-  
-  <!--Картинка-->
+  <!-- Картинка -->
   <div>
     {% if post.image %}
-      {% thumbnail post.image "500x300" crop="center" upscale=True as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_header">
+      {% thumbnail post.image '500x300' crop='center' upscale=True as im %}
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_header" />
       {% endthumbnail %}
     {% else %}
-      <img src="{% static 'img/default_img.png' %}" width="300" height="200" class="post_header">
+      <img src="{% static 'img/default_img.png' %}" width="300" height="200" class="post_header" />
     {% endif %}
-  </div>  <!--Картинка-->
-  
+  </div> <!-- Картинка -->
+
   <!-- Описание поста -->
   <div class="post_body">
-    <!--Заголовок группы с сылкой -->
+    <!-- Заголовок группы с сылкой -->
     {% if post.group %}
       <span class="color_for_group"><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a></span>
     {% endif %}
-    <!--Заголовок группы с сылкой -->
-    
-    <!--Заголовок поста -->
+    <!-- Заголовок группы с сылкой -->
+
+    <!-- Заголовок поста -->
     <h4>
       {% autoescape off %}
-        {% if post.headline %}{{post.headline}}{% else %}{{ post.title }}{% endif %}
+        {% if post.headline %}
+          {{ post.headline }}
+        {% else %}
+          {{ post.title }}
+        {% endif %}
       {% endautoescape %}
-    </h4>  <!--Заголовок поста -->
-    
+    </h4> <!-- Заголовок поста -->
+
     <!-- Текст поста -->
     <p class="post_text">
       {% autoescape off %}
-          {% if post.bodyline %}{{post.bodyline|truncatewords:90}}{% else %}{{ post.text|truncatewords:15 }}{% endif %}
+        {% if post.bodyline %}
+          {{ post.bodyline|truncatewords:90 }}
+        {% else %}
+          {{ post.text|truncatewords:15 }}
+        {% endif %}
       {% endautoescape %}
-    <p>  <!-- Текст поста -->
-    
-    <a href= "{% url 'posts:post_detail' post.id %}">подробнее</a>
-    
+    </p> <!-- Текст поста -->
+
+    <a href="{% url 'posts:post_detail' post.id %}">подробнее</a>
+
     <!-- Автор поста -->
     <p style="display: flex;">
       {% if post.author.avatar %}
-          {% thumbnail post.author.avatar "50x50" crop="center" upscale=True as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-          {% endthumbnail %}
+        {% thumbnail post.author.avatar '50x50' crop='center' upscale=True as im %}
+        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
+        {% endthumbnail %}
       {% else %}
-          <img src="/media/users/default.png" width="50" height="50">
+        <img src="/media/users/default.png" width="50" height="50" />
       {% endif %}
       {{ post.author.get_full_name }}
-    </p>  <!-- Автор поста -->
-    
+    </p> <!-- Автор поста -->
+
     <!-- Дата публикации поста -->
-    <p>{{ post.pub_date|date:"d E Y" }}</p>
-    
-  </div>  <!-- Описание поста -->
-  
-</div>  <!-- Контент поста -->
+    <p>{{ post.pub_date|date:'d E Y' }}</p>
+  </div> <!-- Описание поста -->
+</div> <!-- Контент поста -->
