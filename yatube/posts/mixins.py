@@ -1,6 +1,8 @@
+from typing import Any
 from django.conf import settings
 from django.contrib.postgres.search import SearchHeadline, SearchQuery, SearchRank
 from django.core.cache import cache
+from django.db.models import QuerySet
 from django.views.generic import ListView
 
 from .models import Post
@@ -71,7 +73,9 @@ class CacheMixin:
 
     cache_timeout = 900
 
-    def get_cache(self, query, cache_name, cache_timeout):
+    def get_cache(
+        self, query: QuerySet, cache_name: str, cache_timeout: int
+    ) -> QuerySet | Any:
         data = cache.get(cache_name)
         if not data:
             data = query

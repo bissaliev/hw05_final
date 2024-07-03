@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.temp import NamedTemporaryFile
+from django.db.models import Count, Exists, F, OuterRef, Prefetch, QuerySet, Subquery
+from django.db.models.base import Model as Model
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
@@ -33,18 +35,34 @@ class PostDetailView(DetailView):
     """Класс представления определенного поста."""
 
     model = Post
+    queryset = Post.objects.select_related("author", "group")
     template_name = "posts/post_detail.html"
     pk_url_kwarg = "post_id"
 
+    # TODO Рефакторинг детального представления поста
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comment.objects.filter(post_id=self.kwargs.get("post_id"))
-        context["form"] = CommentForm(self.request.POST or None)
-        context["form_follow"] = FollowForm(initial={"author": self.object.author})
-        context["is_subscribed"] = self.request.user.follower.filter(
-            author=self.object.author
-        ).exists()
+        context.update(
+            {
+                "form": CommentForm(self.request.POST or None),
+                "form_follow": FollowForm(initial={"author": self.object.author}),
+            }
+        )
         return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.annotate(count_posts_of_author=Count("author__posts"))
+        queryset = queryset.annotate(
+            is_subscribed=Exists(
+                self.request.user.follower.filter(author=OuterRef("author_id"))
+            )
+        )
+        comments = Comment.objects.filter(
+            post_id=self.kwargs.get("post_id")
+        ).select_related("author")
+        queryset = queryset.prefetch_related(Prefetch("comments", queryset=comments))
+        return queryset
 
 
 class PostCreateView(LoginRequiredMixin, View):
@@ -54,6 +72,7 @@ class PostCreateView(LoginRequiredMixin, View):
         form = PostForm()
         return render(request, "posts/create_post.html", {"form": form})
 
+    # TODO Рефакторинг(добавление структуры PostCreateView)
     def post(self, request):
         img = request.FILES.get("image", None)
         form = PostForm(request.POST)
@@ -66,7 +85,7 @@ class PostCreateView(LoginRequiredMixin, View):
                 temp_image.write(img.read())
                 temp_image.flush()
                 process_image.delay(post.id, temp_image.name, img.name)
-                return redirect("posts:post_detail", post.id)
+            return redirect(post.get_absolute_url())
         return render(request, "posts/create_post.html", {"form": form})
 
 
@@ -77,7 +96,6 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = "posts/create_post.html"
     pk_url_kwarg = "post_id"
-    success_url = reverse_lazy("posts:index")  # перенаправить на пост
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
@@ -105,23 +123,34 @@ class PostProfileListView(ListView):
     """
 
     template_name = "posts/profile.html"
+    # TODO PAGE_SIZE
     paginate_by = 8
     queryset = Post.objects.select_related("group")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        author = get_object_or_404(User, username=self.kwargs.get("username"))
-        context["author"] = author
-        context["form"] = FollowForm(initial={"author": author})
-        context["is_subscribed"] = self.request.user.follower.filter(
-            author=author
-        ).exists()
+        context.update(
+            {
+                "author": self.author,
+                "form": FollowForm(initial={"author": self.author}),
+                "is_subscribed": self.request.user.is_authenticated
+                and self.author.is_subscribed,
+            }
+        )
         return context
 
+    # TODO CACHE
     def get_queryset(self):
         username = self.kwargs.get("username")
-        queryset = super().get_queryset()
-        return queryset.filter(author__username=username).prefetch_related("author")
+        self.author = get_object_or_404(
+            User.objects.annotate(
+                is_subscribed=Exists(
+                    self.request.user.follower.filter(author=OuterRef("pk"))
+                )
+            ),
+            username=username,
+        )
+        return self.author.posts.select_related("group")
 
 
 class AddCommentView(LoginRequiredMixin, View):
@@ -138,6 +167,7 @@ class AddCommentView(LoginRequiredMixin, View):
         return redirect("posts:post_detail", post_id=post_id)
 
 
+# TODO Возможен рефакторинг
 class PostFollowListView(LoginRequiredMixin, CacheMixin, PostMixinListView):
     """Класс представления постов избранных авторов."""
 
