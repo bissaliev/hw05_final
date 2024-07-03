@@ -1,5 +1,3 @@
-from re import search
-
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
@@ -112,4 +110,29 @@ class Follow(models.Model):
         verbose_name_plural = "Подписки"
         constraints = [
             models.UniqueConstraint(fields=["user", "author"], name="unique_follow")
+        ]
+
+
+class ViewPost(models.Model):
+    """Модель для отслеживания уникальных просмотров пользователем."""
+
+    post = models.ForeignKey(
+        to=Post, on_delete=models.CASCADE, related_name="view_posts"
+    )
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="view_posts",
+    )
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    date_of_viewing = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.user} просмотрел {self.post} - {self.date_of_viewing}"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=("post", "user"), name="unique_view_post")
         ]
