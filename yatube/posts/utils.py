@@ -71,3 +71,11 @@ def set_get_cache(query, cache_name, cache_time):
         data = query
         cache.set(cache_name, data, cache_time)
     return data
+
+
+def cache_post_delete(post):
+    """Функция для ивалидации кеша модели Post."""
+    cache.delete("index_cache")
+    follows = post.author.following.all()
+    for follow in follows:
+        cache.delete(f"post_follow_cache_{follow.user_id}")
