@@ -7,7 +7,6 @@
 
 {% block content %}
   <section>
-    
     <!-- Контент -->
     <div class="container">
       <div class="row mt-1">
@@ -46,7 +45,7 @@
                     {% endif %}
                     <div class="ms-2">
                         <h5 class=""><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
-                        <small>Всего постов автора:  <span > {{ post.author.posts.count }}</span></small>
+                        <small>Всего постов автора:  <span > {{ post.count_posts_of_author }}</span></small>
                     </div>
                   </div>  <!-- Автор поста -->
                   <!-- Форма подписки и отписки на автора -->
@@ -57,7 +56,7 @@
                         {{ hidden }}
                       {% endfor %}
             
-                      {% if is_subscribed %}
+                      {% if post.is_subscribed %}
                         <button class="btn btn-lg btn-light btn-outline-dark" type="submit">Отписаться</button>
                       {% else %}
                         <button class="btn btn-lg btn-primary" type="submit">Подписаться</button>
@@ -104,8 +103,7 @@
     
     <!-- Блок комментариев -->
     <div class="container">
-      {% include 'includes/comments.html' %}
+      {% include 'includes/comments.html' with comments=post.comments.all%}
     </div>  <!-- Блок комментариев -->
-    
   </section>
 {% endblock %}

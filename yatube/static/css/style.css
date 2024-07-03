@@ -32,7 +32,8 @@ a {
     background: linear-gradient(to right, #FFFFFF, #ECE9E6);
     overflow: hidden;
     border-radius: 1em;
-    margin: 1em;
+    margin-left: 1em;
+    margin-bottom: 1em;
     padding: 0em;
 }
 
@@ -106,6 +107,7 @@ a {
     border-radius: 50%;
     border: 5px solid rgb(133, 9, 126);
 }
+
 .post_single_avatar:hover {
     border: 5px solid rgb(9, 21, 133);
 }
@@ -114,9 +116,11 @@ a {
     /* font-size: 1.5rem; */
     line-height: .4;
 }
+
 .post_single_author_name a {
     color: #FFFFFF;
 }
+
 .post_single_author_name:hover a {
     color: #1b17d1;
 }
@@ -137,7 +141,7 @@ a {
 
 .profile_top {
     background: rgba(0, 0, 0, 0.329);
-    color:#ffffff;
+    color: #ffffff;
     border-radius: 20px;
 }
 

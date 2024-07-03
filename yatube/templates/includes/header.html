@@ -22,7 +22,9 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about:tech' %}">Технологии</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about:author' %}">Об авторе</a></li>
-                    <li class="nav-item dropdown me-3">
+                    
+                    {% if request.user.is_authenticated %}
+                      <li class="nav-item dropdown me-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ user.username }}
                         </a>
@@ -33,7 +35,12 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                      </li>
+                    {% else %}
+                      <li class="nav-item me-2"><a class="nav-link" href="{% url 'users:login' %}">Войти</a></li>
+                    {% endif %}
+                      
+                    
                 </ul>
                 <form class="d-flex" role="search" method="get" action="{% url 'posts:search' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
@@ -43,46 +50,3 @@
 
     </div>
 </nav>
-
-
-{% comment %} <nav class="navbar navbar-light" style="background-color: lightskyblue"> {% endcomment %}
-  {% comment %} <div class="container"> {% endcomment %}
-    {% comment %} <a class="navbar-brand" href="{% url 'posts:index' %}"> {% endcomment %}
-      {% comment %} <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt=""> {% endcomment %}
-      {% comment %} <span style="color:red">Ya</span>tube {% endcomment %}
-    {% comment %} </a> {% endcomment %}
-    {% comment %} {% with request.resolver_match.view_name as view_name %} {% endcomment %}
-    {% comment %} <ul class="nav nav-pills"> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" href="{% url 'about:author' %}">Об авторе</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item"> {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}" href="{% url 'about:tech' %}">Технологии</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
-      {% comment %} <li class="nav-item"> {% endcomment %}
-        {% comment %} <a class="nav-link {% if view_name  == 'posts:post_create' %} active {% endif %}" {% endcomment %}
-        {% comment %} href="{% url 'posts:post_create' %}">Новая запись</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:password_reset_form' %}active{% endif %}" href="{% url 'users:password_reset_form' %}">Изменить пароль</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}" href=" {% url 'users:logout' %} ">Выйти</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li> {% endcomment %}
-        {% comment %} Пользователь: {{ user.username }} {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% else %} {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href=" {% url 'users:login' %} ">Войти</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} <li class="nav-item">  {% endcomment %}
-        {% comment %} <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{% url 'users:signup' %}">Регистрация</a> {% endcomment %}
-      {% comment %} </li> {% endcomment %}
-      {% comment %} {% endif %} {% endcomment %}
-    {% comment %} {% endwith %} {% endcomment %}
-    {% comment %} </ul> {% endcomment %}
-  {% comment %} </div> {% endcomment %}
-{% comment %} </nav> {% endcomment %}
