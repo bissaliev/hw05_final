@@ -1,5 +1,4 @@
 from django import template
-from django.core.cache import cache
 from django.utils import timezone
 from posts.models import Group
 from posts.utils import set_get_cache
@@ -51,13 +50,13 @@ def time_since_post(created_at):
 
 
 @register.inclusion_tag("tags/group_list.html", takes_context=True)
-def get_group_list(context):
+def get_post_of_group(context):
     query = Group.objects.all()
     path = context.request.path.strip("/").split("/")
     current_group = None
     if path[0] == "group":
         current_group = path[-1]
     return {
-        "group_list": set_get_cache(query, "group_list_tag", 900),
+        "group_list": set_get_cache(query, "post_of_group_tag", 900),
         "current_group": current_group,
     }

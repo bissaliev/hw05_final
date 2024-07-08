@@ -13,7 +13,7 @@
           {% if group.slug == current_group %}
             active
           {% endif %}
-             " href="{% url 'posts:group_list' group.slug %}">{{ group.title }}</a>
+             " href="{% url 'posts:post_of_group' group.slug %}">{{ group.title }}</a>
           {{ request.user }}
         </li>
       {% endfor %}

@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
-{% load user_filters %}
+{% load post_tag %}
 {% block title %}
-<title>
   {% if "/edit" in request.path %} Редактировать пост {% else %} Новый пост {% endif %}
-</title>
 {% endblock %}
 {% block content %}
     <main>

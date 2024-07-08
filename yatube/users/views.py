@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, View
+from posts.models import Post
 
 from .forms import CreationForm, ProfileForm
 
@@ -16,13 +17,20 @@ class SignUp(CreateView):
 
 class ProfileView(View):
     def get(self, request):
-        user = User.objects.get(id=request.user.id)
-        form = ProfileForm(instance=user)
-        return render(request, "users/profile.html", {"user": user, "form": form})
+        context = {
+            "form": ProfileForm(instance=request.user),
+            "view_posts": Post.objects.filter(view_posts__user=request.user).order_by(
+                "-view_posts__date_of_viewing"
+            ),
+            "posts_of_user": Post.objects.filter(author=request.user).order_by(
+                "-pub_date"
+            ),
+        }
+        return render(request, "users/me.html", context)
 
     def post(self, request):
         user = User.objects.get(id=request.user.id)
         form = ProfileForm(request.POST, instance=user, files=request.FILES or None)
         if form.is_valid():
             form.save()
-        return render(request, "users/profile.html", {"user": user, "form": form})
+        return render(request, "users/me.html", {"user": user, "form": form})

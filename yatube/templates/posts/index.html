@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  <title>Последнее обновление на сайте.</title>
+  Список постов
 {% endblock %}
 
 {% block content %}
@@ -9,7 +9,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center pt-5">
       {% for post in page_obj %}
-        {% include 'includes/post_list.html' %}
+        {% include 'posts/includes/post.html' %}
       {% endfor %}
     </div>
   </div> <!-- Список постов -->

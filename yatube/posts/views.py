@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.temp import NamedTemporaryFile
-from django.db.models import Count, Exists, F, OuterRef, Prefetch, QuerySet, Subquery
-from django.db.models.base import Model as Model
+from django.db.models import Count, Exists, OuterRef, Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
@@ -10,7 +10,7 @@ from django.views.generic import DeleteView, DetailView, ListView, UpdateView
 
 from .forms import CommentForm, FollowForm, PostForm
 from .mixins import CacheMixin, PostMixinListView, SearchMixin
-from .models import Comment, Follow, Post
+from .models import Comment, Follow, Post, ViewPost
 from .tasks import process_image
 
 User = get_user_model()
@@ -39,7 +39,6 @@ class PostDetailView(DetailView):
     template_name = "posts/post_detail.html"
     pk_url_kwarg = "post_id"
 
-    # TODO Рефакторинг детального представления поста
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
@@ -64,6 +63,13 @@ class PostDetailView(DetailView):
         queryset = queryset.prefetch_related(Prefetch("comments", queryset=comments))
         return queryset
 
+    def get_object(self):
+        user = self.request.user
+        obj = super().get_object()
+        if user.is_authenticated and user != obj.author:
+            ViewPost.objects.get_or_create(post=obj, user=self.request.user)
+        return obj
+
 
 class PostCreateView(LoginRequiredMixin, View):
     """Класс представление для создания поста."""
@@ -72,7 +78,6 @@ class PostCreateView(LoginRequiredMixin, View):
         form = PostForm()
         return render(request, "posts/create_post.html", {"form": form})
 
-    # TODO Рефакторинг(добавление структуры PostCreateView)
     def post(self, request):
         img = request.FILES.get("image", None)
         form = PostForm(request.POST)
@@ -122,9 +127,8 @@ class PostProfileListView(ListView):
     с отображением ленты его опубликованных постов.
     """
 
-    template_name = "posts/profile.html"
-    # TODO PAGE_SIZE
-    paginate_by = 8
+    template_name = "posts/post_of_user.html"
+    paginate_by = settings.PAGE_SIZE
     queryset = Post.objects.select_related("group")
 
     def get_context_data(self, **kwargs):
@@ -139,7 +143,6 @@ class PostProfileListView(ListView):
         )
         return context
 
-    # TODO CACHE
     def get_queryset(self):
         username = self.kwargs.get("username")
         self.author = get_object_or_404(
@@ -167,7 +170,6 @@ class AddCommentView(LoginRequiredMixin, View):
         return redirect("posts:post_detail", post_id=post_id)
 
 
-# TODO Возможен рефакторинг
 class PostFollowListView(LoginRequiredMixin, CacheMixin, PostMixinListView):
     """Класс представления постов избранных авторов."""
 
@@ -185,10 +187,13 @@ class AddDeleteFollowing(LoginRequiredMixin, View):
     """
 
     def post(self, request):
-        author = get_object_or_404(User, pk=request.POST.get("author"))
-        instance, created = Follow.objects.get_or_create(
-            author=author, user=request.user
-        )
-        if not created:
-            instance.delete()
+        author_id = request.POST.get("author")
+        print(author_id)
+        if int(author_id) != request.user.id:
+            author = get_object_or_404(User, pk=author_id)
+            instance, created = Follow.objects.get_or_create(
+                author=author, user=request.user
+            )
+            if not created:
+                instance.delete()
         return redirect(request.META.get("HTTP_REFERER", "/"))

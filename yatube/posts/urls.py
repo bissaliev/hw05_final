@@ -6,9 +6,11 @@ app_name = "posts"
 
 urlpatterns = [
     path("", views.PostListView.as_view(), name="index"),
-    path("group/<slug:slug>/", views.GroupPostListView.as_view(), name="group_list"),
+    path("group/<slug:slug>/", views.GroupPostListView.as_view(), name="post_of_group"),
     path(
-        "profile/<str:username>/", views.PostProfileListView.as_view(), name="profile"
+        "posts/profile/<str:username>/",
+        views.PostProfileListView.as_view(),
+        name="profile",
     ),
     path("posts/<int:post_id>/", views.PostDetailView.as_view(), name="post_detail"),
     path("create/", views.PostCreateView.as_view(), name="post_create"),
@@ -26,7 +28,7 @@ urlpatterns = [
     path("search/", views.SearchPost.as_view(), name="search"),
     path("follow/", views.PostFollowListView.as_view(), name="follow_index"),
     path(
-        "profile/<str:username>/follow/",
+        "profile/add/follow/",
         views.AddDeleteFollowing.as_view(),
         name="profile_follow",
     ),
