@@ -17,7 +17,7 @@
   <div class="post_body">
     <!-- Заголовок группы с сылкой -->
     {% if post.group %}
-      <span class="color_for_group"><a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a></span>
+      <span class="color_for_group"><a href="{% url 'posts:post_of_group' post.group.slug %}">{{ post.group.title }}</a></span>
     {% endif %}
     <!-- Заголовок группы с сылкой -->
 
