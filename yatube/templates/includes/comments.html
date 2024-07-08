@@ -24,6 +24,7 @@
             <h5 class="card-title">{{ comment.author.username }}</h5>
             <p class="card-text">{{ comment.text }}</p>
             <a href="#" class="btn btn-primary">Ответить</a>
+            <small>{{ comment.created }}</small>
           </div>
         </div>
       {% endfor %}

@@ -52,14 +52,17 @@ class PostDetailView(DetailView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.annotate(count_posts_of_author=Count("author__posts"))
-        queryset = queryset.annotate(
-            is_subscribed=Exists(
-                self.request.user.follower.filter(author=OuterRef("author_id"))
+        if self.request.user.is_authenticated:
+            queryset = queryset.annotate(
+                is_subscribed=Exists(
+                    self.request.user.follower.filter(author=OuterRef("author_id"))
+                )
             )
+        comments = (
+            Comment.objects.filter(post_id=self.kwargs.get("post_id"))
+            .select_related("author")
+            .order_by("-created")
         )
-        comments = Comment.objects.filter(
-            post_id=self.kwargs.get("post_id")
-        ).select_related("author")
         queryset = queryset.prefetch_related(Prefetch("comments", queryset=comments))
         return queryset
 
@@ -130,6 +133,7 @@ class PostProfileListView(ListView):
     template_name = "posts/post_of_user.html"
     paginate_by = settings.PAGE_SIZE
     queryset = Post.objects.select_related("group")
+    context_object_name = "posts"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
