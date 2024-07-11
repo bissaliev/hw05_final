@@ -20,16 +20,21 @@ urlpatterns = [
         views.PostDeleteView.as_view(),
         name="post_delete",
     ),
-    path(
-        "posts/<int:post_id>/comment/",
-        views.AddCommentView.as_view(),
-        name="add_comment",
-    ),
     path("search/", views.SearchPost.as_view(), name="search"),
     path("follow/", views.PostFollowListView.as_view(), name="follow_index"),
     path(
-        "profile/add/follow/",
+        "profile/follow/",
         views.AddDeleteFollowing.as_view(),
         name="profile_follow",
+    ),
+    path(
+        "comments/<int:pk>/delete/",
+        views.CommentDeleteView.as_view(),
+        name="comment_delete",
+    ),
+    path(
+        "comments/<int:pk>/edit/",
+        views.CommentEditView.as_view(),
+        name="comment_edit",
     ),
 ]
