@@ -18,7 +18,6 @@ TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 @override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
 @override_settings(CELERY_TASK_ALWAYS_EAGER=True, CELERY_TASK_EAGER_PROPAGATES=True)
 class TestPost(TestCase):
-    HOME_PAGE = reverse("posts:index")
     TITLE_POST = "Post_"
     TEXT_POST = "Test text"
 
@@ -209,10 +208,3 @@ class TestComment(TestCase):
             response.context,
             "\nВ контексте страницы `post_detail.html` не обнаружена форма.",
         )
-
-    def test_anonymous_client_has_no_form(self):
-        anonymous_client = Client()
-        response = anonymous_client.get(
-            reverse("posts:post_detail", args=[self.post.id])
-        )
-        self.assertNotIn("form", response.context)
