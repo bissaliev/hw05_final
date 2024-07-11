@@ -99,11 +99,7 @@ class TestPostRoutes(TestCase):
                 url = reverse(name, args=args)
                 redirect_url = f"{login_url}?next={url}"
                 response = self.anonymous_user.get(url, follow=True)
-                self.assertRedirects(
-                    response,
-                    redirect_url,
-                    "\nАнонимный пользователь должен быть перенаправлен на страницу входа.",
-                )
+                self.assertRedirects(response, redirect_url)
 
 
 class TestCommentRoutes(TestCase):

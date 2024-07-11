@@ -14,21 +14,22 @@ def check_fields_of_post(post_1, post_2):
             )
 
 
-def check_post(post_1, post_2, **data):
+def check_post(post_1, **data):
     tc_obj = tc()
-    tc.assertEqual(tc_obj, post_1.text, data["text"])
-    tc.assertEqual(tc_obj, post_1.group_id, data["group"])
-    tc.assertEqual(tc_obj, post_1.author, post_2.author)
-
-
-def check_post_2(post_1, post_2):
-    tc_obj = tc()
-    tc.assertEqual(tc_obj, post_1.text, post_2.text)
-    tc.assertEqual(tc_obj, post_1.author, post_2.author)
-    tc.assertEqual(tc_obj, post_1.image, post_2.image)
-
-
-def check_group(group_1, group_2):
-    tc_obj = tc()
-    tc.assertEqual(tc_obj, group_1.title, group_2.title)
-    tc.assertEqual(tc_obj, group_1.description, group_2.dexcription)
+    title = data.get("title")
+    text = data.get("text")
+    group = data.get("group")
+    tc.assertEqual(
+        tc_obj, post_1.title, title, "\nПоле title не соответствует ожидаемому значению"
+    )
+    tc.assertEqual(
+        tc_obj, post_1.text, text, "\nПоле text не соответствует ожидаемому значению"
+    )
+    if not isinstance(group, int):
+        group = group.id
+    tc.assertEqual(
+        tc_obj,
+        post_1.group.id,
+        group,
+        "\nПоле group не соответствует ожидаемому значению",
+    )
