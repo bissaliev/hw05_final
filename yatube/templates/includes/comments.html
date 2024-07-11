@@ -6,7 +6,7 @@
       {% if user.is_authenticated %}
         <h5 class="card-header">Добавить комментарий:</h5>
         <div class="card-body">
-          <form method="post" action="{% url 'posts:add_comment' post.id %}">
+          <form method="post" action="">
             {% csrf_token %}
             <div class="form-group mb-2">{{ form.text }}</div>
             <button type="submit" class="btn btn-primary">Отправить</button>
@@ -23,7 +23,13 @@
           <div class="card-body">
             <h5 class="card-title">{{ comment.author.username }}</h5>
             <p class="card-text">{{ comment.text }}</p>
-            <a href="#" class="btn btn-primary">Ответить</a>
+
+            {% if request.user != comment.author %}
+              <a href="#" class="btn btn-primary">Ответить</a>
+            {% else %}
+              <a href="{% url 'posts:comment_delete' comment.pk %}" class="btn btn-danger">Удалить</a>
+              <a href="{% url 'posts:comment_edit' comment.pk %}" class="btn btn-primary">Редактировать</a>
+            {% endif %}
             <small>{{ comment.created }}</small>
           </div>
         </div>
