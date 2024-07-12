@@ -1,8 +1,12 @@
 from typing import Any
+
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.postgres.search import SearchHeadline, SearchQuery, SearchRank
 from django.core.cache import cache
 from django.db.models import QuerySet
+from django.shortcuts import redirect
 from django.views.generic import ListView
 
 from .models import Post
@@ -81,3 +85,17 @@ class CacheMixin:
             data = query
             cache.set(cache_name, query, cache_timeout)
         return data
+
+
+class IsAuthorAndLoginRequiredMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            return self.handle_no_permission()
+        obj = self.get_object()
+        if request.user != obj.author:
+            messages.error(request, "У вас нет прав на изменение чужой записи.")
+            return redirect(self.get_redirect_url())
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_redirect_url(self):
+        pass

@@ -157,7 +157,7 @@ class TestCommentCreation(TestCase):
     def test_user_can_create_comment(self):
         """Тестирование создания комментария авторизованным пользователем."""
         response = self.author_client.post(self.url_comment_create, data=self.form_data)
-        self.assertRedirects(response, self.url_comment_create)
+        self.assertRedirects(response, self.url_comment_create + "#comments")
         comments_count = Comment.objects.count()
         self.assertEqual(
             comments_count,
@@ -212,7 +212,7 @@ class TestCommentEditDelete(TestCase):
     def test_user_cant_delete_comment_of_another_user(self):
         """Тестирование удаления чужого комментария пользователем."""
         response = self.reader_client.delete(self.url_comment_delete)
-        self.assertRedirects(response, self.url_post_detail)
+        self.assertRedirects(response, self.url_post_detail + "#comments")
         comments_count = Comment.objects.count()
         self.assertEqual(
             comments_count, 1, "\nПользователь не может удалить чужой комментарий."
@@ -232,7 +232,7 @@ class TestCommentEditDelete(TestCase):
     def test_user_cant_edit_comment_of_another_user(self):
         """Тестирование редактирования чужого комментария пользователем."""
         response = self.reader_client.post(self.url_comment_edit, data=self.form_data)
-        self.assertRedirects(response, self.url_post_detail)
+        self.assertRedirects(response, self.url_post_detail + "#comments")
         self.comment.refresh_from_db()
         self.assertNotEqual(
             self.comment.text,

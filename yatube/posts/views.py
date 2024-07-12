@@ -1,17 +1,40 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.temp import NamedTemporaryFile
-from django.db.models import Count, Exists, OuterRef, Prefetch
+from django.db.models import (
+    Count,
+    Exists,
+    IntegerField,
+    OuterRef,
+    Prefetch,
+    Q,
+    Subquery,
+)
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import DeleteView, DetailView, ListView, UpdateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    FormView,
+    ListView,
+    UpdateView,
+)
+from django.views.generic.detail import SingleObjectMixin
 
 from .forms import CommentForm, FollowForm, PostForm
-from .mixins import CacheMixin, PostMixinListView, SearchMixin
+from .mixins import (
+    CacheMixin,
+    IsAuthorAndLoginRequiredMixin,
+    PostMixinListView,
+    SearchMixin,
+)
 from .models import Comment, Follow, Post, ViewPost
-from .tasks import process_image
 
 User = get_user_model()
 
@@ -31,7 +54,19 @@ class SearchPost(SearchMixin, PostMixinListView):
     pass
 
 
-class PostDetailView(DetailView):
+class PostDetailView(View):
+    """Класс представления определенного поста."""
+
+    def get(self, request, *args, **kwargs):
+        view = PostDetail.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = CommentCreateView.as_view()
+        return view(request, *args, **kwargs)
+
+
+class PostDetail(DetailView):
     """Класс представления определенного поста."""
 
     model = Post
@@ -58,6 +93,15 @@ class PostDetailView(DetailView):
                     self.request.user.follower.filter(author=OuterRef("author_id"))
                 )
             )
+        views_count_subquery = (
+            ViewPost.objects.filter(post_id=OuterRef("pk"))
+            .values("post_id")
+            .annotate(count=Count("id"))
+            .values("count")
+        )
+        queryset = queryset.annotate(
+            views_count=Subquery(views_count_subquery, output_field=IntegerField())
+        )
         comments = (
             Comment.objects.filter(post_id=self.kwargs.get("post_id"))
             .select_related("author")
@@ -66,7 +110,7 @@ class PostDetailView(DetailView):
         queryset = queryset.prefetch_related(Prefetch("comments", queryset=comments))
         return queryset
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         user = self.request.user
         obj = super().get_object()
         if user.is_authenticated and user != obj.author:
@@ -74,44 +118,40 @@ class PostDetailView(DetailView):
         return obj
 
 
-class PostCreateView(LoginRequiredMixin, View):
+class PostCreateView(LoginRequiredMixin, CreateView):
     """Класс представление для создания поста."""
 
-    def get(self, request):
-        form = PostForm()
-        return render(request, "posts/create_post.html", {"form": form})
+    model = Post
+    form_class = PostForm
 
-    def post(self, request):
-        img = request.FILES.get("image", None)
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            if img:
-                temp_image = NamedTemporaryFile(delete=False)
-                temp_image.write(img.read())
-                temp_image.flush()
-                process_image.delay(post.id, temp_image.name, img.name)
-            return redirect(post.get_absolute_url())
-        return render(request, "posts/create_post.html", {"form": form})
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        form = self.get_form()
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
+        return super().form_valid(form)
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(IsAuthorAndLoginRequiredMixin, UpdateView):
     """Класс представление для редактирования поста."""
 
     form_class = PostForm
     model = Post
-    template_name = "posts/create_post.html"
     pk_url_kwarg = "post_id"
 
+    def get_redirect_url(self):
+        return self.get_object().get_absolute_url()
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+
+class PostDeleteView(IsAuthorAndLoginRequiredMixin, DeleteView):
     """Класс для удаления автором своего поста."""
 
     model = Post
     pk_url_kwarg = "post_id"
     success_url = reverse_lazy("posts:index")
+
+    def get_redirect_url(self):
+        return self.get_object().get_absolute_url()
 
 
 class GroupPostListView(CacheMixin, PostMixinListView):
@@ -124,7 +164,7 @@ class GroupPostListView(CacheMixin, PostMixinListView):
         return self.get_cache(queryset, cache_name, self.cache_timeout)
 
 
-class PostProfileListView(ListView):
+class PostProfileListView(LoginRequiredMixin, ListView):
     """
     Класс представления личной страницы пользователя
     с отображением ленты его опубликованных постов.
@@ -160,20 +200,6 @@ class PostProfileListView(ListView):
         return self.author.posts.select_related("group")
 
 
-class AddCommentView(LoginRequiredMixin, View):
-    """Класс добавления нового комментария к определенному посту."""
-
-    def post(self, request, post_id):
-        post = get_object_or_404(Post, pk=post_id)
-        form = CommentForm(request.POST or None)
-        if form.is_valid() and request.user.is_authenticated:
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.post = post
-            form.save()
-        return redirect("posts:post_detail", post_id=post_id)
-
-
 class PostFollowListView(LoginRequiredMixin, CacheMixin, PostMixinListView):
     """Класс представления постов избранных авторов."""
 
@@ -192,12 +218,67 @@ class AddDeleteFollowing(LoginRequiredMixin, View):
 
     def post(self, request):
         author_id = request.POST.get("author")
-        print(author_id)
-        if int(author_id) != request.user.id:
-            author = get_object_or_404(User, pk=author_id)
-            instance, created = Follow.objects.get_or_create(
-                author=author, user=request.user
-            )
-            if not created:
-                instance.delete()
+        author = get_object_or_404(User, pk=author_id)
+        if author == request.user:
+            messages.error(request, "Вы не можете подписать на самого себя.")
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+        msg = f"Вы подписались на пользователя {author.username}"
+        instance, created = Follow.objects.get_or_create(
+            author=author, user=request.user
+        )
+        if not created:
+            instance.delete()
+            msg = "Подписка отменена."
+        messages.success(request, msg)
         return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+class CommentCreateView(LoginRequiredMixin, SingleObjectMixin, FormView):
+    """Класс добавления нового комментария к определенному посту."""
+
+    model = Post
+    form_class = CommentForm
+    template_name = "posts/post_detail.html"
+    pk_url_kwarg = "post_id"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.post = self.object
+        comment.author = self.request.user
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return self.get_object().get_absolute_url() + "#comments"
+
+
+class CommentDeleteView(IsAuthorAndLoginRequiredMixin, DeleteView):
+    """Класс представления для удаления комментариев."""
+
+    model = Comment
+
+    def get_success_url(self) -> str:
+        comment = self.get_object()
+        return comment.post.get_absolute_url() + "#comments"
+
+    def get_redirect_url(self):
+        return self.get_object().post.get_absolute_url() + "#comments"
+
+
+class CommentEditView(IsAuthorAndLoginRequiredMixin, UpdateView):
+    """Класс представления для редактирования комментариев."""
+
+    template_name = "posts/comment_edit.html"
+    model = Comment
+    form_class = CommentForm
+
+    def get_success_url(self) -> str:
+        comment = self.get_object()
+        return comment.post.get_absolute_url() + "#comments"
+
+    def get_redirect_url(self):
+        return self.get_object().post.get_absolute_url() + "#comments"
