@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load post_tag %}
+
+{% block title %}
+  {{ request.user.username }}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="bg-white p-4 rounded custom-shadow">
+        <h3 class="text-center mb-4">Профиль пользователя</h3>
+        <form method="post" action="" enctype="multipart/form-data">
+          <div class="row">
+            <!-- Аватар пользователя -->
+            <div class="col-lg-6 mb-3 text-center">
+              <img src="{% if form.instance.avatar %}
+                  {{ form.instance.avatar.url }}
+                {% else %}
+                  {% static 'img/baseavatar.jpg' %}
+                {% endif %}"
+                alt="Аватар пользователя"
+                class="img-fluid rounded"
+                style="max-width: 450px;" />
+              <div class="form-group row my-3">
+                <input type="file" name="avatar" accept="image/*" class="form-control" id="{{ form.avatar.id_for_label }}" />
+              </div>
+            </div> <!-- Аватар пользователя -->
+
+            <!-- Данные пользователя -->
+            <div class="col-lg-6">
+              <div class="form-group row my-3">
+                <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                <div>
+                  {{ form.first_name|addclass:'form-control' }}
+                  {% if form.first_name.help_text %}
+                    <small id="{{ form.first_name.id_for_label }}-help" class="form-text text-muted">{{ form.first_name.help_text|safe }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="form-group row my-3">
+                <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                <div>
+                  {{ form.last_name|addclass:'form-control' }}
+                  {% if form.last_name.help_text %}
+                    <small id="{{ form.last_name.id_for_label }}-help" class="form-text text-muted">{{ form.last_name.help_text|safe }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="form-group row my-3">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                <div>
+                  {{ form.username|addclass:'form-control' }}
+                  {% if form.username.help_text %}
+                    <small id="{{ form.username.id_for_label }}-help" class="form-text text-muted">{{ form.username.help_text|safe }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="form-group row my-3">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                <div>
+                  {{ form.email|addclass:'form-control' }}
+                  {% if form.email.help_text %}
+                    <small id="{{ form.email.id_for_label }}-help" class="form-text text-muted">{{ form.email.help_text|safe }}</small>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="form-group row my-3">
+                <label for="{{ form.birth_date.id_for_label }}">{{ form.birth_date.label }}</label>
+                <div>
+                  {{ form.birth_date|addclass:'form-control' }}
+                  {% if form.birth_date.help_text %}
+                    <small id="{{ form.birth_date.id_for_label }}-help" class="form-text text-muted">{{ form.birth_date.help_text|safe }}</small>
+                  {% endif %}
+                </div>
+              </div>
+            </div> <!-- Данные пользователя -->
+
+            {% csrf_token %}
+          </div>
+          <button type="submit" class="btn btn-dark">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
