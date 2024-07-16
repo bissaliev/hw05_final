@@ -10,11 +10,13 @@ User = get_user_model()
 class CreationForm(UserCreationForm):
     """Регистрация нового пользователя."""
 
-    this_year = datetime.date.today().year
     birth_date = forms.DateField(
-        widget=forms.SelectDateWidget(
-            years=tuple(range(this_year - 100, this_year - 10))
-        )
+        label="Дата рождения",
+        widget=forms.DateInput(
+            attrs={
+                "type": "date",
+            }
+        ),
     )
 
     class Meta(UserCreationForm.Meta):
@@ -30,13 +32,6 @@ class CreationForm(UserCreationForm):
 
 
 class ProfileForm(UserChangeForm):
-    this_year = datetime.date.today().year
-    # birth_date = forms.DateField(
-    # label="Дата рождения",
-    # widget=forms.SelectDateWidget(
-    # years=tuple(range(this_year - 100, this_year - 10))
-    # ),
-    # )
     birth_date = forms.DateField(
         label="Дата рождения",
         widget=forms.DateInput(
@@ -46,7 +41,7 @@ class ProfileForm(UserChangeForm):
         ),
     )
 
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = User
         fields = (
             "avatar",
