@@ -34,7 +34,7 @@
                         <li class="list-group-item">{{ request.user.username }}</li>
                         <li class="list-group-item">{{ request.user.email }}</li>
                       </ul>
-                      <a href="#" class="btn btn-primary">Редактировать</a>
+                      <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">Редактировать</a>
                     </div>
                   </div>
                 </div> <!-- Конец Профиля с данными пользователя -->
