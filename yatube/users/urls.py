@@ -58,4 +58,11 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("me/", views.ProfileView.as_view(), name="me"),
+    path("profile_edit", views.UserUpdateView.as_view(), name="profile_edit"),
+    path("users/", views.UserListView.as_view(), name="user_list"),
+    path(
+        "subscriptions/",
+        views.SubscriptionListView.as_view(),
+        name="subscription_list",
+    ),
 ]
