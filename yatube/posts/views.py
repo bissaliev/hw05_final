@@ -2,20 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.files.temp import NamedTemporaryFile
-from django.db.models import (
-    Count,
-    Exists,
-    IntegerField,
-    OuterRef,
-    Prefetch,
-    Q,
-    Subquery,
-)
+from django.db.models import Count, Exists, IntegerField, OuterRef, Prefetch, Subquery
 from django.forms import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
     CreateView,
@@ -186,6 +177,12 @@ class PostProfileListView(LoginRequiredMixin, ListView):
             }
         )
         return context
+
+    def get(self, request, *args, **kwargs):
+        username = self.kwargs.get("username")
+        if username == request.user.username:
+            return redirect("users:me")
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         username = self.kwargs.get("username")
