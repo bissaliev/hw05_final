@@ -22,6 +22,8 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about:tech' %}">Технологии</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about:author' %}">Об авторе</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:subscription_list' %}">Подписки</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_list' %}">Пользователи</a></li>
                     
                     {% if request.user.is_authenticated %}
                       <li class="nav-item dropdown me-3">
