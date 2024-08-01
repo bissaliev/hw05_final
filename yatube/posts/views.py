@@ -2,9 +2,16 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Count, Exists, IntegerField, OuterRef, Prefetch, Subquery
+from django.db.models import (
+    Count,
+    Exists,
+    IntegerField,
+    OuterRef,
+    Prefetch,
+    Subquery,
+)
 from django.forms import BaseModelForm
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -70,18 +77,24 @@ class PostDetail(DetailView):
         context.update(
             {
                 "form": CommentForm(self.request.POST or None),
-                "form_follow": FollowForm(initial={"author": self.object.author}),
+                "form_follow": FollowForm(
+                    initial={"author": self.object.author}
+                ),
             }
         )
         return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.annotate(count_posts_of_author=Count("author__posts"))
+        queryset = queryset.annotate(
+            count_posts_of_author=Count("author__posts")
+        )
         if self.request.user.is_authenticated:
             queryset = queryset.annotate(
                 is_subscribed=Exists(
-                    self.request.user.follower.filter(author=OuterRef("author_id"))
+                    self.request.user.follower.filter(
+                        author=OuterRef("author_id")
+                    )
                 )
             )
         views_count_subquery = (
@@ -91,14 +104,18 @@ class PostDetail(DetailView):
             .values("count")
         )
         queryset = queryset.annotate(
-            views_count=Subquery(views_count_subquery, output_field=IntegerField())
+            views_count=Subquery(
+                views_count_subquery, output_field=IntegerField()
+            )
         )
         comments = (
             Comment.objects.filter(post_id=self.kwargs.get("post_id"))
             .select_related("author")
             .order_by("-created")
         )
-        queryset = queryset.prefetch_related(Prefetch("comments", queryset=comments))
+        queryset = queryset.prefetch_related(
+            Prefetch("comments", queryset=comments)
+        )
         return queryset
 
     def get_object(self, queryset=None):
