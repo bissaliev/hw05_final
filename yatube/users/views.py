@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, View
+from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models.base import Model as Model
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, View
 from posts.models import Post
 
 from .forms import CreationForm, ProfileForm
@@ -18,20 +20,25 @@ class SignUp(CreateView):
     template_name = "users/signup.html"
 
 
-class UserUpdateView(View):
+class UserEditView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     """Класс представление для редактирования профиля пользователя."""
 
-    def get(self, request):
-        form = ProfileForm(instance=request.user)
-        context = {"form": form}
-        return render(request, "users/profile_form.html", context)
+    model = User
+    template_name = "users/profile_form.html"
+    form_class = ProfileForm
+    success_message = "Ваши данные обновлены!"
 
-    def post(self, request):
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
-        context = {"form": form}
-        return render(request, "users/profile_form.html", context)
+    def setup(self, request, *args, **kwargs):
+        self.user_id = request.user.pk
+        return super().setup(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        if not queryset:
+            queryset = self.get_queryset()
+        return get_object_or_404(queryset, pk=self.user_id)
+
+    def get_success_url(self) -> str:
+        return reverse("users:me")
 
 
 class ProfileView(View):
@@ -39,9 +46,9 @@ class ProfileView(View):
 
     def get(self, request):
         context = {
-            "view_posts": Post.objects.filter(view_posts__user=request.user).order_by(
-                "-view_posts__date_of_viewing"
-            ),
+            "view_posts": Post.objects.filter(
+                view_posts__user=request.user
+            ).order_by("-view_posts__date_of_viewing"),
             "posts_of_user": Post.objects.filter(author=request.user).order_by(
                 "-pub_date"
             ),

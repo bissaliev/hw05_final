@@ -22,15 +22,23 @@ urlpatterns = [
         LogoutView.as_view(template_name="users/logged_out.html"),
         name="logout",
     ),
-    path("login/", LoginView.as_view(template_name="users/login.html"), name="login"),
+    path(
+        "login/",
+        LoginView.as_view(template_name="users/login.html"),
+        name="login",
+    ),
     path(
         "password_reset/",
-        PasswordResetView.as_view(template_name="users/password_reset_form.html"),
+        PasswordResetView.as_view(
+            template_name="users/password_reset_form.html"
+        ),
         name="password_reset_form",
     ),
     path(
         "password_reset/done/",
-        PasswordResetDoneView.as_view(template_name="users/password_reset_done.html"),
+        PasswordResetDoneView.as_view(
+            template_name="users/password_reset_done.html"
+        ),
         name="password_reset_done",
     ),
     path(
@@ -42,12 +50,16 @@ urlpatterns = [
     ),
     path(
         "password_change/",
-        PasswordChangeView.as_view(template_name="users/password_change_form.html"),
+        PasswordChangeView.as_view(
+            template_name="users/password_change_form.html"
+        ),
         name="password_change_form",
     ),
     path(
         "password_change/done/",
-        PasswordChangeDoneView.as_view(template_name="users/password_change_done.html"),
+        PasswordChangeDoneView.as_view(
+            template_name="users/password_change_done.html"
+        ),
         name="password_change_done",
     ),
     path(
@@ -58,7 +70,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("me/", views.ProfileView.as_view(), name="me"),
-    path("profile_edit", views.UserUpdateView.as_view(), name="profile_edit"),
+    path("profile_edit", views.UserEditView.as_view(), name="profile_edit"),
     path("users/", views.UserListView.as_view(), name="user_list"),
     path(
         "subscriptions/",
