@@ -12,7 +12,7 @@ from django.views.generic import (
 )
 from posts.models import Post
 
-from .forms import CreationForm, ProfileForm
+from .forms import ProfileEditForm, RegisterForm
 
 User = get_user_model()
 
@@ -20,7 +20,7 @@ User = get_user_model()
 class SignUp(CreateView):
     """Класс представление регистрации пользователей."""
 
-    form_class = CreationForm
+    form_class = RegisterForm
     success_url = reverse_lazy("posts:index")
     template_name = "users/signup.html"
 
@@ -30,7 +30,7 @@ class UserEditView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     model = User
     template_name = "users/profile_form.html"
-    form_class = ProfileForm
+    form_class = ProfileEditForm
     success_message = "Ваши данные обновлены!"
 
     def setup(self, request, *args, **kwargs):
@@ -89,6 +89,6 @@ class SubscriptionListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = User.objects.filter(
-            following__user__username=self.request.user.username
+            following__user__id=self.request.user.id
         )
         return queryset
