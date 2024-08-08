@@ -6,5 +6,32 @@ class User(AbstractUser):
     """Кастомная модель User."""
 
     avatar = models.ImageField(
-        'Фотография', upload_to='users/%Y/%m/%d', null=True, blank=True)
-    birth_date = models.DateField('Дата рождения', blank=True, null=True)
+        "Фотография", upload_to="users/%Y/%m/%d", null=True, blank=True
+    )
+    birth_date = models.DateField("Дата рождения", blank=True, null=True)
+
+
+class Follow(models.Model):
+    """Модель подписок."""
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="follower",
+        verbose_name="подписчик",
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="following",
+        verbose_name="автор поста",
+    )
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "author"], name="unique_follow"
+            )
+        ]

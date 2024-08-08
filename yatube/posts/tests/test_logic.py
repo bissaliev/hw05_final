@@ -4,8 +4,9 @@ from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from PIL import Image
+from users.models import Follow
 
-from ..models import Comment, Follow, Group, Post
+from ..models import Comment, Group, Post
 from .utils import check_post
 
 User = get_user_model()
@@ -19,7 +20,9 @@ class TestPostCreation(TestCase):
         cls.author = User.objects.create(username="Author")
         cls.reader = User.objects.create(username="Reader")
         cls.group = Group.objects.create(
-            title="group_1", slug="slug_group_1", description="Description for group_1"
+            title="group_1",
+            slug="slug_group_1",
+            description="Description for group_1",
         )
         cls.author_client = Client()
         cls.author_client.force_login(cls.author)
@@ -46,7 +49,9 @@ class TestPostCreation(TestCase):
         self.anonymous_user.post(self.post_create_url, data=self.form_data)
         posts_count = Post.objects.count()
         self.assertEqual(
-            posts_count, 0, "\nАнонимный пользователь не может создавать посты."
+            posts_count,
+            0,
+            "\nАнонимный пользователь не может создавать посты.",
         )
 
     def test_user_can_create_post(self):
@@ -54,7 +59,9 @@ class TestPostCreation(TestCase):
         self.reader_client.post(self.post_create_url, data=self.form_data)
         posts_count = Post.objects.count()
         self.assertEqual(
-            posts_count, 1, "\nАвторизованный пользователь может создавать посты."
+            posts_count,
+            1,
+            "\nАвторизованный пользователь может создавать посты.",
         )
 
 
@@ -66,12 +73,20 @@ class TestPostEditDelete(TestCase):
         cls.author = User.objects.create(username="Author")
         cls.reader = User.objects.create(username="Reader")
         cls.group = Group.objects.create(
-            title="group_1", slug="slug_group_1", description="Description for group_1"
+            title="group_1",
+            slug="slug_group_1",
+            description="Description for group_1",
         )
         cls.group_2 = Group.objects.create(
-            title="group_2", slug="slug_group_2", description="Description for group_2"
+            title="group_2",
+            slug="slug_group_2",
+            description="Description for group_2",
         )
-        cls.post_data = {"title": "Test title", "text": "Testing", "group": cls.group}
+        cls.post_data = {
+            "title": "Test title",
+            "text": "Testing",
+            "group": cls.group,
+        }
         cls.post = Post.objects.create(**cls.post_data, author=cls.author)
         cls.form_data = {
             "title": "Test edit post",
@@ -135,7 +150,9 @@ class TestCommentCreation(TestCase):
         cls.reader_client.force_login(cls.reader)
         cls.anonymous_user = Client()
         cls.form_data = {"text": "Test comment"}
-        cls.url_comment_create = reverse("posts:post_detail", args=[cls.post.id])
+        cls.url_comment_create = reverse(
+            "posts:post_detail", args=[cls.post.id]
+        )
         cls.url_login = reverse("users:login")
 
     def test_anonymous_user_cant_create_comment(self):
@@ -156,7 +173,9 @@ class TestCommentCreation(TestCase):
 
     def test_user_can_create_comment(self):
         """Тестирование создания комментария авторизованным пользователем."""
-        response = self.author_client.post(self.url_comment_create, data=self.form_data)
+        response = self.author_client.post(
+            self.url_comment_create, data=self.form_data
+        )
         self.assertRedirects(response, self.url_comment_create + "#comments")
         comments_count = Comment.objects.count()
         self.assertEqual(
@@ -197,8 +216,12 @@ class TestCommentEditDelete(TestCase):
         cls.anonymous_user = Client()
         cls.form_data = {"text": "Second comment"}
         cls.url_post_detail = reverse("posts:post_detail", args=[cls.post.id])
-        cls.url_comment_delete = reverse("posts:comment_delete", args=[cls.comment.id])
-        cls.url_comment_edit = reverse("posts:comment_edit", args=[cls.comment.id])
+        cls.url_comment_delete = reverse(
+            "posts:comment_delete", args=[cls.comment.id]
+        )
+        cls.url_comment_edit = reverse(
+            "posts:comment_edit", args=[cls.comment.id]
+        )
 
     def test_author_can_delete_comment(self):
         """Тестирование удаления комментария его автором."""
@@ -215,12 +238,16 @@ class TestCommentEditDelete(TestCase):
         self.assertRedirects(response, self.url_post_detail + "#comments")
         comments_count = Comment.objects.count()
         self.assertEqual(
-            comments_count, 1, "\nПользователь не может удалить чужой комментарий."
+            comments_count,
+            1,
+            "\nПользователь не может удалить чужой комментарий.",
         )
 
     def test_author_can_edit_post(self):
         """Тестирование редактирования комментария его автором."""
-        response = self.author_client.post(self.url_comment_edit, data=self.form_data)
+        response = self.author_client.post(
+            self.url_comment_edit, data=self.form_data
+        )
         self.assertRedirects(response, self.url_post_detail + "#comments")
         self.comment.refresh_from_db()
         self.assertEqual(
@@ -231,7 +258,9 @@ class TestCommentEditDelete(TestCase):
 
     def test_user_cant_edit_comment_of_another_user(self):
         """Тестирование редактирования чужого комментария пользователем."""
-        response = self.reader_client.post(self.url_comment_edit, data=self.form_data)
+        response = self.reader_client.post(
+            self.url_comment_edit, data=self.form_data
+        )
         self.assertRedirects(response, self.url_post_detail + "#comments")
         self.comment.refresh_from_db()
         self.assertNotEqual(
@@ -258,7 +287,9 @@ class TestFollow(TestCase):
 
     def test_user_can_subscribe_to_author(self):
         """Тестирование подписки авторизованного пользователя на автора."""
-        response = self.reader_client.post(self.url_follow, data=self.form_data)
+        response = self.reader_client.post(
+            self.url_follow, data=self.form_data
+        )
         self.assertRedirects(response, "/")
         followers_count = Follow.objects.count()
         self.assertEqual(

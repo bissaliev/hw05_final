@@ -29,11 +29,18 @@ class Group(models.Model):
 class Post(models.Model):
     """Модель постов."""
 
-    title = models.CharField("Заголовок", max_length=150, blank=True, null=True)
+    title = models.CharField(
+        "Заголовок", max_length=150, blank=True, null=True
+    )
     text = models.TextField(verbose_name="текст поста")
-    pub_date = models.DateTimeField(auto_now_add=True, verbose_name="дата публикации")
+    pub_date = models.DateTimeField(
+        auto_now_add=True, verbose_name="дата публикации"
+    )
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="posts", verbose_name="имя автора"
+        User,
+        on_delete=models.CASCADE,
+        related_name="posts",
+        verbose_name="имя автора",
     )
     group = models.ForeignKey(
         "Group",
@@ -62,14 +69,19 @@ class Post(models.Model):
 
     def update_search_vector(self) -> None:
         qs = Post.objects.filter(pk=self.pk)
-        qs.update(search_vector=SearchVector("title", "text", config="russian"))
+        qs.update(
+            search_vector=SearchVector("title", "text", config="russian")
+        )
 
 
 class Comment(models.Model):
     """Модель комментариев."""
 
     post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="comments", verbose_name="пост"
+        Post,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        verbose_name="пост",
     )
     author = models.ForeignKey(
         User,
@@ -87,30 +99,6 @@ class Comment(models.Model):
         ordering = ["-created"]
         verbose_name = "Комментарий"
         verbose_name_plural = "Комментарии"
-
-
-class Follow(models.Model):
-    """Модель подписок."""
-
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="follower",
-        verbose_name="подписчик",
-    )
-    author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="following",
-        verbose_name="автор поста",
-    )
-
-    class Meta:
-        verbose_name = "Подписка"
-        verbose_name_plural = "Подписки"
-        constraints = [
-            models.UniqueConstraint(fields=["user", "author"], name="unique_follow")
-        ]
 
 
 class ViewPost(models.Model):
@@ -134,5 +122,7 @@ class ViewPost(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=("post", "user"), name="unique_view_post")
+            models.UniqueConstraint(
+                fields=("post", "user"), name="unique_view_post"
+            )
         ]

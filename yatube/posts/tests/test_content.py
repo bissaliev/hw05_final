@@ -7,8 +7,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
+from users.models import Follow
 
-from ..models import Comment, Follow, Group, Post
+from ..models import Comment, Group, Post
 from .utils import check_fields_of_post
 
 User = get_user_model()
@@ -16,7 +17,9 @@ TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
 
 @override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
-@override_settings(CELERY_TASK_ALWAYS_EAGER=True, CELERY_TASK_EAGER_PROPAGATES=True)
+@override_settings(
+    CELERY_TASK_ALWAYS_EAGER=True, CELERY_TASK_EAGER_PROPAGATES=True
+)
 class TestPost(TestCase):
     TITLE_POST = "Post_"
     TEXT_POST = "Test text"
@@ -26,15 +29,17 @@ class TestPost(TestCase):
         cls.author = User.objects.create(username="Author")
         cls.reader = User.objects.create(username="Reader")
         cls.group = Group.objects.create(
-            title="group_1", slug="slug_group_1", description="Description for group_1"
+            title="group_1",
+            slug="slug_group_1",
+            description="Description for group_1",
         )
         cls.small_gif = (
             b"\x47\x49\x46\x38\x39\x61\x02\x00"
             b"\x01\x00\x80\x00\x00\x00\x00\x00"
-            b"\xFF\xFF\xFF\x21\xF9\x04\x00\x00"
-            b"\x00\x00\x00\x2C\x00\x00\x00\x00"
-            b"\x02\x00\x01\x00\x00\x02\x02\x0C"
-            b"\x0A\x00\x3B"
+            b"\xff\xff\xff\x21\xf9\x04\x00\x00"
+            b"\x00\x00\x00\x2c\x00\x00\x00\x00"
+            b"\x02\x00\x01\x00\x00\x02\x02\x0c"
+            b"\x0a\x00\x3b"
         )
         cls.uploaded = SimpleUploadedFile(
             name="small.gif", content=cls.small_gif, content_type="image/gif"
@@ -157,7 +162,9 @@ class TestComment(TestCase):
         now = timezone.now()
         for index in range(cls.COMMENTS_COUNT):
             comment = Comment.objects.create(
-                post=cls.post, author=cls.author, text=f"Testing comment_{index}"
+                post=cls.post,
+                author=cls.author,
+                text=f"Testing comment_{index}",
             )
             comment.created = now - timezone.timedelta(days=index)
             comment.save()

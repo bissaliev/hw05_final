@@ -24,6 +24,7 @@ from django.views.generic import (
     UpdateView,
 )
 from django.views.generic.detail import SingleObjectMixin
+from users.models import Follow
 
 from .forms import CommentForm, FollowForm, PostForm
 from .mixins import (
@@ -32,7 +33,7 @@ from .mixins import (
     PostMixinListView,
     SearchMixin,
 )
-from .models import Comment, Follow, Post, ViewPost
+from .models import Comment, Post, ViewPost
 
 User = get_user_model()
 
