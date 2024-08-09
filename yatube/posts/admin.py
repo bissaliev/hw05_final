@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Group, Post, ViewPost
+from .models import Comment, Group, Post, ViewPost
 
 
 @admin.register(Post)
@@ -19,4 +19,5 @@ class GroupAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
+admin.site.register(Comment)
 admin.site.register(ViewPost)
