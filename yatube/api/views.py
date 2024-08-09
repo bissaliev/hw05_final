@@ -1,18 +1,23 @@
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.db.models import Exists, OuterRef
+from django.shortcuts import get_list_or_404, get_object_or_404
+from djoser.views import UserViewSet
 from posts.models import Comment, Group, Post
-from rest_framework import filters, permissions
+from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from users.models import Follow
 
-from .mixins import CreateListViewSet
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (
     CommentSerializer,
-    FollowSerializer,
+    CustomUserSerializer,
     GroupSerializer,
+    PostDetailSerializer,
     PostSerializer,
+    SubscribeSerializer,
 )
 
 User = get_user_model()
@@ -28,6 +33,11 @@ class PostViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return PostDetailSerializer
+        return super().get_serializer_class()
 
 
 class GroupViewSet(ReadOnlyModelViewSet):
@@ -54,18 +64,42 @@ class CommentViewSet(ModelViewSet):
         serializer.save(author=self.request.user, post=post)
 
 
-class FollowViewSet(CreateListViewSet):
-    """Вьюсет для подписок."""
+class CustomUserViewSet(UserViewSet):
+    """Вьюсет для пользователей."""
 
-    queryset = Follow.objects.all()
-    serializer_class = FollowSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ("following__username",)
+    queryset = User.objects.all().annotate(
+        is_subscribed=Exists(Follow.objects.filter(user=OuterRef("pk")))
+    )
+    serializer_class = CustomUserSerializer
 
-    def get_queryset(self):
-        user = get_object_or_404(User, id=self.request.user.id)
-        return user.follower.all()
+    @action(methods=["post", "delete"], detail=True)
+    def subscribe(self, request, id):
+        """Подписаться или отписаться от пользователя."""
+        author = get_object_or_404(User, id=id)
+        if request.user == author:
+            return Response(
+                {"error": "Нельзя подписаться на самого себя."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if request.method == "POST":
+            subscribe, created = Follow.objects.get_or_create(
+                user=request.user, author=author
+            )
+            if created:
+                serializer = SubscribeSerializer(subscribe)
+                return Response(
+                    serializer.data, status=status.HTTP_201_CREATED
+                )
+            return Response(
+                {"error": "Вы уже подписаны на этого пользователя."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        get_object_or_404(Follow, user=request.user, author=author).delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    @action(methods=["GET"], detail=False)
+    def subscriptions(self, request):
+        """Получить список подписок."""
+        subscriptions = get_list_or_404(Follow, user=request.user)
+        serializers = SubscribeSerializer(subscriptions, many=True)
+        return Response(serializers.data)

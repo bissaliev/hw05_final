@@ -1,9 +1,13 @@
 import base64
 
+from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
-from posts.models import Comment, Group, Post, User
+from djoser.serializers import UserSerializer
+from posts.models import Comment, Group, Post
 from rest_framework import serializers
 from users.models import Follow
+
+User = get_user_model()
 
 
 class Base64ImageField(serializers.ImageField):
@@ -22,8 +26,25 @@ class Base64ImageField(serializers.ImageField):
         return super().to_internal_value(data)
 
 
+class CommentSerializer(serializers.ModelSerializer):
+    """Сериализатор для комментариев."""
+
+    author = serializers.SlugRelatedField(
+        read_only=True, slug_field="username"
+    )
+
+    class Meta:
+        fields = (
+            "id",
+            "author",
+            "text",
+            "created",
+        )
+        model = Comment
+
+
 class PostSerializer(serializers.ModelSerializer):
-    """Сериализатор для постов."""
+    """Сериализатор для списков постов."""
 
     author = serializers.SlugRelatedField(
         slug_field="username", read_only=True
@@ -31,7 +52,38 @@ class PostSerializer(serializers.ModelSerializer):
     image = Base64ImageField(required=False, allow_null=True)
 
     class Meta:
-        fields = "__all__"
+        fields = (
+            "id",
+            "title",
+            "text",
+            "author",
+            "pub_date",
+            "image",
+            "group",
+        )
+        model = Post
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    """Сериализатор для детального просмотра постов."""
+
+    author = serializers.SlugRelatedField(
+        slug_field="username", read_only=True
+    )
+    image = Base64ImageField(required=False, allow_null=True)
+    comments = CommentSerializer(many=True, read_only=True)
+
+    class Meta:
+        fields = (
+            "id",
+            "title",
+            "text",
+            "author",
+            "pub_date",
+            "image",
+            "group",
+            "comments",
+        )
         model = Post
 
 
@@ -43,45 +95,57 @@ class GroupSerializer(serializers.ModelSerializer):
         model = Group
 
 
-class CommentSerializer(serializers.ModelSerializer):
-    """Сериализатор для комментариев."""
+class CustomUserSerializer(UserSerializer):
+    """Сериализатор для пользователя."""
 
-    author = serializers.SlugRelatedField(
-        read_only=True, slug_field="username"
-    )
-    post = serializers.PrimaryKeyRelatedField(read_only=True)
+    is_subscribed = serializers.BooleanField(read_only=True)
 
     class Meta:
-        fields = "__all__"
-        model = Comment
+        model = User
+        fields = (
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "birth_date",
+            "avatar",
+            "is_subscribed",
+            "posts_count",
+            "subscribers_count",
+            "subscriptions_count",
+        )
 
 
-class FollowSerializer(serializers.ModelSerializer):
-    """Сериализатор для подписок."""
+class SubscribeSerializer(serializers.ModelSerializer):
+    """Сериализатор для подписки."""
 
-    user = serializers.SlugRelatedField(
-        slug_field="username",
-        queryset=User.objects.all(),
-        default=serializers.CurrentUserDefault(),
+    id = serializers.ReadOnlyField(source="author.id")
+    username = serializers.ReadOnlyField(source="author.username")
+    first_name = serializers.ReadOnlyField(source="author.first_name")
+    last_name = serializers.ReadOnlyField(source="author.last_name")
+    email = serializers.ReadOnlyField(source="author.email")
+    birth_date = serializers.ReadOnlyField(source="author.birth_date")
+    avatar = serializers.ImageField(source="author.avatar")
+    posts_count = serializers.ReadOnlyField(source="author.posts_count")
+    subscribers_count = serializers.ReadOnlyField(
+        source="author.subscribers_count"
     )
-    following = serializers.SlugRelatedField(
-        slug_field="username", queryset=User.objects.all()
+    subscriptions_count = serializers.ReadOnlyField(
+        source="author.subscriptions_count"
     )
 
     class Meta:
-        fields = "__all__"
         model = Follow
-        validators = [
-            serializers.UniqueTogetherValidator(
-                queryset=Follow.objects.all(),
-                fields=["user", "following"],
-                message="Вы уже подписаны на данного автора",
-            )
-        ]
-
-    def validate(self, data):
-        if self.context["request"].user == data["following"]:
-            raise serializers.ValidationError(
-                "Вы не можете подписаться на самого себя."
-            )
-        return data
+        fields = (
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "birth_date",
+            "avatar",
+            "posts_count",
+            "subscribers_count",
+            "subscriptions_count",
+        )

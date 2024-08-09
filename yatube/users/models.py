@@ -10,6 +10,21 @@ class User(AbstractUser):
     )
     birth_date = models.DateField("Дата рождения", blank=True, null=True)
 
+    @property
+    def subscribers_count(self):
+        """Количество подписчиков."""
+        return self.following.count()
+
+    @property
+    def subscriptions_count(self):
+        """Количество подписок."""
+        return self.follower.count()
+
+    @property
+    def posts_count(self):
+        """Количество постов."""
+        return self.posts.count()
+
 
 class Follow(models.Model):
     """Модель подписок."""
