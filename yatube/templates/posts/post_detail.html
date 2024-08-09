@@ -2,109 +2,124 @@
 {% load static %}
 {% load thumbnail %}
 {% block title %}
-  {{ post.title }}
+{{ post.title }}
 {% endblock %}
 
 {% block content %}
-  <section>
+<section>
     <!-- Контент -->
     <div class="container">
-      <div class="row mt-1">
-        <div class="col-lg-12">
-          <!-- Карточка поста -->
-          <div class="container mt-5">
-            <div class="card mb-4 custom-shadow">
-              <div class="row">
-                <!-- Изображение -->
-                <div class="col-md-4">
-                  {% if post.image %}
-                    {% thumbnail post.image '500x600' crop='center' upscale=True as im %}
-                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#imageModal1" />
-                    {% endthumbnail %}
-                  {% else %}
-                    <img src="{% static 'img/default_img.png' %}" width="500" height="600" class="img-fluid post_single_img" />
-                  {% endif %}
-                </div>  <!-- Изображение -->
+        <div class="row mt-1">
+            <div class="col-lg-12">
+                <!-- Карточка поста -->
+                <div class="container mt-5">
+                    <div class="card mb-4 custom-shadow">
+                        <div class="row">
+                            <!-- Изображение -->
+                            <div class="col-md-4">
+                                {% if post.image %}
+                                {% thumbnail post.image '500x600' crop='center' upscale=True as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid"
+                                    data-bs-toggle="modal" data-bs-target="#imageModal1" />
+                                {% endthumbnail %}
+                                {% else %}
+                                <img src="{% static 'img/default_img.png' %}" width="500" height="600"
+                                    class="img-fluid post_single_img" />
+                                {% endif %}
+                            </div> <!-- Изображение -->
 
-                <!-- Описание поста -->
-                <div class="col-md-8">
-                  <h1 class="mt-3">{{ post.title }}</h1>
-                  <p>{{ post.pub_date|date:'d E Y' }}</p>
-                  <p>Количество просмотров: {{ post.views_count }}</p>
-                  {% if post.group %}
-                    <a class="btn post_single_group_name my-3" href="{% url 'posts:post_of_group' post.group.slug %}">{{ post.group.title }}</a>
-                  {% endif%}
+                            <!-- Описание поста -->
+                            <div class="col-md-8">
+                                <h1 class="mt-3">{{ post.title }}</h1>
+                                <p>{{ post.pub_date|date:'d E Y' }}</p>
+                                <p>Количество просмотров: {{ post.views_count }}</p>
+                                {% if post.group %}
+                                <a class="btn post_single_group_name my-3"
+                                    href="{% url 'posts:post_of_group' post.group.slug %}">{{ post.group.title }}</a>
+                                {% endif%}
 
-                  <!-- Автор поста -->
-                  <div class="d-flex align-items-end ">
-                    {% if post.author.avatar %}
-                        {% thumbnail post.author.avatar "80x80" crop="center" upscale=True as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="post_single_avatar" href="{% url 'posts:profile' post.author.username %}">
-                        {% endthumbnail %}
-                    {% else %}
-                        <img src="/media/users/default.png" width="70" height="70" class="img-fluid post_single_avatar">
-                    {% endif %}
-                    <div class="ms-2">
-                        <h5 class=""><a href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a></h5>
-                        <small>Всего постов автора:  <span > {{ post.count_posts_of_author }}</span></small>
-                    </div>
-                  </div>  <!-- Автор поста -->
-                  <!-- Форма подписки и отписки на автора -->
-                  <div class="mt-2">
-                    <form action="{% url 'posts:profile_follow' %}" method="post">
-                      {% csrf_token %}
-                      {% for hidden in form_follow.hidden_fields %}
-                        {{ hidden }}
-                      {% endfor %}
-            
-                      {% if post.is_subscribed %}
-                        <button class="btn btn-lg btn-light btn-outline-dark" type="submit">Отписаться</button>
-                      {% else %}
-                        <button class="btn btn-lg btn-primary" type="submit">Подписаться</button>
-                      {% endif %}
-                    </form> <!-- Форма подписки и отписки на автора -->
-                  </div>
-                  <!-- Увеличить изображение в модальном окне -->
-                  <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModal1Label" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="imageModal1Label">Изображение 1</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                      </div>
-                      <div class="modal-body">
-                        {% if post.image %}
-                          {% thumbnail post.image '800x800' crop='center' upscale=True as im %}
-                          <img src="{{ im.url }}" class="img-fluid" data-bs-toggle="modal" data-bs-target="#imageModal1" />
-                          {% endthumbnail %}
-                        {% else %}
-                          <img src="{% static 'img/default_img.png' %}" width="500" height="600" />
-                        {% endif %}
-                      </div>
-                      </div>
-                    </div>
-                  </div>  <!-- Увеличить изображение в модальном окне -->
-                </div>  <!-- Описание поста -->
+                                <!-- Автор поста -->
+                                <div class="d-flex align-items-end ">
+                                    {% if post.author.avatar %}
+                                    {% thumbnail post.author.avatar "80x80" crop="center" upscale=True as im %}
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"
+                                        class="post_single_avatar"
+                                        href="{% url 'posts:profile' post.author.username %}">
+                                    {% endthumbnail %}
+                                    {% else %}
+                                    <img src="/media/users/default.png" width="70" height="70"
+                                        class="img-fluid post_single_avatar">
+                                    {% endif %}
+                                    <div class="ms-2">
+                                        <h5 class=""><a
+                                                href="{% url 'posts:profile' post.author.username %}">{{ post.author.get_full_name }}</a>
+                                        </h5>
+                                        <small>Всего постов автора: <span> {{ post.count_posts_of_author }}</span></small>
+                                    </div>
+                                </div> <!-- Автор поста -->
+                                <!-- Форма подписки и отписки на автора -->
+                                <div class="mt-2">
+                                    <form action="{% url 'posts:profile_follow' %}" method="post">
+                                        {% csrf_token %}
+                                        {% for hidden in form_follow.hidden_fields %}
+                                        {{ hidden }}
+                                        {% endfor %}
 
-              <!-- Текст поста -->
-              <div class="card-body">
-                <p class="card-text p-4">{{ post.text|linebreaksbr }}</p>
-                {% if request.user.is_authenticated and request.user == post.author %}
-                    <div class="d-flex justify-content-around">
-                        <a class="btn btn-primary btn-lg" href="{% url 'posts:post_edit' post.id %}">редактировать</a>
-                        <a class="btn btn-danger btn-lg" href="{% url 'posts:post_delete' post.id %}">удалить</a>
-                    </div>
-                {% endif%}
-              </div>  <!-- Текст поста -->
+                                        {% if post.is_subscribed %}
+                                        <button class="btn btn-lg btn-light btn-outline-dark"
+                                            type="submit">Отписаться</button>
+                                        {% else %}
+                                        <button class="btn btn-lg btn-primary" type="submit">Подписаться</button>
+                                        {% endif %}
+                                    </form> <!-- Форма подписки и отписки на автора -->
+                                </div>
+                                <!-- Увеличить изображение в модальном окне -->
+                                <div class="modal fade" id="imageModal1" tabindex="-1"
+                                    aria-labelledby="imageModal1Label" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="imageModal1Label">Изображение 1</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Закрыть"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {% if post.image %}
+                                                {% thumbnail post.image '800x800' crop='center' upscale=True as im %}
+                                                <img src="{{ im.url }}" class="img-fluid" data-bs-toggle="modal"
+                                                    data-bs-target="#imageModal1" />
+                                                {% endthumbnail %}
+                                                {% else %}
+                                                <img src="{% static 'img/default_img.png' %}" width="500"
+                                                    height="600" />
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- Увеличить изображение в модальном окне -->
+                            </div> <!-- Описание поста -->
+
+                            <!-- Текст поста -->
+                            <div class="card-body">
+                                <p class="card-text p-4">{{ post.text|linebreaksbr }}</p>
+                                {% if request.user.is_authenticated and request.user == post.author %}
+                                <div class="d-flex justify-content-around">
+                                    <a class="btn btn-primary btn-lg"
+                                        href="{% url 'posts:post_edit' post.id %}">редактировать</a>
+                                    <a class="btn btn-danger btn-lg"
+                                        href="{% url 'posts:post_delete' post.id %}">удалить</a>
+                                </div>
+                                {% endif%}
+                            </div> <!-- Текст поста -->
+                        </div>
+                    </div> <!-- Карточка поста -->
+                </div>
             </div>
-          </div>  <!-- Карточка поста -->
         </div>
-      </div>
-    </div>
-    
-    <!-- Блок комментариев -->
-    <div id="comments" class="container">
-      {% include 'includes/comments.html' with comments=post.comments.all%}
-    </div>  <!-- Блок комментариев -->
-  </section>
+
+        <!-- Блок комментариев -->
+        <div id="comments" class="container">
+            {% include 'includes/comments.html' with comments=post.comments.all%}
+        </div> <!-- Блок комментариев -->
+</section>
 {% endblock %}

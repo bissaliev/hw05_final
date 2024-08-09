@@ -5,10 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import (
     Count,
     Exists,
-    IntegerField,
     OuterRef,
     Prefetch,
-    Subquery,
 )
 from django.forms import BaseModelForm
 from django.http import HttpResponse
@@ -98,17 +96,6 @@ class PostDetail(DetailView):
                     )
                 )
             )
-        views_count_subquery = (
-            ViewPost.objects.filter(post_id=OuterRef("pk"))
-            .values("post_id")
-            .annotate(count=Count("id"))
-            .values("count")
-        )
-        queryset = queryset.annotate(
-            views_count=Subquery(
-                views_count_subquery, output_field=IntegerField()
-            )
-        )
         comments = (
             Comment.objects.filter(post_id=self.kwargs.get("post_id"))
             .select_related("author")
