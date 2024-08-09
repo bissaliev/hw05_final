@@ -1,5 +1,4 @@
 import os
-from datetime import timedelta
 
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
@@ -34,6 +33,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "about.apps.AboutConfig",
     "sorl.thumbnail",
+    "rest_framework.authtoken",
     "rest_framework",
     "djoser",
     "api.apps.ApiConfig",
@@ -159,13 +159,16 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "AUTH_HEADER_TYPES": ("Bearer",),
+DJOSER = {
+    "SERIALIZERS": {
+        "user": "api.serializers.CustomUserSerializer",
+        # "user_create": "users.serializers.CustomUserCreateSerializer",
+        "current_user": "api.serializers.CustomUserSerializer",
+    },
 }
 
 AUTH_USER_MODEL = "users.User"
