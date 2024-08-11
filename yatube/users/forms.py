@@ -17,6 +17,12 @@ class RegisterForm(UserCreationForm):
             "email",
         )
 
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Электронная почта уже используется.")
+        return email
+
 
 class ProfileEditForm(UserChangeForm):
     birth_date = forms.DateField(
@@ -39,3 +45,10 @@ class ProfileEditForm(UserChangeForm):
             "email",
             "birth_date",
         )
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        qs = User.objects.exclude(id=self.instance.id).filter(email=email)
+        if qs.exists():
+            raise forms.ValidationError("Электронная почта уже используется.")
+        return email

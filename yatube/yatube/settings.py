@@ -52,6 +52,11 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "users.authentication.EmailAuthBackend",
+]
+
 ROOT_URLCONF = "yatube.urls"
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
