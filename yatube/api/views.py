@@ -28,7 +28,7 @@ User = get_user_model()
 class PostViewSet(ModelViewSet):
     """Вьюсет для постов."""
 
-    queryset = Post.objects.select_related("author", "group")
+    queryset = Post.objects.get_views_count().select_related("author", "group")
     serializer_class = PostSerializer
     permission_classes = [IsAuthorOrReadOnly]
     pagination_class = LimitOffsetPagination
@@ -65,7 +65,6 @@ class CommentViewSet(ModelViewSet):
     permission_classes = [IsAuthorOrReadOnly]
 
     def get_queryset(self):
-        print(self.kwargs.get("post_id"))
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
         return post.comments.all()
 
