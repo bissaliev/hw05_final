@@ -3,6 +3,7 @@ from django.db.models import Exists, OuterRef
 from django.shortcuts import get_list_or_404, get_object_or_404
 from djoser.views import UserViewSet
 from posts.models import Comment, Group, Post
+from posts.signals import post_view_signal
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
@@ -15,6 +16,7 @@ from .serializers import (
     CommentSerializer,
     CustomUserSerializer,
     GroupSerializer,
+    PostCreateSerializer,
     PostDetailSerializer,
     PostSerializer,
     SubscribeSerializer,
@@ -26,7 +28,7 @@ User = get_user_model()
 class PostViewSet(ModelViewSet):
     """Вьюсет для постов."""
 
-    queryset = Post.objects.all()
+    queryset = Post.objects.select_related("author", "group")
     serializer_class = PostSerializer
     permission_classes = [IsAuthorOrReadOnly]
     pagination_class = LimitOffsetPagination
@@ -35,9 +37,16 @@ class PostViewSet(ModelViewSet):
         serializer.save(author=self.request.user)
 
     def get_serializer_class(self):
+        if self.request.method in ("POST", "PUT", "PATCH"):
+            return PostCreateSerializer
         if self.action == "retrieve":
             return PostDetailSerializer
         return super().get_serializer_class()
+
+    def get_object(self):
+        obj = super().get_object()
+        post_view_signal.send(sender=Post, instance=obj, request=self.request)
+        return obj
 
 
 class GroupViewSet(ReadOnlyModelViewSet):
@@ -56,6 +65,7 @@ class CommentViewSet(ModelViewSet):
     permission_classes = [IsAuthorOrReadOnly]
 
     def get_queryset(self):
+        print(self.kwargs.get("post_id"))
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
         return post.comments.all()
 

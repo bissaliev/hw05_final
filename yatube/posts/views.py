@@ -31,7 +31,8 @@ from .mixins import (
     PostMixinListView,
     SearchMixin,
 )
-from .models import Comment, Post, ViewPost
+from .models import Comment, Post
+from .signals import post_view_signal
 
 User = get_user_model()
 
@@ -107,10 +108,8 @@ class PostDetail(DetailView):
         return queryset
 
     def get_object(self, queryset=None):
-        user = self.request.user
         obj = super().get_object()
-        if user.is_authenticated and user != obj.author:
-            ViewPost.objects.get_or_create(post=obj, user=self.request.user)
+        post_view_signal.send(sender=Post, instance=obj, request=self.request)
         return obj
 
 
