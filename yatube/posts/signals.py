@@ -34,6 +34,7 @@ post_view_signal = Signal(providing_args=["instance", "request"])
 
 @receiver(post_view_signal)
 def create_post_view(sender, instance, request, **kwargs):
+    """При просмотре страницы определенного создается запись в БД."""
     ViewPost.objects.get_or_create(
         post=instance,
         ip_address=get_client_ip(request),
