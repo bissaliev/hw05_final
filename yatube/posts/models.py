@@ -2,11 +2,47 @@ from django.contrib.auth import get_user_model
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
+from django.db.models import Count, OuterRef, Subquery
 from django.urls import reverse
 
 from .fields import WEBPField
 
 User = get_user_model()
+
+
+class PostQuerySet(models.QuerySet):
+    def get_views_count(self):
+        """Количество просмотров поста."""
+        views_count_subquery = (
+            ViewPost.objects.filter(post_id=OuterRef("pk"))
+            .values("post_id")
+            .annotate(count=Count("id"))
+            .values("count")
+        )
+        queryset = self.annotate(
+            views_count=Subquery(
+                views_count_subquery, output_field=models.IntegerField()
+            )
+        )
+        return queryset
+
+    def get_count_posts_of_author(self):
+        """Количество постов у определенного автора."""
+        queryset = self.annotate(count_posts_of_author=Count("author__posts"))
+        return queryset
+
+
+class PostManager(models.Manager):
+    def get_queryset(self) -> models.QuerySet:
+        return PostQuerySet(self.model, using=self._db)
+
+    def get_views_count(self):
+        """Количество просмотров поста."""
+        return self.get_queryset().get_views_count()
+
+    def get_count_posts_of_author(self):
+        """Количество постов у определенного автора."""
+        return self.get_queryset().get_count_posts_of_author()
 
 
 class Group(models.Model):
@@ -52,6 +88,7 @@ class Post(models.Model):
     )
     image = WEBPField("Картинка", upload_to="posts/", blank=True)
     search_vector = SearchVectorField(null=True)
+    objects = PostManager()
 
     class Meta:
         indexes = [
@@ -72,6 +109,18 @@ class Post(models.Model):
         qs.update(
             search_vector=SearchVector("title", "text", config="russian")
         )
+
+    # @property
+    # def views_count(self):
+    # """Количество просмотров поста."""
+    # return self.view_posts.count()
+
+
+#
+# @property
+# def comments_count(self):
+# """Количество комментариев к посту."""
+# return self.comments.count()
 
 
 class Comment(models.Model):
