@@ -1,29 +1,12 @@
-import base64
-
 from django.contrib.auth import get_user_model
-from django.core.files.base import ContentFile
 from djoser.serializers import UserSerializer
 from posts.models import Comment, Group, Post
 from rest_framework import serializers
 from users.models import Follow
 
+from .fields import Base64ImageField
+
 User = get_user_model()
-
-
-class Base64ImageField(serializers.ImageField):
-    """
-    Кастомный тип поля ImageField,который принимает
-    закодированное в формате base64 изображение,
-    декодирует и сохраняет его на сервере.
-    """
-
-    def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith("data:image"):
-            format, imgstr = data.split(";base64,")
-            ext = format.split("/")[-1]
-            data = ContentFile(base64.b64decode(imgstr), name="temp." + ext)
-
-        return super().to_internal_value(data)
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -41,58 +24,6 @@ class CommentSerializer(serializers.ModelSerializer):
             "created",
         )
         model = Comment
-
-
-class PostSerializer(serializers.ModelSerializer):
-    """Сериализатор для списков постов."""
-
-    author = serializers.SlugRelatedField(
-        slug_field="username", read_only=True
-    )
-    image = Base64ImageField(required=False, allow_null=True)
-
-    class Meta:
-        fields = (
-            "id",
-            "title",
-            "text",
-            "author",
-            "pub_date",
-            "image",
-            "group",
-        )
-        model = Post
-
-
-class PostDetailSerializer(serializers.ModelSerializer):
-    """Сериализатор для детального просмотра постов."""
-
-    author = serializers.SlugRelatedField(
-        slug_field="username", read_only=True
-    )
-    image = Base64ImageField(required=False, allow_null=True)
-    comments = CommentSerializer(many=True, read_only=True)
-
-    class Meta:
-        fields = (
-            "id",
-            "title",
-            "text",
-            "author",
-            "pub_date",
-            "image",
-            "group",
-            "comments",
-        )
-        model = Post
-
-
-class GroupSerializer(serializers.ModelSerializer):
-    """Сериализатор для групп."""
-
-    class Meta:
-        fields = "__all__"
-        model = Group
 
 
 class CustomUserSerializer(UserSerializer):
@@ -115,6 +46,103 @@ class CustomUserSerializer(UserSerializer):
             "subscribers_count",
             "subscriptions_count",
         )
+
+
+class AuthorOfPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "username")
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    """Сериализатор для групп."""
+
+    class Meta:
+        fields = ("id", "title", "slug", "description")
+        model = Group
+
+
+class GroupOfPostSerializer(serializers.ModelSerializer):
+    """Сериализатор для групп."""
+
+    title = serializers.ReadOnlyField()
+    slug = serializers.SlugField(required=False)
+
+    class Meta:
+        fields = ("title", "slug")
+        model = Group
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    author = CustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ("text", "post", "author")
+        read_only_fields = ("post",)
+
+
+class PostSerializer(serializers.ModelSerializer):
+    """Сериализатор для списков постов."""
+
+    author = AuthorOfPostSerializer(read_only=True)
+    group = GroupOfPostSerializer(read_only=True)
+    views_count = serializers.IntegerField()
+
+    class Meta:
+        fields = (
+            "id",
+            "title",
+            "text",
+            "author",
+            "pub_date",
+            "image",
+            "group",
+            "views_count",
+        )
+        model = Post
+
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    """Сериализатор для создания и обновление постов."""
+
+    author = AuthorOfPostSerializer(read_only=True)
+    image = Base64ImageField(required=False, allow_null=True)
+
+    class Meta:
+        fields = (
+            "id",
+            "title",
+            "text",
+            "author",
+            "pub_date",
+            "image",
+            "group",
+        )
+        model = Post
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    """Сериализатор для детального просмотра постов."""
+
+    author = AuthorOfPostSerializer(read_only=True)
+    group = GroupOfPostSerializer(read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
+    views_count = serializers.IntegerField()
+
+    class Meta:
+        fields = (
+            "id",
+            "title",
+            "text",
+            "author",
+            "pub_date",
+            "image",
+            "group",
+            "views_count",
+            "comments",
+        )
+        model = Post
 
 
 class SubscribeSerializer(serializers.ModelSerializer):
