@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import (
-    Count,
     Exists,
     OuterRef,
     Prefetch,
@@ -86,9 +85,8 @@ class PostDetail(DetailView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.annotate(
-            count_posts_of_author=Count("author__posts")
-        )
+        queryset = queryset.get_views_count()
+        queryset = queryset.get_count_posts_of_author()
         if self.request.user.is_authenticated:
             queryset = queryset.annotate(
                 is_subscribed=Exists(
