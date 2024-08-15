@@ -14,6 +14,7 @@ router.register(r"groups", GroupViewSet, basename="groups")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls")),
     path("", include("djoser.urls")),
     path("auth/", include("djoser.urls.authtoken")),
 ]

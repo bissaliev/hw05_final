@@ -1,19 +1,30 @@
 from django.contrib.auth import get_user_model
-from django.db.models import Exists, OuterRef
 from django.shortcuts import get_list_or_404, get_object_or_404
 from djoser.views import UserViewSet
 from posts.models import Comment, Group, Post
 from posts.signals import post_view_signal
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.mixins import (
+    CreateModelMixin,
+    DestroyModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import SAFE_METHODS
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.viewsets import (
+    GenericViewSet,
+    ModelViewSet,
+    ReadOnlyModelViewSet,
+)
 from users.models import Follow
 
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (
-    CommentSerializer,
+    CommentCreateSerializer,
+    CommentReadSerializer,
     CustomUserSerializer,
     GroupSerializer,
     PostCreateSerializer,
@@ -37,7 +48,7 @@ class PostViewSet(ModelViewSet):
         serializer.save(author=self.request.user)
 
     def get_serializer_class(self):
-        if self.request.method in ("POST", "PUT", "PATCH"):
+        if self.request.method not in SAFE_METHODS:
             return PostCreateSerializer
         if self.action == "retrieve":
             return PostDetailSerializer
@@ -45,6 +56,7 @@ class PostViewSet(ModelViewSet):
 
     def get_object(self):
         obj = super().get_object()
+        # сигнал создания записи просмотра определенного поста
         post_view_signal.send(sender=Post, instance=obj, request=self.request)
         return obj
 
@@ -57,12 +69,26 @@ class GroupViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthorOrReadOnly]
 
 
-class CommentViewSet(ModelViewSet):
-    """Вьюсет для комментариев."""
+class CreateUpdateRetrieveMixin(
+    CreateModelMixin,
+    UpdateModelMixin,
+    RetrieveModelMixin,
+    GenericViewSet,
+    DestroyModelMixin,
+): ...
+
+
+class CommentViewSet(CreateUpdateRetrieveMixin):
+    """Вьюсет для чтения комментариев."""
 
     queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+    serializer_class = CommentReadSerializer
     permission_classes = [IsAuthorOrReadOnly]
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return super().get_serializer_class()
+        return CommentCreateSerializer
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
@@ -76,10 +102,15 @@ class CommentViewSet(ModelViewSet):
 class CustomUserViewSet(UserViewSet):
     """Вьюсет для пользователей."""
 
-    queryset = User.objects.all().annotate(
-        is_subscribed=Exists(Follow.objects.filter(user=OuterRef("pk")))
-    )
+    queryset = User.objects.all()
     serializer_class = CustomUserSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.get_is_subscribed()
+        queryset = queryset.get_subscribers_count()
+        queryset = queryset.get_subscriptions_count()
+        return queryset
 
     @action(methods=["post", "delete"], detail=True)
     def subscribe(self, request, id):
@@ -109,6 +140,8 @@ class CustomUserViewSet(UserViewSet):
     @action(methods=["GET"], detail=False)
     def subscriptions(self, request):
         """Получить список подписок."""
-        subscriptions = get_list_or_404(Follow, user=request.user)
+        subscriptions = get_list_or_404(
+            Follow.objects.select_related("author"), user=request.user
+        )
         serializers = SubscribeSerializer(subscriptions, many=True)
         return Response(serializers.data)

@@ -9,7 +9,7 @@ from .fields import Base64ImageField
 User = get_user_model()
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentReadSerializer(serializers.ModelSerializer):
     """Сериализатор для комментариев."""
 
     author = serializers.SlugRelatedField(
@@ -30,6 +30,8 @@ class CustomUserSerializer(UserSerializer):
     """Сериализатор для пользователя."""
 
     is_subscribed = serializers.BooleanField(read_only=True)
+    subscriptions_count = serializers.IntegerField(read_only=True)
+    subscribers_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
@@ -42,7 +44,6 @@ class CustomUserSerializer(UserSerializer):
             "birth_date",
             "avatar",
             "is_subscribed",
-            "posts_count",
             "subscribers_count",
             "subscriptions_count",
         )
@@ -63,7 +64,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class GroupOfPostSerializer(serializers.ModelSerializer):
-    """Сериализатор для групп."""
+    """Сериализатор для групп для представления в постах."""
 
     title = serializers.ReadOnlyField()
     slug = serializers.SlugField(required=False)
@@ -74,12 +75,14 @@ class GroupOfPostSerializer(serializers.ModelSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
-    author = CustomUserSerializer(read_only=True)
+    """Сериализатор для создания и обновления комментариев."""
 
     class Meta:
         model = Comment
-        fields = ("text", "post", "author")
-        read_only_fields = ("post",)
+        fields = ("text",)
+
+    def to_representation(self, instance):
+        return CommentReadSerializer(instance).data
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -106,16 +109,12 @@ class PostSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     """Сериализатор для создания и обновление постов."""
 
-    author = AuthorOfPostSerializer(read_only=True)
     image = Base64ImageField(required=False, allow_null=True)
 
     class Meta:
         fields = (
-            "id",
             "title",
             "text",
-            "author",
-            "pub_date",
             "image",
             "group",
         )
@@ -127,7 +126,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
     author = AuthorOfPostSerializer(read_only=True)
     group = GroupOfPostSerializer(read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
+    comments = CommentReadSerializer(many=True, read_only=True)
     views_count = serializers.IntegerField()
 
     class Meta:
@@ -155,13 +154,6 @@ class SubscribeSerializer(serializers.ModelSerializer):
     email = serializers.ReadOnlyField(source="author.email")
     birth_date = serializers.ReadOnlyField(source="author.birth_date")
     avatar = serializers.ImageField(source="author.avatar")
-    posts_count = serializers.ReadOnlyField(source="author.posts_count")
-    subscribers_count = serializers.ReadOnlyField(
-        source="author.subscribers_count"
-    )
-    subscriptions_count = serializers.ReadOnlyField(
-        source="author.subscriptions_count"
-    )
 
     class Meta:
         model = Follow
@@ -173,7 +165,4 @@ class SubscribeSerializer(serializers.ModelSerializer):
             "email",
             "birth_date",
             "avatar",
-            "posts_count",
-            "subscribers_count",
-            "subscriptions_count",
         )
