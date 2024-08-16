@@ -3,37 +3,37 @@
 {% load thumbnail %}
 
 {% block title %}
-  {% if 'subscriptions/' in request.path %}
-    Ваши подписки
-  {% else %}
-    Пользователи
-  {% endif %}
+{% if 'subscriptions/' in request.path %}
+Ваши подписки
+{% else %}
+Пользователи
+{% endif %}
 {% endblock %}
 
 {% block content %}
-  <div class="container-fluid mt-5">
+<div class="container-fluid mt-5">
     <div class="row justify-content-center">
-      {% for user in page_obj %}
+        {% for user in page_obj %}
         <div class="col-lg-2 m-lg-4 mt-2 col-12 col-md-6">
-          <div class="card round m-auto" style="width: 20rem;">
-            {% if user.avatar %}
-              {% thumbnail user.avatar '550x630' crop='center' upscale=True as im %}
-              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid" />
-              {% endthumbnail %}
-            {% else %}
-              <img src="{% static 'img/baseavatar.jpg' %}" class="card-img-top" alt="..." />
-            {% endif %}
+            <div class="card round m-auto" style="width: 20rem;">
+                {% if user.avatar %}
+                {% thumbnail user.avatar '550x630' crop='center' upscale=True as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-fluid" />
+                {% endthumbnail %}
+                {% else %}
+                <img src="{% static 'img/baseavatar.jpg' %}" class="card-img-top" alt="..." />
+                {% endif %}
 
-            <div class="card-body">
-              <h5 class="card-title">{{ user.username }}</h5>
-              <a href="{% url 'posts:profile' user.username %}" class="btn btn-primary">Подробнее</a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <a href="{% url 'users:profile' user.username %}" class="btn btn-primary">Подробнее</a>
+                </div>
             </div>
-          </div>
         </div>
-      {% endfor %}
+        {% endfor %}
     </div>
-  </div>
-  <div class="d-flex justify-content-center">
+</div>
+<div class="d-flex justify-content-center">
     {% include 'posts/includes/paginator.html' %}
-  </div> <!-- Паджинатор -->
+</div> <!-- Паджинатор -->
 {% endblock %}

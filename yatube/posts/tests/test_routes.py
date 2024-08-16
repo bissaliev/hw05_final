@@ -3,6 +3,7 @@ from http import HTTPStatus
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
+
 from posts.models import Comment, Group, Post
 
 User = get_user_model()
@@ -16,7 +17,9 @@ class TestPostRoutes(TestCase):
         cls.author = User.objects.create(username="Author")
         cls.reader = User.objects.create(username="Reader")
         cls.group = Group.objects.create(
-            title="group_1", slug="slug_group_1", description="Description for group_1"
+            title="group_1",
+            slug="slug_group_1",
+            description="Description for group_1",
         )
         cls.post = Post.objects.create(
             title="Test title", text="Testing", author=cls.author
@@ -52,7 +55,7 @@ class TestPostRoutes(TestCase):
         Тестирование маршрутов доступные любому авторизованному пользователю.
         """
         urls = (
-            ("posts:profile", [self.author.username]),
+            ("users:profile", [self.author.username]),
             ("posts:follow_index", None),
             ("posts:post_create", None),
         )
@@ -92,7 +95,7 @@ class TestPostRoutes(TestCase):
             ("posts:post_delete", [self.post.id]),
             ("posts:post_edit", [self.post.id]),
             ("posts:follow_index", None),
-            ("posts:profile", [self.author.username]),
+            ("users:profile", [self.author.username]),
         )
         for name, args in names:
             with self.subTest(name=name):

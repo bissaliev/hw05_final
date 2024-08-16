@@ -1,8 +1,9 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models.base import Model as Model
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -10,6 +11,7 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from posts.forms import FollowForm
 from posts.models import Post
 
 from .forms import ProfileEditForm, RegisterForm
@@ -72,6 +74,44 @@ class ProfileView(LoginRequiredMixin, DetailView):
             ).order_by("-pub_date"),
         }
         return context
+
+
+class ProfileDetailView(LoginRequiredMixin, ListView):
+    """
+    Класс представления личной страницы пользователя
+    с отображением ленты его опубликованных постов.
+    """
+
+    template_name = "users/user_detail.html"
+    paginate_by = settings.PAGE_SIZE
+    queryset = Post.objects.select_related("group")
+    context_object_name = "posts"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(
+            {
+                "author": self.author,
+                "form": FollowForm(initial={"author": self.author}),
+                "is_subscribed": self.request.user.is_authenticated
+                and self.author.is_subscribed,
+            }
+        )
+        return context
+
+    def get(self, request, *args, **kwargs):
+        username = self.kwargs.get("username")
+        if username == request.user.username:
+            return redirect("users:me")
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        username = self.kwargs.get("username")
+        self.author = get_object_or_404(
+            User.objects.get_is_subscribed(),
+            username=username,
+        )
+        return self.author.posts.select_related("group")
 
 
 class UserListView(ListView):

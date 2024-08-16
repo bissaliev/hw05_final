@@ -70,6 +70,11 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("me/", views.ProfileView.as_view(), name="me"),
+    path(
+        "users/<str:username>/",
+        views.ProfileDetailView.as_view(),
+        name="profile",
+    ),
     path("profile_edit", views.UserEditView.as_view(), name="profile_edit"),
     path("users/", views.UserListView.as_view(), name="user_list"),
     path(

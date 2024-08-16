@@ -66,7 +66,7 @@ class TestPost(TestCase):
         cls.reverse_names = (
             reverse("posts:index"),
             reverse("posts:post_of_group", args=[cls.group.slug]),
-            reverse("posts:profile", args=[cls.author.username]),
+            reverse("users:profile", args=[cls.author.username]),
         )
 
     @classmethod

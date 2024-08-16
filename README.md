@@ -101,6 +101,34 @@ http://127.0.0.1:8000/api/v1/token/login/
 http://localhost:8000/redoc/
 ```
 
+```text
+http://localhost:8000/api/v1/posts/
+```
+
+```text
+http://localhost:8000/api/v1/posts/<int:id>/
+```
+
+```text
+http://localhost:8000/api/v1/posts/<int:post_id>/comments/
+```
+
+```text
+http://localhost:8000/api/v1/posts/<int:post_id>/comments/id/
+```
+
+```text
+http://localhost:8000/api/v1/users/
+```
+
+```text
+http://localhost:8000/api/v1/users/me/
+```
+
+```text
+http://localhost:8000/api/v1/users/me/
+```
+
 ### Автор
 
 [Биссалиев Олег](https://github.com/bissaliev)

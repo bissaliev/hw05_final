@@ -15,11 +15,17 @@ urlpatterns = [
     path("auth/", include("django.contrib.auth.urls")),
     path("about/", include("about.urls", namespace="about")),
     path("api/v1/", include("api.urls")),
-    path("redoc/", TemplateView.as_view(template_name="redoc.html"), name="redoc"),
+    path(
+        "redoc/",
+        TemplateView.as_view(template_name="redoc.html"),
+        name="redoc",
+    ),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )
     import debug_toolbar
 
     urlpatterns += (path("__debug__/", include(debug_toolbar.urls)),)

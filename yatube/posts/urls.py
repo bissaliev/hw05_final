@@ -12,11 +12,6 @@ urlpatterns = [
         name="post_of_group",
     ),
     path(
-        "posts/profile/<str:username>/",
-        views.PostProfileListView.as_view(),
-        name="profile",
-    ),
-    path(
         "posts/<int:post_id>/",
         views.PostDetailView.as_view(),
         name="post_detail",

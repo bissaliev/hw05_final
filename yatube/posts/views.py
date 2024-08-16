@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,7 +16,6 @@ from django.views.generic import (
     DeleteView,
     DetailView,
     FormView,
-    ListView,
     UpdateView,
 )
 from django.views.generic.detail import SingleObjectMixin
@@ -155,48 +153,6 @@ class GroupPostListView(CacheMixin, PostMixinListView):
         queryset = super().get_queryset().filter(group__slug=slug)
         cache_name = f"posts_of_group_cache_{slug}"
         return self.get_cache(queryset, cache_name, self.cache_timeout)
-
-
-class PostProfileListView(LoginRequiredMixin, ListView):
-    """
-    Класс представления личной страницы пользователя
-    с отображением ленты его опубликованных постов.
-    """
-
-    template_name = "posts/post_of_user.html"
-    paginate_by = settings.PAGE_SIZE
-    queryset = Post.objects.select_related("group")
-    context_object_name = "posts"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update(
-            {
-                "author": self.author,
-                "form": FollowForm(initial={"author": self.author}),
-                "is_subscribed": self.request.user.is_authenticated
-                and self.author.is_subscribed,
-            }
-        )
-        return context
-
-    def get(self, request, *args, **kwargs):
-        username = self.kwargs.get("username")
-        if username == request.user.username:
-            return redirect("users:me")
-        return super().get(request, *args, **kwargs)
-
-    def get_queryset(self):
-        username = self.kwargs.get("username")
-        self.author = get_object_or_404(
-            User.objects.annotate(
-                is_subscribed=Exists(
-                    self.request.user.follower.filter(author=OuterRef("pk"))
-                )
-            ),
-            username=username,
-        )
-        return self.author.posts.select_related("group")
 
 
 class PostFollowListView(LoginRequiredMixin, CacheMixin, PostMixinListView):
