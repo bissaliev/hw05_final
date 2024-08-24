@@ -43,10 +43,10 @@ paths:
                         text: string
                         pub_date: 2021-10-14T20:41:29.648Z
                         image: string
-                        group: 0            
+                        group: 0
           description: Удачное выполнение запроса без пагинации
       tags:
-        - api
+        - Публикации
     post:
       operationId: Создание публикации
       description: >-
@@ -89,7 +89,7 @@ paths:
                     detail: Учетные данные не были предоставлены.
           description: Запрос от имени анонимного пользователя
       tags:
-        - api
+        - Публикации
   '/api/v1/posts/{id}/':
     get:
       operationId: Получение публикации
@@ -117,7 +117,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка запроса несуществующей публикации
       tags:
-        - api
+        - Публикации
     put:
       operationId: Обновление публикации
       description: >-
@@ -182,7 +182,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка изменения несуществующей публикации
       tags:
-        - api
+        - Публикации
     patch:
       operationId: Частичное обновление публикации
       description: >-
@@ -238,7 +238,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка изменения несуществующей публикации
       tags:
-        - api
+        - Публикации
     delete:
       operationId: Удаление публикации
       description: >-
@@ -279,7 +279,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка удаления несуществующей публикации
       tags:
-        - api
+        - Публикации
   '/api/v1/posts/{post_id}/comments/':
     get:
       operationId: Получение комментариев
@@ -311,7 +311,7 @@ paths:
                     }
           description: Получение списка комментариев к несуществующей публикации
       tags:
-        - api
+        - Комментарии
     post:
       operationId: Добавление комментария
       description: Добавление нового комментария к публикации. Анонимные запросы запрещены.
@@ -366,7 +366,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка добавить комментарий к несуществующей публикации
       tags:
-        - api
+        - Комментарии
   '/api/v1/posts/{post_id}/comments/{id}/':
     get:
       operationId: Получение комментария
@@ -402,7 +402,7 @@ paths:
             Попытка запросить несуществующий комментарий или к несуществующей
             публикации
       tags:
-        - api
+        - Комментарии
     put:
       operationId: Обновление комментария
       description: >-
@@ -475,7 +475,7 @@ paths:
             Попытка изменить несуществующий комментарий или к несуществующей
             публикации
       tags:
-        - api
+        - Комментарии
     patch:
       operationId: Частичное обновление комментария
       description: >-
@@ -539,7 +539,7 @@ paths:
             Попытка изменить несуществующий комментарий или к несуществующей
             публикации
       tags:
-        - api
+        - Комментарии
     delete:
       operationId: Удаление комментария
       description: >-
@@ -588,7 +588,7 @@ paths:
             Попытка удалить несуществующий комментарий или к несуществующей
             публикации
       tags:
-        - api
+        - Комментарии
   /api/v1/groups/:
     get:
       operationId: Список сообществ
@@ -604,7 +604,7 @@ paths:
                   $ref: '#/components/schemas/Group'
           description: Удачное выполнение запроса
       tags:
-        - api
+        - Группы
   '/api/v1/groups/{id}/':
     get:
       operationId: Информация о сообществе
@@ -632,7 +632,7 @@ paths:
                     detail: Страница не найдена.
           description: Попытка запроса несуществующего сообщества
       tags:
-        - api
+        - Группы
   /api/v1/follow/:
     get:
       operationId: Подписки
@@ -664,7 +664,7 @@ paths:
                     detail: Учетные данные не были предоставлены.
           description: Запрос от имени анонимного пользователя
       tags:
-        - api
+        - Подписки
     post:
       operationId: Подписка
       description: >-
@@ -717,7 +717,7 @@ paths:
                     detail: Учетные данные не были предоставлены.
           description: Запрос от имени анонимного пользователя
       tags:
-        - api
+        - Подписки
   /api/v1/jwt/create/:
     post:
       operationId: Получить JWT-токен
@@ -761,7 +761,7 @@ paths:
                     detail: No active account found with the given credentials
           description: Переданная учетная запись не существует
       tags:
-        - api
+        - Пользователь
   /api/v1/jwt/refresh/:
     post:
       operationId: Обновить JWT-токен
@@ -804,7 +804,7 @@ paths:
                     code: token_not_valid
           description: Передан невалидный токен
       tags:
-        - api
+        - Пользователь
   /api/v1/jwt/verify/:
     post:
       operationId: Проверить JWT-токен
@@ -843,7 +843,7 @@ paths:
                     code: token_not_valid
           description: Передан невалидный токен
       tags:
-        - api
+        - Пользователь
 components:
   schemas:
     Post:
