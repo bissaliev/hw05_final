@@ -16,7 +16,7 @@ class PostQuerySet(models.QuerySet):
         views_count_subquery = (
             ViewPost.objects.filter(post_id=OuterRef("pk"))
             .values("post_id")
-            .annotate(count=Count("id"))
+            .annotate(count=Count("id", distinct=True))
             .values("count")
         )
         queryset = self.annotate(
@@ -28,7 +28,9 @@ class PostQuerySet(models.QuerySet):
 
     def get_count_posts_of_author(self):
         """Количество постов у определенного автора."""
-        queryset = self.annotate(count_posts_of_author=Count("author__posts"))
+        queryset = self.annotate(
+            count_posts_of_author=Count("author__posts", distinct=True)
+        )
         return queryset
 
 
@@ -109,18 +111,6 @@ class Post(models.Model):
         qs.update(
             search_vector=SearchVector("title", "text", config="russian")
         )
-
-    # @property
-    # def views_count(self):
-    # """Количество просмотров поста."""
-    # return self.view_posts.count()
-
-
-#
-# @property
-# def comments_count(self):
-# """Количество комментариев к посту."""
-# return self.comments.count()
 
 
 class Comment(models.Model):
