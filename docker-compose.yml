@@ -19,7 +19,6 @@ services:
     volumes:
       - static_value:/app/staticfiles/
       - media_value:/app/media/
-    # command: [ "bash", "/app/run.sh" ]
 
   nginx:
     image: nginx:1.21.3-alpine
