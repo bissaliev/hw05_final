@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser, UserManager
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -64,6 +65,7 @@ class Follow(models.Model):
         related_name="following",
         verbose_name="автор поста",
     )
+    created_at = models.DateTimeField("Дата подписки", auto_now_add=True)
 
     class Meta:
         verbose_name = "Подписка"
@@ -73,3 +75,16 @@ class Follow(models.Model):
                 fields=["user", "author"], name="unique_follow"
             )
         ]
+
+    def clean(self) -> None:
+        if self.user == self.author:
+            raise ValidationError(
+                "Пользователь не можете быть подписан на самого себя."
+            )
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.username} подписан на {self.author.username}"
