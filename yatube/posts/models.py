@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
-from django.db.models import Count, OuterRef, Subquery
+from django.db.models import Count
 from django.urls import reverse
 
 from .fields import WEBPField
@@ -13,16 +13,8 @@ User = get_user_model()
 class PostQuerySet(models.QuerySet):
     def get_views_count(self):
         """Количество просмотров поста."""
-        views_count_subquery = (
-            ViewPost.objects.filter(post_id=OuterRef("pk"))
-            .values("post_id")
-            .annotate(count=Count("id", distinct=True))
-            .values("count")
-        )
         queryset = self.annotate(
-            views_count=Subquery(
-                views_count_subquery, output_field=models.IntegerField()
-            )
+            views_count=Count("view_posts", distinct=True)
         )
         return queryset
 
@@ -157,9 +149,11 @@ class ViewPost(models.Model):
     date_of_viewing = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f"{self.user} просмотрел {self.post} - {self.date_of_viewing}"
+        return f"{self.ip_address} просмотрел {self.post} - {self.date_of_viewing}"
 
     class Meta:
+        verbose_name = "Просмотр"
+        verbose_name_plural = "Просмотры"
         constraints = [
             models.UniqueConstraint(
                 fields=("post", "user"), name="unique_view_post"

@@ -13,6 +13,9 @@ class UserQueryset(models.QuerySet):
             )
         )
 
+    def get_posts_count(self):
+        return self.annotate(posts_count=models.Count("posts"))
+
     def get_subscriptions_count(self):
         """Количество подписок."""
         return self.annotate(subscriptions_count=models.Count("follower"))
