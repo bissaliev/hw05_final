@@ -9,7 +9,6 @@ from django.db.models import Count
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils.html import format_html
-from posts.models import Post
 
 from .models import Follow
 
@@ -58,22 +57,26 @@ class UserAdmin(admin.ModelAdmin):
     ordering = ("username", "first_name", "last_name")
     actions = ["export_to_csv"]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        qs = qs.prefetch_related("posts", "posts__view_posts", "following")
+        qs = qs.annotate(views_count=Count("posts__view_posts"))
+        return qs
+
     @admin.display(description="Кол-во просмотров постов автора")
     def get_views_count(self, obj):
         """Количество просмотров постов автора."""
-        posts = Post.objects.filter(author=obj).aggregate(
-            views_count=Count("view_posts", distinct=True)
-        )
-        return posts.get("views_count")
+        return obj.views_count
 
     @admin.display(description="Кол-во подписчиков")
     def get_subscribers_count(self, obj):
+        """Количество подписчиков."""
         return obj.following.count()
 
     @admin.display(description="Posts")
     def view_posts_link(self, obj):
         """Ссылка на список публикаций автора."""
-        count = Post.objects.filter(author=obj).count()
+        count = obj.posts.count()
         url = (
             reverse("admin:posts_post_changelist")
             + f"?author__id__exact={obj.id}"
