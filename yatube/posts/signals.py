@@ -1,8 +1,7 @@
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import Signal, receiver
-from sorl.thumbnail import delete as thumbnail_delete
-
 from posts.models import Post, ViewPost
+from sorl.thumbnail import delete as thumbnail_delete
 
 from .utils import cache_post_delete, get_client_ip
 
@@ -29,7 +28,7 @@ def delete_image_on_model(instance, **kwargs):
         instance.image.delete(False)
 
 
-post_view_signal = Signal(providing_args=["instance", "request"])
+post_view_signal = Signal()
 
 
 @receiver(post_view_signal)
